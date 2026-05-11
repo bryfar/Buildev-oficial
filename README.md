@@ -447,9 +447,9 @@ flowchart LR
     Parser[JSON Parser<br/>→ PenNode AST]
     Canvas[Canvas<br/>Editable Design]
 
-    Upload -->|base64 image| AI
-    AI -->|structured JSON| Parser
-    Parser -->|PenNode[]| Canvas
+    Upload-->"base64 image"-->AI
+    AI-->"structured JSON"-->Parser
+    Parser-->"PenNode[]"-->Canvas
 ```
 
 - **File:** `apps/web/src/services/ai/vision-scanner.ts`
@@ -486,7 +486,7 @@ flowchart LR
     Vue --> Backward --> Doc
     HTML --> Backward --> Doc
     Doc --> Renderer
-    Backward -.->|Updates Canvas| Renderer
+    Backward-.->"Updates Canvas"-->Renderer
 ```
 
 - **Reverse parsers:** React, Vue 3, HTML, generic
@@ -531,8 +531,8 @@ flowchart TB
 
     Registry --> Hooks
     Registry --> BuiltIn
-    Registry -->|Developer API| Custom
-    Hooks --> Lifecycle
+    Registry-->"Developer API"-->Custom
+    Hooks-->Lifecycle
 ```
 
 - **9 built-in plugins** pre-installed
@@ -658,15 +658,15 @@ Describe any UI in natural language. Watch it appear on the infinite canvas in r
 
 ```mermaid
 flowchart LR
-    Prompt[User Prompt<br/>"A landing page for SaaS"]
+    Prompt[User Prompt<br/>A landing page for SaaS]
     AI[AI Engine<br/>Streaming Generation]
     Canvas[Infinite Canvas<br/>Real-time Rendering]
     Edit[Select & Modify<br/>Natural Language]
 
-    Prompt -->|Streaming SSE| AI
-    AI -->|Chunk-by-chunk| Canvas
-    Canvas -->|Select element| Edit
-    Edit -->|"Make it darker"| AI
+    Prompt-->"Streaming SSE"-->AI
+    AI-->"Chunk-by-chunk"-->Canvas
+    Canvas-->"Select element"-->Edit
+    Edit-->"Make it darker"-->AI
 ```
 
 ### 🤖 Concurrent Agent Teams
@@ -675,7 +675,7 @@ The orchestrator decomposes complex pages into spatial sub-tasks. Multiple AI ag
 
 ```mermaid
 flowchart LR
-    User[User Prompt<br/>"Landing page for SaaS"]
+    User[User Prompt<br/>Landing page for SaaS]
     Orchestrator[Orchestrator<br/>Spatial Decomposition]
     
     subgraph Agents["Agent Teams"]
@@ -768,11 +768,11 @@ flowchart LR
         API[Nitro API]
     end
 
-    CLIs -->|MCP Protocol| Tools
-    Tools --> Layered
-    Tools --> Segmented
-    Tools -->|HTTP| API
-    API --> Live
+    CLIs-->"MCP Protocol"-->Tools
+    Tools-->Docs
+    Tools-->Design
+    Tools-->"HTTP"-->API
+    API-->Live
 ```
 
 - **One-click install** into any MCP-compatible CLI
@@ -792,10 +792,10 @@ flowchart LR
     AI[AI Generation<br/>Incorporates Style]
     Canvas[Canvas<br/>Styled Design]
 
-    Style -->|glassmorphism, brutalist, retro...| Matcher
-    Matcher -->|matched styles| AI
-    AI --> Canvas
-    MCP[MCP Tools<br/>get_style_guide_tags] --> Style
+    Style-->"tags: glassmorphism, retro..."-->Matcher
+    Matcher-->"matched styles"-->AI
+    AI-->Canvas
+    MCP[MCP Tools<br/>get_style_guide_tags]-->Style
 ```
 
 - **Categories:** glassmorphism, brutalist, retro, modern SaaS, luxury, gaming, fintech, health, editorial, and 40+ more
@@ -811,10 +811,10 @@ flowchart LR
     OpFile[.op File<br/>JSON Document]
     Git[Git Version Control]
     Code[Code Export<br/>8 Frameworks]
-    Variables[CSS Custom Properties<br/>var\(--name\)]
+    Variables[CSS Custom Properties<br/>var(--name)]
 
     Design --> OpFile
-    OpFile -->|Diffable| Git
+    OpFile-->"Diffable"-->Git
     OpFile --> Code
     OpFile --> Variables
 ```
@@ -876,7 +876,7 @@ flowchart TB
     end
 
     subgraph Output["Output"]
-        CSS[CSS Custom Properties<br/>var\(--name\)]
+        CSS[CSS Custom Properties<br/>var(--name)]
         UIKit[UIKits<br/>Import/Export .pen]
     end
 
@@ -959,9 +959,9 @@ flowchart LR
     Mapper[Node Mapper<br/>Figma → PenNode]
     Canvas[Canvas<br/>Editable Design]
 
-    Figma -->|binary| Parser
-    Parser -->|Figma nodes| Mapper
-    Mapper -->|PenNode[]| Canvas
+    Figma-->"binary"-->Parser
+    Parser-->"Figma nodes"-->Mapper
+    Mapper-->"PenNode[]"-->Canvas
 ```
 
 ### 🖥️ Electron Desktop
@@ -1013,8 +1013,8 @@ flowchart TB
         StackAssistant[Stack Migration<br/>Assistant]
     end
 
-    TopBar -->|Toggle| DesignMode
-    TopBar -->|Toggle| IDEMode
+    TopBar-->"Toggle"-->DesignMode
+    TopBar-->"Toggle"-->IDEMode
 ```
 
 - **Design Mode** — Full visual canvas with drawing tools, layer panel, properties, AI chat
@@ -1399,12 +1399,6 @@ Contributions are welcome! See [CLAUDE.md](./CLAUDE.md) for architecture details
 - [ ] Plugin marketplace
 
 ---
-
-## Contributors
-
-<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
-</a>
 
 ## License
 
