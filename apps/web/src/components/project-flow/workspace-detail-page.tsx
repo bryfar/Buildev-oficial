@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { ArrowLeft, Plus } from 'lucide-react';
@@ -151,11 +151,9 @@ export function WorkspaceDetailPage({ workspaceId }: Props) {
           </nav>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2">
-              <Button type="button" variant="ghost" size="icon-sm" asChild className="shrink-0">
-                <Link to="/workspaces" aria-label={t('projectFlow.workspaceDetail.back')}>
-                  <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
-                </Link>
-              </Button>
+              <Link to="/workspaces" className="inline-flex items-center justify-center shrink-0 h-8 w-8 rounded-md hover:bg-accent" aria-label={t('projectFlow.workspaceDetail.back')}>
+                <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
+              </Link>
               <div className="min-w-0">
                 <h1 className="truncate text-lg font-semibold tracking-tight">{workspace.name}</h1>
                 <p className="text-xs text-muted-foreground">{t('projectFlow.workspaceDetail.subtitle')}</p>

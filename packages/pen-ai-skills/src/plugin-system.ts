@@ -1,6 +1,6 @@
 import type { PenNode } from '@buildev/pen-types';
 
-export type PluginPhase = 'before-create' | 'create' | 'after-create' | 'before-export' | 'export' | 'after-export';
+export type PluginPhase = 'before-create' | 'create' | 'after-create' | 'before-generate' | 'after-generate' | 'before-export' | 'export' | 'after-export' | 'before-import' | 'after-import';
 
 export interface PluginCapability {
   name: string;
@@ -159,10 +159,10 @@ class PluginManager {
     this.eventHandlers.get(phase)?.delete(handler);
   }
 
-  async executePhase<T extends PluginPhase>(
-    phase: T,
-    context: Parameters<NonNullable<PluginHooks[T]>>[0]
-  ): Promise<any> {
+  async executePhase(
+    phase: PluginPhase,
+    context: unknown
+  ): Promise<unknown> {
     const handlers = this.eventHandlers.get(phase);
     if (!handlers) return context;
 
@@ -172,9 +172,9 @@ class PluginManager {
     }
 
     for (const plugin of this.plugins.values()) {
-      const hook = plugin.hooks[phase];
+      const hook = (plugin.hooks as Record<string, (ctx: unknown) => Promise<unknown>>)[phase];
       if (hook) {
-        result = await hook(result as any) ?? result;
+        result = await hook(result) ?? result;
       }
     }
 
