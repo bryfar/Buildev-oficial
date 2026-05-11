@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>The open-source AI-native visual web builder.</strong><br />
-  <sub>Design-as-Code &bull; Multi-framework Export &bull; Concurrent AI Agents &bull; MCP Server</sub>
+  <strong>The open-source AI-native design-to-code platform.</strong><br />
+  <sub>Visual Canvas + IDE Mode &bull; Design-as-Code &bull; Multi-framework Export &bull; Concurrent AI Agents</sub>
 </p>
 
 <p align="center">
