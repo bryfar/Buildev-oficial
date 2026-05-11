@@ -10,14 +10,14 @@
 </p>
 
 <p align="center">
-  <a href="./README.md">English</a> · <a href="./README.zh.md"><b>简体中文</b></a> · <a href="./README.zh-TW.md">繁體中文</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.fr.md">Français</a> · <a href="./README.es.md">Español</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.pt.md">Português</a> · <a href="./README.ru.md">Русский</a> · <a href="./README.hi.md">हिन्दी</a> · <a href="./README.tr.md">Türkçe</a> · <a href="./README.th.md">ไทย</a> · <a href="./README.vi.md">Tiếng Việt</a> · <a href="./README.id.md">Bahasa Indonesia</a>
-</p>
-
-<p align="center">
   <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
   <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
   <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
+</p>
+
+<p align="center">
+  <a href="./README.md">English</a> · <a href="./README.zh.md"><b>简体中文</b></a> · <a href="./README.zh-TW.md">繁體中文</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.fr.md">Français</a> · <a href="./README.es.md">Español</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.pt.md">Português</a> · <a href="./README.ru.md">Русский</a> · <a href="./README.hi.md">हिन्दी</a> · <a href="./README.tr.md">Türkçe</a> · <a href="./README.th.md">ไทย</a> · <a href="./README.vi.md">Tiếng Việt</a> · <a href="./README.id.md">Bahasa Indonesia</a>
 </p>
 
 <br />
