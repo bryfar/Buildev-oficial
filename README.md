@@ -564,6 +564,25 @@ flowchart LR
 
 Web app + native desktop on macOS, Windows, and Linux via Electron. Auto-updates from GitHub Releases.
 
+```mermaid
+flowchart LR
+    subgraph Platforms["Supported Platforms"]
+        Web[Web App<br/>Vite + Nitro]
+        Mac[macOS<br/>Electron]
+        Win[Windows<br/>Electron]
+        Linux[Linux<br/>Electron]
+    end
+
+    subgraph Features["Desktop Features"]
+        FileAssoc[.op File Association<br/>Double-click to open]
+        AutoUpdate[Auto-update<br/>GitHub Releases]
+        NativeMenu[Native Menu<br/>Save As, Open Recent]
+        RecentFiles[Recent Files<br/>Persistence]
+    end
+
+    Platforms --> Features
+```
+
 ### ⌨️ CLI — `op`
 
 ```bash
@@ -576,75 +595,475 @@ op import:figma design.fig   # Import Figma file
 cat design.dsl | op design - # Pipe from stdin
 ```
 
+```mermaid
+flowchart LR
+    subgraph Commands["CLI Commands"]
+        Start[op start]
+        Design[op design]
+        Insert[op insert]
+        Import[op import:figma]
+        Export[op export]
+    end
+
+    subgraph Input["Input Methods"]
+        Inline[Inline String]
+        File["@filepath"]
+        Stdin["- (stdin)"]
+    end
+
+    subgraph Target["Target"]
+        Desktop[Desktop App<br/>Electron]
+        Web[Web Server<br/>localhost:3000]
+    end
+
+    Input --> Commands
+    Commands --> Target
+```
+
 Supports three input methods: inline string, `@filepath` (read from file), or `-` (read from stdin). Works with desktop app or web dev server. See [CLI README](./apps/cli/README.md) for full command reference.
 
-**LLM Skill** — install the [Buildev Skill](https://github.com/ZSeven-W/buildev-skill) plugin to teach AI agents (Claude Code, Cursor, Codex, Gemini CLI, etc.) how to design with `op`.
+**LLM Skill** — install the Buildev Skill plugin to teach AI agents (Claude Code, Cursor, Codex, Gemini CLI, etc.) how to design with `op`.
 
 ### 🎯 Multi-Platform Code Export
 
 8 frameworks from one design:
-- React + Tailwind CSS | HTML + CSS | CSS Variables
-- Vue 3 | Svelte | Flutter | SwiftUI | Jetpack Compose | React Native
 
-**Canvas & Drawing**
+```mermaid
+flowchart TB
+    Design[One Design<br/>.op File]
+    Codegen[Code Generation Engine<br/>pen-codegen]
+    React[React + Tailwind]
+    Vue[Vue 3 + CSS]
+    Svelte[Svelte + CSS]
+    HTML[HTML + CSS]
+    Flutter[Flutter / Dart]
+    Swift[SwiftUI]
+    Compose[Jetpack Compose]
+    RN[React Native]
 
-- Infinite canvas with pan, zoom, smart alignment guides, and snapping
-- Rectangle, Ellipse, Line, Polygon, Pen (Bezier), Frame, Text
-- Boolean operations — union, subtract, intersect with contextual toolbar
-- Icon picker (Iconify) and image import (PNG/JPEG/SVG/WebP/GIF)
-- Auto-layout — vertical/horizontal with gap, padding, justify, align
-- Multi-page documents with tab navigation
+    Design --> Codegen
+    Codegen --> React
+    Codegen --> Vue
+    Codegen --> Svelte
+    Codegen --> HTML
+    Codegen --> Flutter
+    Codegen --> Swift
+    Codegen --> Compose
+    Codegen --> RN
+```
 
-**Design System**
+### 🎨 Prompt → Canvas
 
-- Design variables — color, number, string tokens with `$variable` references
-- Multi-theme support — multiple axes, each with variants (Light/Dark, Compact/Comfortable)
-- Component system — reusable components with instances and overrides
-- CSS sync — auto-generated custom properties, `var(--name)` in code output
-- Reusable UIKits — import/export component kits from `.pen` files
-- 50+ built-in style guides (glassmorphism, brutalist, retro, etc.)
+Describe any UI in natural language. Watch it appear on the infinite canvas in real-time with SSE streaming animation. Modify existing designs by selecting elements and chatting.
 
-**AI & Agents**
+```mermaid
+flowchart LR
+    Prompt[User Prompt<br/>"A landing page for SaaS"]
+    AI[AI Engine<br/>Streaming Generation]
+    Canvas[Infinite Canvas<br/>Real-time Rendering]
+    Edit[Select & Modify<br/>Natural Language]
 
-- Prompt-to-canvas with streaming generation and orchestrator-driven spatial decomposition
-- Concurrent Agent Teams — multiple designers work on different sections in parallel with per-member canvas indicators
-- Layered workflow — `design_skeleton` → `design_content` → `design_refine` with focused prompts per phase
-- Style Guides — 50+ built-in styles with tag-based fuzzy matching, wired into planning and generation
-- Multi-model capability profiles — auto-adapts thinking mode, effort, and prompt shape per model tier
-- Built-in agent runtime (`agent-native`, Zig NAPI) + Anthropic, Claude Agent SDK, OpenCode, Codex, Copilot, Gemini providers
-- Anthropic-format passthrough for Chinese LLM providers — Kimi, Zhipu, GLM, DouBao, Ark, Bailian/DashScope, ModelScope, Coding Plans
+    Prompt -->|Streaming SSE| AI
+    AI -->|Chunk-by-chunk| Canvas
+    Canvas -->|Select element| Edit
+    Edit -->|"Make it darker"| AI
+```
 
-**Git Integration**
+### 🤖 Concurrent Agent Teams
 
-- Clone wizard with SSH / HTTPS auth and SSH key management
-- Branch picker — create, switch, delete, merge, all from the git panel
-- Pull / push cascades with auth retry and non-fast-forward handling
-- Folder-mode three-way merge with on-disk `MERGE_HEAD` state tracking
-- Conflict panel with per-node / per-field three-way cards, inline JSON editor, bulk actions, and inline diff block
-- Remote settings and SSH keys UI; 15-locale i18n across the whole Git surface
+The orchestrator decomposes complex pages into spatial sub-tasks. Multiple AI agents work on different sections simultaneously — hero, features, footer — all streaming in parallel with per-member canvas indicators.
 
-**Export**
+```mermaid
+flowchart LR
+    User[User Prompt<br/>"Landing page for SaaS"]
+    Orchestrator[Orchestrator<br/>Spatial Decomposition]
+    
+    subgraph Agents["Agent Teams"]
+        A1[Agent 1<br/>Hero Section]
+        A2[Agent 2<br/>Features Grid]
+        A3[Agent 3<br/>Footer]
+        A4[Agent N<br/>...]
+    end
+    
+    Canvas[Canvas<br/>Real-time Streaming]
+
+    User --> Orchestrator
+    Orchestrator --> A1
+    Orchestrator --> A2
+    Orchestrator --> A3
+    Orchestrator --> A4
+    A1 --> Canvas
+    A2 --> Canvas
+    A3 --> Canvas
+    A4 --> Canvas
+```
+
+- **Delegate tool** — agents can hand off sub-tasks to specialized peers
+- **Per-member canvas indicators** — visual feedback for each agent's progress
+- **Fallback strategies** — graceful degradation if an agent times out
+
+### 🧠 Multi-Model Intelligence & Agent Providers
+
+Automatically adapts to each model's capabilities across 9+ providers.
+
+```mermaid
+flowchart TB
+    subgraph Models["Model Tiers"]
+        Full[Full Tier<br/>Claude]
+        Standard[Standard Tier<br/>GPT-4o, Gemini, DeepSeek]
+        Basic[Basic Tier<br/>MiniMax, Qwen, Llama, Mistral]
+    end
+
+    subgraph Config["Auto-Configuration"]
+        Thinking[Thinking Mode]
+        Effort[Effort Level]
+        Prompts[Prompt Shape]
+        Timeouts[Timeouts]
+    end
+
+    subgraph Providers["9+ Providers"]
+        Anthropic[Anthropic]
+        OpenAI[OpenAI]
+        Google[Google]
+        DeepSeek[DeepSeek]
+        Chinese[Chinese LLMs<br/>Kimi, Zhipu, GLM]
+    end
+
+    Models --> Config
+    Config --> Providers
+    Providers --> Canvas
+```
+
+| Agent | Setup |
+|-------|-------|
+| **Built-in (9+ providers)** | Select from provider presets with region switcher |
+| **Claude Code** | No config — uses Claude Agent SDK with local OAuth |
+| **Codex CLI** | Connect in Agent Settings (`Cmd+,`) |
+| **OpenCode** | Connect in Agent Settings (`Cmd+,`) |
+| **GitHub Copilot** | `copilot login` then connect in Agent Settings |
+| **Gemini CLI** | Connect in Agent Settings (`Cmd+,`) |
+
+### 🔌 MCP Server
+
+Built-in MCP server for external AI agent integration.
+
+```mermaid
+flowchart LR
+    subgraph CLIs["External CLIs"]
+        Claude[Claude Code]
+        Codex[Codex CLI]
+        Gemini[Gemini CLI]
+        OpenCode[OpenCode]
+        Copilot[GitHub Copilot]
+    end
+
+    subgraph MCP["Buildev MCP Server"]
+        Tools[Tools<br/>design, insert, update]
+        Layered[Layered Workflow<br/>skeleton → content → refine]
+        Segmented[Segmented Prompts<br/>schema, layout, icons]
+    end
+
+    subgraph Canvas["Buildev App"]
+        Live[Live Canvas]
+        API[Nitro API]
+    end
+
+    CLIs -->|MCP Protocol| Tools
+    Tools --> Layered
+    Tools --> Segmented
+    Tools -->|HTTP| API
+    API --> Live
+```
+
+- **One-click install** into any MCP-compatible CLI
+- **Layered workflow:** `design_skeleton` → `design_content` → `design_refine`
+- **Segmented prompts:** load only what you need (schema, layout, icons, planning)
+- **Style guide tools:** `get_style_guide_tags`, `get_style_guide`
+- **Multi-page:** create, rename, reorder, duplicate pages via MCP
+
+### 🎨 Style Guides
+
+50+ built-in styles with tag-based fuzzy matching. Apply visual styles to AI-generated designs.
+
+```mermaid
+flowchart LR
+    Style[Style Guide Library<br/>50+ Styles]
+    Matcher[Tag-based Fuzzy Matcher]
+    AI[AI Generation<br/>Incorporates Style]
+    Canvas[Canvas<br/>Styled Design]
+
+    Style -->|glassmorphism, brutalist, retro...| Matcher
+    Matcher -->|matched styles| AI
+    AI --> Canvas
+    MCP[MCP Tools<br/>get_style_guide_tags] --> Style
+```
+
+- **Categories:** glassmorphism, brutalist, retro, modern SaaS, luxury, gaming, fintech, health, editorial, and 40+ more
+- **MCP tools:** external agents can query and apply style guides
+
+### 📦 Design-as-Code
+
+`.op` files are JSON — human-readable, Git-friendly, diffable.
+
+```mermaid
+flowchart LR
+    Design[Visual Design]
+    OpFile[.op File<br/>JSON Document]
+    Git[Git Version Control]
+    Code[Code Export<br/>8 Frameworks]
+    Variables[CSS Custom Properties<br/>var\(--name\)]
+
+    Design --> OpFile
+    OpFile -->|Diffable| Git
+    OpFile --> Code
+    OpFile --> Variables
+```
+
+### 🖥️ Canvas & Drawing
+
+Infinite canvas with GPU-accelerated rendering via CanvasKit/Skia WASM.
+
+```mermaid
+flowchart TB
+    subgraph Drawing["Drawing Tools"]
+        Rect[Rectangle]
+        Ellipse[Ellipse]
+        Line[Line]
+        Pen[Pen / Bezier]
+        Text[Text]
+        Frame[Frame]
+        Polygon[Polygon]
+    end
+
+    subgraph CanvasFeatures["Canvas Features"]
+        Pan[Pan & Zoom]
+        Align[Alignment Guides]
+        Snap[Snapping]
+        Boolean[Boolean Ops<br/>Union, Subtract, Intersect]
+        Layout[Auto-layout<br/>Flexbox-like]
+        Pages[Multi-page<br/>Tab Navigation]
+    end
+
+    subgraph Import["Import"]
+        Icons[Iconify Icons]
+        Images[PNG/JPEG/SVG/WebP/GIF]
+    end
+
+    Drawing --> CanvasFeatures
+    Import --> CanvasFeatures
+```
+
+### 🎨 Design System & Variables
+
+Full design token system with multi-theme support.
+
+```mermaid
+flowchart TB
+    subgraph Tokens["Design Tokens"]
+        Colors[Color Variables<br/>$color-1, $color-2]
+        Numbers[Number Variables<br/>$spacing-md]
+        Strings[String Variables<br/>$font-family]
+    end
+
+    subgraph Themes["Multi-Theme"]
+        Theme1[Theme Axis 1<br/>Light / Dark]
+        Theme2[Theme Axis 2<br/>Compact / Comfortable]
+    end
+
+    subgraph Components["Components"]
+        Reusable[Reusable Components]
+        Instances[Instances & Overrides]
+    end
+
+    subgraph Output["Output"]
+        CSS[CSS Custom Properties<br/>var\(--name\)]
+        UIKit[UIKits<br/>Import/Export .pen]
+    end
+
+    Tokens --> Themes
+    Themes --> Components
+    Components --> Output
+```
+
+### 🤖 AI & Agents
+
+- **Prompt-to-canvas** with streaming generation and orchestrator-driven spatial decomposition
+- **Concurrent Agent Teams** — multiple designers work in parallel with per-member indicators
+- **Layered workflow** — `design_skeleton` → `design_content` → `design_refine` with focused prompts per phase
+- **Style Guides** — 50+ built-in styles with tag-based fuzzy matching
+- **Multi-model capability profiles** — auto-adapts thinking, effort, prompt shape per model tier
+- **Built-in agent runtime** (`agent-native`, Zig NAPI) + Anthropic, Claude Agent SDK, OpenCode, Codex, Copilot, Gemini providers
+- **Chinese LLM providers** — Kimi, Zhipu, GLM, DouBao, Ark, Bailian/DashScope, ModelScope, Coding Plans
+
+### 🔗 Git Integration
+
+Full Git version control built into the editor.
+
+```mermaid
+flowchart TB
+    subgraph GitFeatures["Git Features"]
+        Clone[Clone Wizard<br/>SSH / HTTPS]
+        Branch[Branch Manager<br/>Create, Switch, Delete, Merge]
+        Sync[Push / Pull<br/>Auth Retry]
+        Merge[Three-way Merge<br/>Folder-mode]
+    end
+
+    subgraph Conflict["Conflict Resolution"]
+        Cards[Per-node / Per-field Cards]
+        Editor[Inline JSON Editor]
+        Diff[Inline Diff Block]
+        Bulk[Bulk Actions]
+    end
+
+    subgraph Remote["Remote"]
+        SSH[SSH Key Management]
+        Settings[Remote Settings UI]
+    end
+
+    GitFeatures --> Remote
+    GitFeatures --> Conflict
+```
+
+- **Clone wizard** with SSH / HTTPS auth and SSH key management
+- **Branch picker** — create, switch, delete, merge
+- **Pull / push cascades** with auth retry and non-fast-forward handling
+- **Folder-mode three-way merge** with on-disk `MERGE_HEAD` state tracking
+- **Conflict panel** with per-node / per-field three-way cards, inline JSON editor, bulk actions, and inline diff block
+- **15-locale i18n** across the whole Git surface
+
+### 🗄️ Export
+
+```mermaid
+flowchart LR
+    Canvas[Canvas Export<br/>PNG / JPEG / WEBP / PDF]
+    Code[Code Export<br/>8 Frameworks]
+    MCP[MCP Pipeline<br/>plan → submit → assemble → clean]
+
+    Design[Design] --> Canvas
+    Design --> Code
+    Design --> MCP
+```
 
 - Canvas export — PNG, JPEG, WEBP, PDF (`Cmd+Shift+P`)
 - Code export — React + Tailwind, HTML + CSS, Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, React Native
 - Incremental MCP codegen pipeline — `codegen_plan`, `codegen_submit_chunk`, `codegen_assemble`, `codegen_clean`
 
-**Figma Import**
+### 🌀 Figma Import
 
-- Import `.fig` files with layout, fills, strokes, effects, text, images, and vectors preserved
+Import `.fig` files with layout, fills, strokes, effects, text, images, and vectors preserved.
 
-**Desktop App**
+```mermaid
+flowchart LR
+    Figma[Figma .fig File]
+    Parser[Binary Parser<br/>pen-figma]
+    Mapper[Node Mapper<br/>Figma → PenNode]
+    Canvas[Canvas<br/>Editable Design]
 
-- Native macOS, Windows, and Linux via Electron
-- `.op` file association — double-click to open, single-instance lock
-- Auto-update from GitHub Releases
-- Native application menu with Save As, Open Recent, and an unsaved-changes dialog on close
-- Recent files persistence
+    Figma -->|binary| Parser
+    Parser -->|Figma nodes| Mapper
+    Mapper -->|PenNode[]| Canvas
+```
 
-**Embeddable SDK**
+### 🖥️ Electron Desktop
 
-- `pen-engine` (headless) — embed the design engine in your own app
-- `pen-react` (React UI SDK) — DesignProvider, DesignCanvas, hooks, panels, and toolbar components
+Native macOS, Windows, and Linux app.
+
+```mermaid
+flowchart TB
+    subgraph Desktop["Desktop Features"]
+        FileAssoc[.op File Association<br/>Double-click to open]
+        SingleInstance[Single-instance Lock]
+        AutoUpdater[Auto-update<br/>GitHub Releases]
+        Menu[Native Application Menu<br/>Save As, Open Recent]
+        Recent[Recent Files<br/>Persistence]
+        Dialog[Unsaved Changes Dialog<br/>On Close]
+    end
+
+    subgraph Tech["Under the Hood"]
+        Electron[Electron 35]
+        Nitro[Nitro Server Fork]
+        IPC[IPC Handlers<br/>File Dialogs, Theme, Prefs]
+    end
+
+    Tech --> Desktop
+```
+
+### 🧩 Embeddable SDK
+
+`pen-engine` (headless) + `pen-react` (React UI SDK) — embed the design engine in your own app.
+
+```mermaid
+flowchart TB
+    subgraph SDK["Buildev SDK"]
+        Engine[pen-engine<br/>Headless Design Engine]
+        ReactSDK[pen-react<br/>React UI SDK]
+    end
+
+    subgraph ReactComponents["React Components"]
+        Provider[DesignProvider]
+        Canvas[DesignCanvas]
+        Hooks[useDesignEngine<br/>useDocument<br/>useActiveNode]
+        Panels[PropertyPanel<br/>LayerPanel<br/>Toolbar]
+    end
+
+    Engine --> ReactSDK
+    ReactSDK --> Provider
+    ReactSDK --> Canvas
+    ReactSDK --> Hooks
+    ReactSDK --> Panels
+```
+
+### 🔐 Auth System
+
+Built-in authentication with OAuth + JWT.
+
+```mermaid
+flowchart LR
+    subgraph Providers["Auth Providers"]
+        GitHub[GitHub OAuth]
+        Google[Google OAuth]
+    end
+
+    subgraph Auth["Auth Layer"]
+        JWT[JWT Tokens]
+        Session[Session Management]
+        Middleware[Route Protection]
+    end
+
+    subgraph Features["Features"]
+        Login[Login / Register]
+        Profile[User Profile]
+        Permissions[Project Permissions]
+    end
+
+    Providers --> Auth
+    Auth --> Features
+```
+
+### 👥 Multiplayer Collaboration
+
+Real-time presence and collaboration.
+
+```mermaid
+flowchart LR
+    subgraph Multiplayer["Multiplayer Features"]
+        Cursors[Remote Cursors]
+        Presence[User Presence<br/>Who's online]
+        Sync[Real-time Sync<br/>Y.js]
+    end
+
+    subgraph UI["UI Indicators"]
+        Avatars[User Avatars]
+        Count[Online Count]
+        Color[Color-coded Cursors]
+    end
+
+    Multiplayer --> UI
+```
+
+- **Remote cursors** with user-specific colors
+- **Presence avatar stack** showing who's online
+- **Real-time document sync** via WebSocket
 
 ---
 
