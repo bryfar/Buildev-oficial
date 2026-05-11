@@ -1,6 +1,6 @@
 import type { CanvasKit, Canvas } from 'canvaskit-wasm';
-import { SkiaNodeRenderer, type RenderNode } from '@zseven-w/pen-renderer';
-import { parseColor } from '@zseven-w/pen-renderer';
+import { SkiaNodeRenderer, type RenderNode } from '@buildev/pen-renderer';
+import { parseColor } from '@buildev/pen-renderer';
 import {
   drawSelectionBorder as _drawSelectionBorder,
   drawFrameLabel as _drawFrameLabel,
@@ -19,7 +19,7 @@ import {
   type PenAnchor,
 } from './skia-overlays';
 
-export type { RenderNode } from '@zseven-w/pen-renderer';
+export type { RenderNode } from '@buildev/pen-renderer';
 
 /**
  * Editor-specific renderer that extends the core SkiaNodeRenderer

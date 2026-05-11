@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import '@/i18n';
 import { detectLanguagePostHydration } from '@/i18n';
+import { OAuthHashSessionHandler } from '@/components/auth/oauth-hash-session-handler';
+import { initAppStorage } from '@/utils/app-storage';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
@@ -17,13 +19,23 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'OpenPencil',
+        title: 'Buildev',
       },
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
+      },
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/favicon.svg',
+      },
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+        sizes: 'any',
       },
     ],
   }),
@@ -42,7 +54,16 @@ function NotFoundComponent() {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  useEffect(() => {
+    void initAppStorage();
+  }, []);
+
+  return (
+    <>
+      <OAuthHashSessionHandler />
+      <Outlet />
+    </>
+  );
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,5 @@
 import { useSyncExternalStore, useCallback, useRef } from 'react';
-import type { DesignEngine, DesignEngineEvents } from '@zseven-w/pen-engine';
+import type { DesignEngine, DesignEngineEvents } from '@buildev/pen-engine';
 
 /**
  * Generic hook to subscribe to engine events via useSyncExternalStore.

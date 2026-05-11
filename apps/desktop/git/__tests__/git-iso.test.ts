@@ -206,7 +206,7 @@ describe('git-iso', () => {
       const handle = await initSingleFile({ filePath: opFile });
       const log = await logForRef({
         handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         depth: 10,
       });
       expect(log).toEqual([]);
@@ -541,10 +541,10 @@ describe('git-iso', () => {
       });
 
       // Create a brand-new ref pointing at h1.
-      await setRef({ handle, ref: 'refs/openpencil/autosaves/main', value: h1 });
+      await setRef({ handle, ref: 'refs/buildev/autosaves/main', value: h1 });
       const log1 = await logForRef({
         handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         depth: 10,
       });
       expect(log1).toHaveLength(1);
@@ -559,10 +559,10 @@ describe('git-iso', () => {
         message: 'second',
         author: { name: 't', email: 't@example.com' },
       });
-      await setRef({ handle, ref: 'refs/openpencil/autosaves/main', value: h2 });
+      await setRef({ handle, ref: 'refs/buildev/autosaves/main', value: h2 });
       const log2 = await logForRef({
         handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         depth: 10,
       });
       // The autosave ref now jumps to h2 — its log walks h2 → h1 (parent chain).

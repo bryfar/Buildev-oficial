@@ -11,8 +11,8 @@
 //   - CanvasKit is not available in tests / SSR: detect and fall back to null.
 //   - The output shape (data URL | null) is stable for test assertions.
 
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
-import { getAllChildren, getDefaultTheme, resolveNodeForCanvas } from '@zseven-w/pen-core';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
+import { getAllChildren, getDefaultTheme, resolveNodeForCanvas } from '@buildev/pen-core';
 import { flattenToRenderNodes, resolveRefs } from './document-flattener.js';
 
 export interface ThumbnailContext {

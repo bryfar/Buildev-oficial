@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useDocument } from './use-document.js';
 

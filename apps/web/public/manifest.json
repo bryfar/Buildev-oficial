@@ -1,8 +1,14 @@
 {
-  "short_name": "OpenPencil",
-  "name": "OpenPencil",
+  "short_name": "Buildev",
+  "name": "Buildev",
   "description": "Open-source vector design tool with Design-as-Code philosophy",
   "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",

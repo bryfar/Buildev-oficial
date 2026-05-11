@@ -1,5 +1,5 @@
-import type { ViewportState } from '@zseven-w/pen-types';
-import { MIN_ZOOM } from '@zseven-w/pen-core';
+import type { ViewportState } from '@buildev/pen-types';
+import { MIN_ZOOM } from '@buildev/pen-core';
 
 /** Maximum zoom level for the viewport (64x). */
 const VIEWPORT_MAX_ZOOM = 64;

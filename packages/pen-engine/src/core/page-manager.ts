@@ -1,5 +1,5 @@
-import type { PenDocument, PenNode, PenPage } from '@zseven-w/pen-types';
-import { generateId } from '@zseven-w/pen-core';
+import type { PenDocument, PenNode, PenPage } from '@buildev/pen-types';
+import { generateId } from '@buildev/pen-core';
 
 export interface PageManagerOptions {
   getDocument: () => PenDocument;

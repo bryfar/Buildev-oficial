@@ -1,6 +1,6 @@
-import { detectAllIssues, type Issue, type IssueCategory } from '@zseven-w/pen-ai-skills';
-import { findNodeInTree } from '@zseven-w/pen-core';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import { detectAllIssues, type Issue, type IssueCategory } from '@buildev/pen-ai-skills';
+import { findNodeInTree } from '@buildev/pen-core';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import { openDocument, resolveDocPath } from '../document-manager';
 import { getDocChildren } from '../utils/node-operations';
 

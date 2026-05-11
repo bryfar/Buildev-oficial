@@ -1,5 +1,5 @@
 /**
- * Nitro plugin — writes ~/.openpencil/.port on server startup so the MCP
+ * Nitro plugin — writes ~/.buildev/.port on server startup so the MCP
  * server can discover the running instance (dev server or Electron).
  *
  * In Electron production mode the main process also writes this file,
@@ -11,7 +11,7 @@ import { writeFile, mkdir, unlink, readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
-const PORT_FILE_DIR = join(homedir(), '.openpencil');
+const PORT_FILE_DIR = join(homedir(), '.buildev');
 const PORT_FILE_PATH = join(PORT_FILE_DIR, '.port');
 const PORT_FILE_TOKEN = randomUUID();
 

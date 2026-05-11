@@ -4,7 +4,7 @@ import { readFile, unlink } from 'node:fs/promises';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
 
-const PORT_FILE_DIR = '.openpencil';
+const PORT_FILE_DIR = '.buildev';
 const PORT_FILE_NAME = '.port';
 const PORT_FILE_PATH = join(homedir(), PORT_FILE_DIR, PORT_FILE_NAME);
 const APP_BASE_URLS = ['http://127.0.0.1', 'http://localhost'];
@@ -76,7 +76,7 @@ export async function getAppInfo(): Promise<AppInfo | null> {
 export async function requireApp(): Promise<string> {
   const info = await getAppInfo();
   if (!info) {
-    throw new Error('No running OpenPencil instance found. Run `openpencil start` first.');
+    throw new Error('No running Buildev instance found. Run `buildev start` first.');
   }
   return info.url;
 }

@@ -1,10 +1,10 @@
 {
-  "name": "@zseven-w/pen-renderer",
+  "name": "@buildev/pen-renderer",
   "version": "0.7.5",
-  "description": "Standalone CanvasKit/Skia renderer for OpenPencil (.op) design files",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-renderer",
+  "description": "Standalone CanvasKit/Skia renderer for Buildev (.op) design files",
+  "homepage": "https://github.com/ZSeven-W/buildev/tree/main/packages/pen-renderer",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/ZSeven-W/buildev/issues"
   },
   "license": "MIT",
   "author": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/ZSeven-W/buildev.git",
     "directory": "packages/pen-renderer"
   },
   "files": [
@@ -30,8 +30,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@buildev/pen-core": "workspace:*",
+    "@buildev/pen-types": "workspace:*",
     "rbush": "^4.0.1"
   },
   "devDependencies": {

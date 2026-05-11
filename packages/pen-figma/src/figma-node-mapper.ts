@@ -1,5 +1,5 @@
 import type { FigmaDecodedFile, FigmaImportLayoutMode, FigmaNodeChange } from './figma-types';
-import type { PenNode, PenPage, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenPage, PenDocument } from '@buildev/pen-types';
 import {
   type TreeNode,
   guidToString,
@@ -89,6 +89,10 @@ function resolveStyleReferences(nodeChanges: FigmaNodeChange[]): void {
   }
 }
 
+function effectiveFigmaLayoutMode(mode: FigmaImportLayoutMode): Exclude<FigmaImportLayoutMode, 'openpencil'> {
+  return mode === 'openpencil' ? 'buildev' : mode;
+}
+
 /**
  * Convert a decoded .fig file to a PenDocument.
  */
@@ -96,9 +100,10 @@ export function figmaToPenDocument(
   decoded: FigmaDecodedFile,
   fileName: string,
   pageIndex: number = 0,
-  layoutMode: FigmaImportLayoutMode = 'openpencil',
+  layoutMode: FigmaImportLayoutMode = 'buildev',
 ): { document: PenDocument; warnings: string[]; imageBlobs: Map<number, Uint8Array> } {
   const warnings: string[] = [];
+  const layout = effectiveFigmaLayoutMode(layoutMode);
 
   // Resolve style references before tree building
   resolveStyleReferences(decoded.nodeChanges);
@@ -138,7 +143,7 @@ export function figmaToPenDocument(
     warnings,
     generateId: () => `fig_${idCounter++}`,
     blobs: decoded.blobs,
-    layoutMode,
+    layoutMode: layout,
   };
 
   const children = convertChildren(page, ctx);
@@ -170,9 +175,10 @@ export function figmaToPenDocument(
 export function figmaAllPagesToPenDocument(
   decoded: FigmaDecodedFile,
   fileName: string,
-  layoutMode: FigmaImportLayoutMode = 'openpencil',
+  layoutMode: FigmaImportLayoutMode = 'buildev',
 ): { document: PenDocument; warnings: string[]; imageBlobs: Map<number, Uint8Array> } {
   const warnings: string[] = [];
+  const layout = effectiveFigmaLayoutMode(layoutMode);
 
   resolveStyleReferences(decoded.nodeChanges);
 
@@ -219,7 +225,7 @@ export function figmaAllPagesToPenDocument(
       warnings,
       generateId: genId,
       blobs: decoded.blobs,
-      layoutMode,
+      layoutMode: layout,
     };
 
     const pageChildren = convertChildren(page, ctx);
@@ -268,9 +274,10 @@ export function getFigmaPages(
  */
 export function figmaNodeChangesToPenNodes(
   decoded: FigmaDecodedFile,
-  layoutMode: FigmaImportLayoutMode = 'openpencil',
+  layoutMode: FigmaImportLayoutMode = 'buildev',
 ): { nodes: PenNode[]; warnings: string[]; imageBlobs: Map<number, Uint8Array> } {
   const warnings: string[] = [];
+  const layout = effectiveFigmaLayoutMode(layoutMode);
 
   resolveStyleReferences(decoded.nodeChanges);
 
@@ -312,7 +319,7 @@ export function figmaNodeChangesToPenNodes(
     warnings,
     generateId: genId,
     blobs: decoded.blobs,
-    layoutMode,
+    layoutMode: layout,
   };
 
   const nodes: PenNode[] = [];

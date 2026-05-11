@@ -18,9 +18,9 @@ export interface AgentFrameEntry {
   name: string;
 }
 
-const INDICATORS_KEY = '__openpencil_agent_indicators__';
-const PREVIEWS_KEY = '__openpencil_agent_previews__';
-const AGENT_FRAMES_KEY = '__openpencil_agent_frames__';
+const INDICATORS_KEY = '__buildev_agent_indicators__';
+const PREVIEWS_KEY = '__buildev_agent_previews__';
+const AGENT_FRAMES_KEY = '__buildev_agent_frames__';
 
 function getIndicatorMap(): Map<string, AgentIndicatorEntry> {
   const g = globalThis as Record<string, unknown>;

@@ -1,6 +1,6 @@
-import { SpatialIndex } from '@zseven-w/pen-renderer';
-import type { RenderNode } from '@zseven-w/pen-renderer';
-import type { PenNode } from '@zseven-w/pen-types';
+import { SpatialIndex } from '@buildev/pen-renderer';
+import type { RenderNode } from '@buildev/pen-renderer';
+import type { PenNode } from '@buildev/pen-types';
 
 /**
  * Engine-level spatial index wrapper.

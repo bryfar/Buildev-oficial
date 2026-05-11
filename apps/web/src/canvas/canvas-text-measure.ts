@@ -1,4 +1,4 @@
-// Re-export pure functions from @zseven-w/pen-core
+// Re-export pure functions from @buildev/pen-core
 export {
   parseSizing,
   defaultLineHeight,
@@ -14,14 +14,14 @@ export {
   getTextOpticalCenterYOffset,
   estimateTextHeight,
   setWrappedLineCounter,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 
 import {
   isCjkCodePoint,
   estimateLineWidth,
   widthSafetyFactor,
   setWrappedLineCounter,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 import { cssFontFamily } from './font-utils';
 
 // ---------------------------------------------------------------------------

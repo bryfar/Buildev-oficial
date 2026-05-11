@@ -8,7 +8,7 @@ import {
   findParentInTree,
   getActivePageChildren,
 } from '@/stores/document-tree-utils';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 // Container types (extend ContainerProps in pen-types) — only these can hold children.
 function canHoldChildren(node: PenNode): boolean {

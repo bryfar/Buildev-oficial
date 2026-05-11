@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [**繁體中文**](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-[OpenPencil](https://github.com/ZSeven-W/openpencil) 的命令列工具 — 從終端機控制設計工具。
+[Buildev](https://github.com/bryfar/Buildev-oficial) 的命令列工具 — 從終端機控制設計工具。
 
 ## 安裝
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## 平台支援
 
-CLI 會自動偵測並啟動所有平台上的 OpenPencil 桌面應用程式：
+CLI 會自動偵測並啟動所有平台上的 Buildev 桌面應用程式：
 
 | 平台        | 偵測的安裝路徑                                                                                           |
 | ----------- | -------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`、`~/Applications/OpenPencil.app`                                          |
+| **macOS**   | `/Applications/Buildev.app`、`~/Applications/Buildev.app`                                          |
 | **Windows** | NSIS 使用者安裝（`%LOCALAPPDATA%`）、全域安裝（`%PROGRAMFILES%`）、可攜版                                |
 | **Linux**   | `/usr/bin`、`/usr/local/bin`、`~/.local/bin`、AppImage（`~/Applications`、`~/Downloads`）、Snap、Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # 從標準輸入讀取（管線傳輸）
 ### 應用程式控制
 
 ```bash
-op start [--desktop|--web]   # 啟動 OpenPencil（預設為桌面版）
+op start [--desktop|--web]   # 啟動 Buildev（預設為桌面版）
 op stop                      # 停止執行中的實例
 op status                    # 檢查是否正在執行
 ```

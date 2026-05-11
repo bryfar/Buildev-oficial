@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 import { normalizePenDocument } from '../normalize';
 
 describe('normalizePenDocument', () => {

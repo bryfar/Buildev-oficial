@@ -1,5 +1,5 @@
-import type { PenNode } from '@zseven-w/pen-types';
-import type { ImageFill } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
+import type { ImageFill } from '@buildev/pen-types';
 
 /**
  * Resolve __blob:N and __hash:<hex> references in the PenNode tree to data URLs

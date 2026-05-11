@@ -1,6 +1,6 @@
 # pen-mcp
 
-MCP (Model Context Protocol) server for external LLM integration with OpenPencil.
+MCP (Model Context Protocol) server for external LLM integration with Buildev.
 
 ## Structure
 

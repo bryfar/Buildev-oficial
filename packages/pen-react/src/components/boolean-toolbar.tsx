@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import { SquaresUnite, SquaresSubtract, SquaresIntersect } from 'lucide-react';
 import { useDesignEngine } from '../hooks/use-design-engine.js';
 import { useSelection } from '../hooks/use-selection.js';
-import { canBooleanOp, executeBooleanOp, type BooleanOpType } from '@zseven-w/pen-core';
-import type { PenNode } from '@zseven-w/pen-types';
+import { canBooleanOp, executeBooleanOp, type BooleanOpType } from '@buildev/pen-core';
+import type { PenNode } from '@buildev/pen-types';
 
 const OPS: Array<{
   type: BooleanOpType;

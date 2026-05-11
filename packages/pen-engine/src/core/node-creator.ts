@@ -1,4 +1,4 @@
-import type { PenNode, ToolType } from '@zseven-w/pen-types';
+import type { PenNode, ToolType } from '@buildev/pen-types';
 import {
   generateId,
   DEFAULT_FILL,
@@ -6,7 +6,7 @@ import {
   DEFAULT_STROKE_WIDTH,
   DEFAULT_FRAME_FILL,
   DEFAULT_TEXT_FILL,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 
 /**
  * Create a default PenNode for the given tool type.

@@ -9,7 +9,7 @@ count.txt
 .vinxi
 __unconfig*
 todos.json
-.openpencil-tmp/
+.buildev-tmp/
 .superpowers/
 
 docs/
@@ -25,3 +25,6 @@ dist-electron/
 .omx
 .worktrees/
 .omx/
+.zig-0.15.2/
+.zig-openpencil-project-cache/
+.zig-openpencil-global-cache/

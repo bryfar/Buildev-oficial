@@ -1,7 +1,7 @@
 import { openDocument, saveDocument, resolveDocPath } from '../document-manager';
 import { cloneNodeWithNewIds } from '../utils/node-operations';
 import { generateId } from '../utils/id';
-import type { PenPage, PenNode } from '@zseven-w/pen-types';
+import type { PenPage, PenNode } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // add_page

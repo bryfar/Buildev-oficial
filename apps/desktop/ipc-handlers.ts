@@ -43,7 +43,7 @@ export function setupIPC(deps: IpcDeps): void {
     if (!mainWindow) return null;
     const result = await dialog.showOpenDialog(mainWindow, {
       title: 'Open .op file',
-      filters: [{ name: 'OpenPencil Files', extensions: ['op', 'pen'] }],
+      filters: [{ name: 'Buildev Files', extensions: ['op', 'pen'] }],
       properties: ['openFile'],
     });
     if (result.canceled || result.filePaths.length === 0) return null;
@@ -71,7 +71,7 @@ export function setupIPC(deps: IpcDeps): void {
       const result = await dialog.showSaveDialog(mainWindow, {
         title: 'Save .op file',
         defaultPath: payload.defaultPath,
-        filters: [{ name: 'OpenPencil Files', extensions: ['op'] }],
+        filters: [{ name: 'Buildev Files', extensions: ['op'] }],
       });
       if (result.canceled || !result.filePath) return null;
       await writeFile(result.filePath, payload.content, 'utf-8');

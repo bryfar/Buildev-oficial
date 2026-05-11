@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useSelection } from './use-selection.js';
 import { useDocument } from './use-document.js';

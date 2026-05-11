@@ -1,7 +1,7 @@
-import { handleBatchDesign } from '@zseven-w/pen-mcp';
-import { handleDesignSkeleton } from '@zseven-w/pen-mcp';
-import { handleDesignContent } from '@zseven-w/pen-mcp';
-import { handleDesignRefine } from '@zseven-w/pen-mcp';
+import { handleBatchDesign } from '@buildev/pen-mcp';
+import { handleDesignSkeleton } from '@buildev/pen-mcp';
+import { handleDesignContent } from '@buildev/pen-mcp';
+import { handleDesignRefine } from '@buildev/pen-mcp';
 import { output, outputError, parseJsonArg, resolveArg } from '../output';
 
 interface GlobalFlags {
@@ -40,7 +40,7 @@ export async function cmdDesignContent(
   flags: GlobalFlags & { canvasWidth?: string },
 ): Promise<void> {
   const sectionId = args[0];
-  if (!sectionId) outputError('Usage: openpencil design:content <section-id> <json>');
+  if (!sectionId) outputError('Usage: buildev design:content <section-id> <json>');
   const json = (await parseJsonArg(args[1])) as Record<string, unknown>;
   const result = await handleDesignContent({
     filePath: flags.file,
@@ -56,7 +56,7 @@ export async function cmdDesignRefine(
   _args: string[],
   flags: GlobalFlags & { rootId?: string; canvasWidth?: string },
 ): Promise<void> {
-  if (!flags.rootId) outputError('Usage: openpencil design:refine --root-id <id>');
+  if (!flags.rootId) outputError('Usage: buildev design:refine --root-id <id>');
   const result = await handleDesignRefine({
     filePath: flags.file,
     rootId: flags.rootId!,

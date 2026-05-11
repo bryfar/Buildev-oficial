@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { DesignEngine } from '@zseven-w/pen-engine';
+import type { DesignEngine } from '@buildev/pen-engine';
 
 /**
  * React context holding the DesignEngine instance.

@@ -23,4 +23,4 @@ export type {
   DesignEngineEvents,
   CodePlatform,
   CodeResult,
-} from '@zseven-w/pen-types';
+} from '@buildev/pen-types';

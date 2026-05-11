@@ -9,12 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkspacesRouteImport } from './routes/workspaces'
+import { Route as RecentsRouteImport } from './routes/recents'
+import { Route as ProjectDashboardRouteImport } from './routes/project-dashboard'
+import { Route as NewProjectRouteImport } from './routes/new-project'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as EditorRouteImport } from './routes/editor'
+import { Route as DraftsRouteImport } from './routes/drafts'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkspacesWorkspaceIdRouteImport } from './routes/workspaces.$workspaceId'
+import { Route as PreviewPageIdRouteImport } from './routes/preview/$pageId'
 
+const WorkspacesRoute = WorkspacesRouteImport.update({
+  id: '/workspaces',
+  path: '/workspaces',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecentsRoute = RecentsRouteImport.update({
+  id: '/recents',
+  path: '/recents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectDashboardRoute = ProjectDashboardRouteImport.update({
+  id: '/project-dashboard',
+  path: '/project-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewProjectRoute = NewProjectRouteImport.update({
+  id: '/new-project',
+  path: '/new-project',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditorRoute = EditorRouteImport.update({
   id: '/editor',
   path: '/editor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DraftsRoute = DraftsRouteImport.update({
+  id: '/drafts',
+  path: '/drafts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +60,154 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkspacesWorkspaceIdRoute = WorkspacesWorkspaceIdRouteImport.update({
+  id: '/$workspaceId',
+  path: '/$workspaceId',
+  getParentRoute: () => WorkspacesRoute,
+} as any)
+const PreviewPageIdRoute = PreviewPageIdRouteImport.update({
+  id: '/preview/$pageId',
+  path: '/preview/$pageId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/drafts': typeof DraftsRoute
   '/editor': typeof EditorRoute
+  '/library': typeof LibraryRoute
+  '/new-project': typeof NewProjectRoute
+  '/project-dashboard': typeof ProjectDashboardRoute
+  '/recents': typeof RecentsRoute
+  '/workspaces': typeof WorkspacesRouteWithChildren
+  '/preview/$pageId': typeof PreviewPageIdRoute
+  '/workspaces/$workspaceId': typeof WorkspacesWorkspaceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/drafts': typeof DraftsRoute
   '/editor': typeof EditorRoute
+  '/library': typeof LibraryRoute
+  '/new-project': typeof NewProjectRoute
+  '/project-dashboard': typeof ProjectDashboardRoute
+  '/recents': typeof RecentsRoute
+  '/workspaces': typeof WorkspacesRouteWithChildren
+  '/preview/$pageId': typeof PreviewPageIdRoute
+  '/workspaces/$workspaceId': typeof WorkspacesWorkspaceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/drafts': typeof DraftsRoute
   '/editor': typeof EditorRoute
+  '/library': typeof LibraryRoute
+  '/new-project': typeof NewProjectRoute
+  '/project-dashboard': typeof ProjectDashboardRoute
+  '/recents': typeof RecentsRoute
+  '/workspaces': typeof WorkspacesRouteWithChildren
+  '/preview/$pageId': typeof PreviewPageIdRoute
+  '/workspaces/$workspaceId': typeof WorkspacesWorkspaceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/editor'
+  fullPaths:
+    | '/'
+    | '/drafts'
+    | '/editor'
+    | '/library'
+    | '/new-project'
+    | '/project-dashboard'
+    | '/recents'
+    | '/workspaces'
+    | '/preview/$pageId'
+    | '/workspaces/$workspaceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/editor'
-  id: '__root__' | '/' | '/editor'
+  to:
+    | '/'
+    | '/drafts'
+    | '/editor'
+    | '/library'
+    | '/new-project'
+    | '/project-dashboard'
+    | '/recents'
+    | '/workspaces'
+    | '/preview/$pageId'
+    | '/workspaces/$workspaceId'
+  id:
+    | '__root__'
+    | '/'
+    | '/drafts'
+    | '/editor'
+    | '/library'
+    | '/new-project'
+    | '/project-dashboard'
+    | '/recents'
+    | '/workspaces'
+    | '/preview/$pageId'
+    | '/workspaces/$workspaceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DraftsRoute: typeof DraftsRoute
   EditorRoute: typeof EditorRoute
+  LibraryRoute: typeof LibraryRoute
+  NewProjectRoute: typeof NewProjectRoute
+  ProjectDashboardRoute: typeof ProjectDashboardRoute
+  RecentsRoute: typeof RecentsRoute
+  WorkspacesRoute: typeof WorkspacesRouteWithChildren
+  PreviewPageIdRoute: typeof PreviewPageIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/workspaces': {
+      id: '/workspaces'
+      path: '/workspaces'
+      fullPath: '/workspaces'
+      preLoaderRoute: typeof WorkspacesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recents': {
+      id: '/recents'
+      path: '/recents'
+      fullPath: '/recents'
+      preLoaderRoute: typeof RecentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/project-dashboard': {
+      id: '/project-dashboard'
+      path: '/project-dashboard'
+      fullPath: '/project-dashboard'
+      preLoaderRoute: typeof ProjectDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-project': {
+      id: '/new-project'
+      path: '/new-project'
+      fullPath: '/new-project'
+      preLoaderRoute: typeof NewProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editor': {
       id: '/editor'
       path: '/editor'
       fullPath: '/editor'
       preLoaderRoute: typeof EditorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drafts': {
+      id: '/drafts'
+      path: '/drafts'
+      fullPath: '/drafts'
+      preLoaderRoute: typeof DraftsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,12 +217,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workspaces/$workspaceId': {
+      id: '/workspaces/$workspaceId'
+      path: '/$workspaceId'
+      fullPath: '/workspaces/$workspaceId'
+      preLoaderRoute: typeof WorkspacesWorkspaceIdRouteImport
+      parentRoute: typeof WorkspacesRoute
+    }
+    '/preview/$pageId': {
+      id: '/preview/$pageId'
+      path: '/preview/$pageId'
+      fullPath: '/preview/$pageId'
+      preLoaderRoute: typeof PreviewPageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface WorkspacesRouteChildren {
+  WorkspacesWorkspaceIdRoute: typeof WorkspacesWorkspaceIdRoute
+}
+
+const WorkspacesRouteChildren: WorkspacesRouteChildren = {
+  WorkspacesWorkspaceIdRoute: WorkspacesWorkspaceIdRoute,
+}
+
+const WorkspacesRouteWithChildren = WorkspacesRoute._addFileChildren(
+  WorkspacesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DraftsRoute: DraftsRoute,
   EditorRoute: EditorRoute,
+  LibraryRoute: LibraryRoute,
+  NewProjectRoute: NewProjectRoute,
+  ProjectDashboardRoute: ProjectDashboardRoute,
+  RecentsRoute: RecentsRoute,
+  WorkspacesRoute: WorkspacesRouteWithChildren,
+  PreviewPageIdRoute: PreviewPageIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

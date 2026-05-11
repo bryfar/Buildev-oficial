@@ -1,18 +1,18 @@
-# @zseven-w/pen-engine
+# @buildev/pen-engine
 
-Headless design engine for [OpenPencil](https://github.com/ZSeven-W/openpencil) — framework-free document management, selection, history, viewport, and spatial queries. Build your own design tool UI on top of this engine.
+Headless design engine for [Buildev](https://github.com/bryfar/Buildev-oficial) — framework-free document management, selection, history, viewport, and spatial queries. Build your own design tool UI on top of this engine.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-engine
+npm install @buildev/pen-engine
 # or
-bun add @zseven-w/pen-engine
+bun add @buildev/pen-engine
 ```
 
 ## Overview
 
-`pen-engine` is the core runtime that powers OpenPencil's editor. It manages the entire document lifecycle without any framework dependency — React, Vue, Svelte, or vanilla JS all work. The optional `browser.ts` entry adds GPU-accelerated canvas rendering via CanvasKit/Skia.
+`pen-engine` is the core runtime that powers Buildev's editor. It manages the entire document lifecycle without any framework dependency — React, Vue, Svelte, or vanilla JS all work. The optional `browser.ts` entry adds GPU-accelerated canvas rendering via CanvasKit/Skia.
 
 ```
 DesignEngine
@@ -29,7 +29,7 @@ DesignEngine
 ## Quick Start
 
 ```typescript
-import { DesignEngine } from '@zseven-w/pen-engine';
+import { DesignEngine } from '@buildev/pen-engine';
 
 const engine = new DesignEngine();
 
@@ -140,7 +140,7 @@ engine.resolveVariable('$primary'); // '#2563EB'
 Isomorphic SVG parser (DOM in browser, regex fallback in Node.js):
 
 ```typescript
-import { parseSvgToNodes } from '@zseven-w/pen-engine';
+import { parseSvgToNodes } from '@buildev/pen-engine';
 
 const nodes = parseSvgToNodes(svgString, 400);
 engine.addNode(null, nodes[0]);
@@ -165,10 +165,10 @@ unsub(); // unsubscribe
 
 ### Browser Canvas (Optional)
 
-GPU-accelerated rendering via CanvasKit/Skia — import from `@zseven-w/pen-engine/browser`:
+GPU-accelerated rendering via CanvasKit/Skia — import from `@buildev/pen-engine/browser`:
 
 ```typescript
-import { attachCanvas, attachInteraction } from '@zseven-w/pen-engine/browser';
+import { attachCanvas, attachInteraction } from '@buildev/pen-engine/browser';
 
 const binding = await attachCanvas(engine, canvasElement);
 const detach = attachInteraction(engine, canvasElement);

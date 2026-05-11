@@ -1,6 +1,6 @@
 import { openDocument, resolveDocPath } from '../document-manager';
 import { getNodeBounds, findNodeInTree, getDocChildren } from '../utils/node-operations';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 export interface FindEmptySpaceParams {
   filePath?: string;

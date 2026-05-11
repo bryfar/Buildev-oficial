@@ -1,5 +1,5 @@
 import type { FigmaEffect } from './figma-types';
-import type { PenEffect } from '@zseven-w/pen-types';
+import type { PenEffect } from '@buildev/pen-types';
 import { figmaColorToHex } from './figma-color-utils';
 
 /**

@@ -41,12 +41,12 @@ function parseArgs(argv: string[]): ParsedArgs {
 
 // --- Help ---
 
-const HELP = `OpenPencil CLI v${pkg.version}
+const HELP = `Buildev CLI v${pkg.version}
 
 Usage: op <command> [options]
 
 App:
-  op start [--desktop|--web]    Launch OpenPencil
+  op start [--desktop|--web]    Launch Buildev
   op stop                       Stop running instance
   op status                     Check if running
 
@@ -102,8 +102,8 @@ Import:
   op import:figma <file.fig>    Import Figma file
 
 Skill:
-  op install [--target T]       Install openpencil-skill for AI agents
-  op uninstall [--target T]     Uninstall openpencil-skill
+  op install [--target T]       Install buildev-skill for AI agents
+  op uninstall [--target T]     Uninstall buildev-skill
     Targets: claude, codex, cursor, gemini, opencode (auto-detected if omitted)
 
 Layout:

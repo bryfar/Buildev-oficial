@@ -1,4 +1,4 @@
-import type { RenderNode, ViewportState } from '@zseven-w/pen-renderer';
+import type { RenderNode, ViewportState } from '@buildev/pen-renderer';
 
 import { MAX_ZOOM, MIN_ZOOM } from '../canvas-constants';
 

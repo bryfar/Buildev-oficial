@@ -6,7 +6,7 @@ import {
   getDocChildren,
 } from '../utils/node-operations';
 import type { ReadNodeOptions } from '../utils/node-operations';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 export interface SearchPattern {
   type?: string;

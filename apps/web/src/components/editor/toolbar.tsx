@@ -28,6 +28,7 @@ import IconPickerDialog from '@/components/shared/icon-picker-dialog';
 
 export default function Toolbar() {
   const { t } = useTranslation();
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const canUndo = useHistoryStore((s) => s.undoStack.length > 0);
   const canRedo = useHistoryStore((s) => s.redoStack.length > 0);
   const variablesPanelOpen = useCanvasStore((s) => s.variablesPanelOpen);
@@ -199,6 +200,8 @@ export default function Toolbar() {
     },
     [insertRasterImage],
   );
+
+  if (ideModeOpen) return null;
 
   return (
     <div className="absolute top-2 left-2 z-10 w-10 bg-card border border-border rounded-xl flex flex-col items-center py-2 gap-1 shadow-lg">

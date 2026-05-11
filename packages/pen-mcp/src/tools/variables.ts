@@ -1,5 +1,5 @@
 import { openDocument, saveDocument, resolveDocPath } from '../document-manager';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
 
 export interface GetVariablesParams {
   filePath?: string;

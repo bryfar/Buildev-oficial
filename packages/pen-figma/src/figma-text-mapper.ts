@@ -1,6 +1,6 @@
 import type { FigmaNodeChange } from './figma-types';
-import type { TextNode } from '@zseven-w/pen-types';
-import type { StyledTextSegment } from '@zseven-w/pen-types';
+import type { TextNode } from '@buildev/pen-types';
+import type { StyledTextSegment } from '@buildev/pen-types';
 import { figmaColorToHex } from './figma-color-utils';
 
 /**

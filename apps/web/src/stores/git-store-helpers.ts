@@ -115,7 +115,7 @@ export function requireRepoId(state: GitState): string {
 
 /**
  * Resolve the author identity through the documented chain:
- *   1. OpenPencil prefs (`git.authorName` + `git.authorEmail`)
+ *   1. Buildev prefs (`git.authorName` + `git.authorEmail`)
  *   2. System git config via gitClient.getSystemAuthor()
  *   3. null (the inline author form takes over)
  *

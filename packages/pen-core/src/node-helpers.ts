@@ -1,4 +1,4 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 /**
  * Check if a node is an overlay that uses absolute positioning and should

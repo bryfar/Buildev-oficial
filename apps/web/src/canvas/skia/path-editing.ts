@@ -4,7 +4,7 @@ import {
   inferPathAnchorPointType,
   pathDataToAnchors,
   type PathBounds,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 
 import type { PathNode, PenPathAnchor, PenPathPointType } from '@/types/pen';
 

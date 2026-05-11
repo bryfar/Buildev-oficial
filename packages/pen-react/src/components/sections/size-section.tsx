@@ -1,6 +1,6 @@
 import { RotateCw } from 'lucide-react';
 import { NumberInput } from '../number-input.js';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 interface SizeSectionProps {
   node: PenNode;

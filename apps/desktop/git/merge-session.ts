@@ -4,8 +4,8 @@
 // during the conflict resolution loop. The conflict id codec lives here too
 // because it's the only string format both the engine and the tests share.
 
-import type { MergeResult, NodeConflict, DocFieldConflict } from '@zseven-w/pen-core';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { MergeResult, NodeConflict, DocFieldConflict } from '@buildev/pen-core';
+import type { PenNode } from '@buildev/pen-types';
 
 /**
  * The user's choice for resolving a single conflict. Mirrors the spec's

@@ -1,4 +1,4 @@
-import type { PenNode, PenDocument, NodeSnapshot } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument, NodeSnapshot } from '@buildev/pen-types';
 import { openDocument, resolveDocPath } from '../document-manager';
 import { findNodeInTree, getDocChildren, readNodeWithDepth } from '../utils/node-operations';
 

@@ -275,4 +275,5 @@ export interface FigmaPage {
   childCount: number;
 }
 
-export type FigmaImportLayoutMode = 'preserve' | 'openpencil';
+/** `openpencil` is a legacy alias for `buildev` import layout. */
+export type FigmaImportLayoutMode = 'preserve' | 'buildev' | 'openpencil';

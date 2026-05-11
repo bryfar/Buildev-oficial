@@ -11,7 +11,7 @@ import type { DesignSystem } from './ai-types';
 import type { AIProviderType } from '@/types/agent-settings';
 import type { VariableDefinition } from '@/types/variables';
 import { generateCompletion } from './ai-service';
-import { getSkillByName } from '@zseven-w/pen-ai-skills';
+import { getSkillByName } from '@buildev/pen-ai-skills';
 
 /**
  * Generate a design system from a user's prompt.

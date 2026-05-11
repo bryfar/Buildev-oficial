@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { validateContract } from '../utils/validate-contract';
-import type { ChunkResult } from '@zseven-w/pen-types';
+import type { ChunkResult } from '@buildev/pen-types';
 
 describe('validateContract', () => {
   const makeResult = (overrides: Partial<ChunkResult> = {}): ChunkResult => ({

@@ -3,7 +3,7 @@ import type { ThemePreset } from '@/types/theme-preset';
 import type { VariableDefinition } from '@/types/variables';
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_KEY = 'openpencil-theme-presets';
+const STORAGE_KEY = 'buildev-theme-presets';
 
 interface ThemePresetStoreState {
   presets: ThemePreset[];

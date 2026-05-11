@@ -1,5 +1,5 @@
 import type { CanvasKit, Surface } from 'canvaskit-wasm';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import {
   getActivePageChildren,
   getAllChildren,
@@ -12,7 +12,7 @@ import {
   FRAME_LABEL_OFFSET_Y,
   FRAME_LABEL_COLOR,
   setRootChildrenProvider,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 import { SkiaNodeRenderer } from './node-renderer.js';
 import { SpatialIndex } from './spatial-index.js';
 import {
@@ -27,12 +27,12 @@ import { viewportMatrix, screenToScene, zoomToPoint as vpZoomToPoint } from './v
 import type { RenderNode, PenRendererOptions, ViewportState } from './types.js';
 
 /**
- * Standalone read-only renderer for OpenPencil (.op) design files.
+ * Standalone read-only renderer for Buildev (.op) design files.
  * No React, no Zustand, no TanStack — just pure TypeScript + CanvasKit.
  *
  * @example
  * ```ts
- * import { loadCanvasKit, PenRenderer } from '@zseven-w/pen-renderer'
+ * import { loadCanvasKit, PenRenderer } from '@buildev/pen-renderer'
  *
  * const ck = await loadCanvasKit('/canvaskit/')
  * const renderer = new PenRenderer(ck, { fontBasePath: '/fonts/' })

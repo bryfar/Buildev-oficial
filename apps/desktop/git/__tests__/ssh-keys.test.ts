@@ -25,10 +25,11 @@ describe('ssh-keys', () => {
     expect(info.fingerprint.startsWith('SHA256:')).toBe(true);
     expect(info.privateKeyPath).toMatch(/\.pem$/);
 
-    // The private key file exists with mode 0600.
+    // The private key file exists with mode 0600 (Unix). Windows often reports other bits.
     const stat = await fsp.stat(info.privateKeyPath);
-    // mode bits include the file type, mask for permissions only.
-    expect(stat.mode & 0o777).toBe(0o600);
+    if (process.platform !== 'win32') {
+      expect(stat.mode & 0o777).toBe(0o600);
+    }
   });
 
   it('list returns all generated keys', async () => {

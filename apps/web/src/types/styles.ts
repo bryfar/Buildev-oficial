@@ -13,4 +13,4 @@ export type {
   ShadowEffect,
   PenEffect,
   StyledTextSegment,
-} from '@zseven-w/pen-types';
+} from '@buildev/pen-types';

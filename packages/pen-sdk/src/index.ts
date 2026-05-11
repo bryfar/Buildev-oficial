@@ -1,7 +1,7 @@
 /**
- * @zseven-w/pen-sdk — OpenPencil SDK
+ * @buildev/pen-sdk — Buildev SDK
  *
- * High-level API for working with OpenPencil (.op) design files.
+ * High-level API for working with Buildev (.op) design files.
  * Combines types, document operations, code generation, and Figma import.
  *
  * @example
@@ -11,7 +11,7 @@
  *   createEmptyDocument,
  *   normalizePenDocument,
  *   parseFigFile,
- * } from '@zseven-w/pen-sdk'
+ * } from '@buildev/pen-sdk'
  * ```
  */
 
@@ -19,6 +19,9 @@
 export type {
   // Document model
   PenDocument,
+  PenIdeVirtualFile,
+  PenIdeFrameWorkspace,
+  PenIdeWorkspace,
   PenNode,
   PenNodeType,
   PenPage,
@@ -64,7 +67,7 @@ export type {
   // Theme presets
   ThemePreset,
   ThemePresetFile,
-} from '@zseven-w/pen-types';
+} from '@buildev/pen-types';
 
 // ── Core: Document operations ──────────────────────────────────────────
 export {
@@ -120,7 +123,7 @@ export {
   type BooleanOpType,
   canBooleanOp,
   executeBooleanOp,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 
 // ── Codegen types (from pen-types) ──────────────────────────────────────
 export type {
@@ -140,8 +143,8 @@ export type {
   NodeSnapshot,
   ExecutableChunkPayload,
   ResolvedDepContract,
-} from '@zseven-w/pen-types';
-export { FRAMEWORKS } from '@zseven-w/pen-types';
+} from '@buildev/pen-types';
+export { FRAMEWORKS } from '@buildev/pen-types';
 
 // ── Figma: .fig file import ────────────────────────────────────────────
 export {
@@ -157,7 +160,7 @@ export {
   setIconLookup,
   type FigmaDecodedFile,
   type FigmaImportLayoutMode,
-} from '@zseven-w/pen-figma';
+} from '@buildev/pen-figma';
 
 // ── Engine: Headless design engine ────────────────────────────────────
 export {
@@ -177,10 +180,10 @@ export {
   type DesignEngineEvents,
   type CodePlatform,
   type CodeResult,
-} from '@zseven-w/pen-engine';
+} from '@buildev/pen-engine';
 
 // ── React: React hooks and components ─────────────────────────────────
-export * from '@zseven-w/pen-react';
+export * from '@buildev/pen-react';
 
 // ── Renderer: CanvasKit/Skia rendering engine ────────────────────────
 export {
@@ -204,4 +207,4 @@ export {
   type RenderNode,
   type PenRendererOptions,
   type IconLookupFn,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';

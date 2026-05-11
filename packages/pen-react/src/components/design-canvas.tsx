@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
-import { attachCanvas, attachInteraction } from '@zseven-w/pen-engine/browser';
-import type { CanvasBinding } from '@zseven-w/pen-engine/browser';
+import { attachCanvas, attachInteraction } from '@buildev/pen-engine/browser';
+import type { CanvasBinding } from '@buildev/pen-engine/browser';
 import { useDesignEngine } from '../hooks/use-design-engine.js';
 
 export interface DesignCanvasProps {

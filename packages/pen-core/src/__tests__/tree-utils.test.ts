@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@buildev/pen-types';
 import {
   createEmptyDocument,
   findNodeInTree,
@@ -46,6 +46,7 @@ describe('tree-utils', () => {
       expect(doc.pages![0].id).toBe(DEFAULT_PAGE_ID);
       expect(doc.pages![0].children).toHaveLength(1);
       expect(doc.pages![0].children[0].id).toBe(DEFAULT_FRAME_ID);
+      expect(doc.ideWorkspace).toEqual({ version: 1, frames: {} });
     });
   });
 

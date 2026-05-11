@@ -1,4 +1,4 @@
-// Re-export pure constants from @zseven-w/pen-core
+// Re-export pure constants from @buildev/pen-core
 export {
   MIN_ZOOM,
   MAX_ZOOM,
@@ -36,9 +36,9 @@ export {
   GUIDE_COLOR,
   GUIDE_LINE_WIDTH,
   GUIDE_DASH,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';
 
-import { CANVAS_BACKGROUND_LIGHT, CANVAS_BACKGROUND_DARK } from '@zseven-w/pen-core';
+import { CANVAS_BACKGROUND_LIGHT, CANVAS_BACKGROUND_DARK } from '@buildev/pen-core';
 
 // Browser-only function — not in pen-core
 export function getCanvasBackground(): string {

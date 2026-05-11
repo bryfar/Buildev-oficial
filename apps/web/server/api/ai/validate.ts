@@ -74,12 +74,12 @@ async function withTempImageFile<T>(
     // Save inside the project directory so Claude Code Agent SDK (plan mode)
     // can read the file — it restricts reads to the project directory.
     const { mkdirSync, chmodSync } = await import('node:fs');
-    const baseDir = join(process.cwd(), '.openpencil-tmp');
+    const baseDir = join(process.cwd(), '.buildev-tmp');
     mkdirSync(baseDir, { recursive: true });
     chmodSync(baseDir, 0o700);
     tempDir = await mkdtemp(join(baseDir, 'validate-'));
   } else {
-    tempDir = await mkdtemp(join(tmpdir(), 'openpencil-validate-'));
+    tempDir = await mkdtemp(join(tmpdir(), 'buildev-validate-'));
   }
   const tempPath = join(tempDir, 'screenshot.png');
   try {
@@ -202,7 +202,7 @@ async function validateViaOpenCode(
     ocServer = oc.server;
 
     const { data: session, error: sessionError } = await ocClient.session.create({
-      title: 'OpenPencil Validate',
+      title: 'Buildev Validate',
     });
     if (sessionError || !session) {
       return { text: '', error: 'Failed to create OpenCode session' };

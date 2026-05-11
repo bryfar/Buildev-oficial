@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export default function StatusBar() {
   const { t } = useTranslation();
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const zoom = useCanvasStore((s) => s.viewport.zoom);
   const selectedIds = useCanvasStore((s) => s.selection.selectedIds);
 
@@ -31,6 +32,8 @@ export default function StatusBar() {
   };
   const focusLabel =
     selectedIds.length > 0 ? t('statusbar.focusSelection') : t('statusbar.focusContent');
+
+  if (ideModeOpen) return null;
 
   return (
     <div className="h-7 bg-card border border-border rounded-lg flex items-center px-1 gap-0.5 shadow-lg">

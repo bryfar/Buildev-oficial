@@ -18,9 +18,9 @@ import {
   destroyIterator,
   resolveMemberToolResult,
   seedTeamMessages,
-} from '@zseven-w/agent-native';
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
-import type { Phase } from '@zseven-w/pen-ai-skills';
+} from '@buildev/agent-native';
+import { resolveSkills } from '@buildev/pen-ai-skills';
+import type { Phase } from '@buildev/pen-ai-skills';
 import type { AuthLevel } from '../../../src/types/agent';
 import {
   agentSessions,
@@ -45,7 +45,7 @@ import {
 import { startSSEKeepAlive } from '../../utils/sse-keepalive';
 import { getAcpConnection } from '../../utils/acp-connection-manager';
 import { getMcpServerStatus } from '../../utils/mcp-server-manager';
-import { acpUpdateToSSE } from '@zseven-w/pen-acp';
+import { acpUpdateToSSE } from '@buildev/pen-acp';
 
 const TOOL_LEVEL_MAP: Record<string, AuthLevel> = {
   batch_get: 'read',
@@ -498,7 +498,7 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 400, message: 'ACP agent not connected' });
     }
 
-    // Create ACP session. ACP agents need the OpenPencil MCP server to do
+    // Create ACP session. ACP agents need the Buildev MCP server to do
     // anything useful (without it they just call Terminal/Skill tools that
     // don't work here). Require it to be running — the user starts it from
     // the MCP settings tab.
@@ -508,12 +508,12 @@ export default defineEventHandler(async (event) => {
       throw createError({
         statusCode: 400,
         message:
-          'MCP server is not running. Open Settings → MCP and click "Start" to enable ACP agents to access OpenPencil design tools.',
+          'MCP server is not running. Open Settings → MCP and click "Start" to enable ACP agents to access Buildev design tools.',
       });
     }
     const mcpServers = [
       {
-        name: 'openpencil',
+        name: 'buildev',
         type: 'http' as const,
         url: `http://127.0.0.1:${mcpStatus.port}/mcp`,
         headers: [] as Array<{ name: string; value: string }>,
@@ -523,24 +523,24 @@ export default defineEventHandler(async (event) => {
       `[acp] newSession mcpServers=${JSON.stringify(mcpServers)} (mcpStatus: running=${mcpStatus.running}, port=${mcpStatus.port})`,
     );
     // Override the agent's default system prompt (via _meta) to prevent it
-    // from using the openpencil-skill (which is designed for CLI scenarios
-    // where the agent runs `op` commands in terminals). Inside OpenPencil,
+    // from using the buildev-skill (which is designed for CLI scenarios
+    // where the agent runs `op` commands in terminals). Inside Buildev,
     // the agent should use MCP tools directly.
     const acpSystemPrompt = [
-      'You are an AI design assistant integrated inside the OpenPencil vector design tool.',
+      'You are an AI design assistant integrated inside the Buildev vector design tool.',
       'The user sees a live canvas; your job is to produce polished, visually refined UI designs on it.',
-      'You have direct access to OpenPencil\'s document via the "openpencil" MCP server.',
+      'You have direct access to Buildev\'s document via the "buildev" MCP server.',
       '',
       '## Tool Usage Rules',
       '- NEVER use Bash/Terminal to run `op` CLI commands. The CLI is not available here.',
-      '- NEVER use the openpencil-skill or Skill tool. They are for a different context.',
-      '- DO use the `mcp__openpencil__*` tools to operate on the canvas.',
+      '- NEVER use the buildev-skill or Skill tool. They are for a different context.',
+      '- DO use the `mcp__buildev__*` tools to operate on the canvas.',
       '- After finishing, provide a brief one-sentence summary of what was done.',
       '',
       '## REQUIRED Workflow for Creating New Designs',
       'Always follow this three-phase pipeline (it produces higher quality than ad-hoc insert calls):',
       '',
-      "1. **Load the design guide (ONCE)**: Call `get_design_prompt` to receive OpenPencil's design principles, node schema details, role system, color/typography tokens, and layout patterns. Read it carefully — it defines the canonical shapes and defaults.",
+      "1. **Load the design guide (ONCE)**: Call `get_design_prompt` to receive Buildev's design principles, node schema details, role system, color/typography tokens, and layout patterns. Read it carefully — it defines the canonical shapes and defaults.",
       '2. **Build skeleton**: Call `design_skeleton` with a high-level description. This creates the structural frames (sections, layout containers) with correct auto-layout.',
       '3. **Fill content**: Call `design_content` once per section from step 2, adding the concrete children (buttons, inputs, text, icons).',
       '4. **Refine** (optional): Call `design_refine` on the root to apply final polish (consistent spacing, role-based styling).',

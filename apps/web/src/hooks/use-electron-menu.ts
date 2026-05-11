@@ -6,11 +6,11 @@ import { useHistoryStore } from '@/stores/history-store';
 import { zoomToFitContent } from '@/canvas/skia-engine-ref';
 import { syncCanvasPositionsToStore } from '@/canvas/skia-engine-ref';
 import { parseAndPrepareImportedDocument } from '@/utils/import-pen-document';
-import { addRecentFile, clearRecentFiles } from '@/utils/recent-files';
+import { clearRecentFiles } from '@/utils/recent-files';
 import { supportsFileSystemAccess, openDocumentFS, openDocument } from '@/utils/file-operations';
 import { loadOpFileFromPath } from '@/utils/load-op-file';
 
-async function confirmUnsaved(): Promise<boolean> {
+export async function confirmUnsavedChanges(): Promise<boolean> {
   const showDialog = (window as any).__showUnsavedDialog;
   if (!showDialog) return window.confirm(i18n.t('topbar.closeConfirmMessage'));
   const fileName = useDocumentStore.getState().fileName || i18n.t('common.untitled');
@@ -57,7 +57,7 @@ export function useElectronMenu() {
         const recentPath = action.slice('open-recent:'.length);
         (async () => {
           if (useDocumentStore.getState().isDirty) {
-            if (!(await confirmUnsaved())) return;
+            if (!(await confirmUnsavedChanges())) return;
           }
           loadFileFromPath(recentPath);
         })();
@@ -68,7 +68,7 @@ export function useElectronMenu() {
         case 'new':
           (async () => {
             if (useDocumentStore.getState().isDirty) {
-              if (!(await confirmUnsaved())) return;
+              if (!(await confirmUnsavedChanges())) return;
             }
             useDocumentStore.getState().newDocument();
             requestAnimationFrame(() => zoomToFitContent());
@@ -78,7 +78,7 @@ export function useElectronMenu() {
         case 'open':
           (async () => {
             if (useDocumentStore.getState().isDirty) {
-              if (!(await confirmUnsaved())) return;
+              if (!(await confirmUnsavedChanges())) return;
             }
             if (api) {
               api.openFile().then((result) => {
@@ -127,10 +127,8 @@ export function useElectronMenu() {
           }
           (async () => {
             const savedName = await useDocumentStore.getState().save();
-            if (savedName) {
-              const filePath = useDocumentStore.getState().filePath;
-              addRecentFile({ fileName: savedName, filePath });
-              if (closeAfterSave) api.confirmClose();
+            if (savedName && closeAfterSave) {
+              api.confirmClose();
             }
           })().catch((err) => console.error('[Save] Failed:', err));
           break;
@@ -143,11 +141,7 @@ export function useElectronMenu() {
             /* continue */
           }
           (async () => {
-            const savedName = await useDocumentStore.getState().saveAs();
-            if (savedName) {
-              const filePath = useDocumentStore.getState().filePath;
-              addRecentFile({ fileName: savedName, filePath });
-            }
+            await useDocumentStore.getState().saveAs();
           })().catch((err) => console.error('[SaveAs] Failed:', err));
           break;
         }

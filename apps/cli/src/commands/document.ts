@@ -1,7 +1,7 @@
-import { handleOpenDocument } from '@zseven-w/pen-mcp';
-import { handleBatchGet } from '@zseven-w/pen-mcp';
-import { handleGetSelection } from '@zseven-w/pen-mcp';
-import { openDocument, saveDocument, resolveDocPath } from '@zseven-w/pen-mcp';
+import { handleOpenDocument } from '@buildev/pen-mcp';
+import { handleBatchGet } from '@buildev/pen-mcp';
+import { handleGetSelection } from '@buildev/pen-mcp';
+import { openDocument, saveDocument, resolveDocPath } from '@buildev/pen-mcp';
 import { output, outputError } from '../output';
 
 interface GlobalFlags {
@@ -16,7 +16,7 @@ export async function cmdOpen(args: string[], flags: GlobalFlags): Promise<void>
 
 export async function cmdSave(args: string[], flags: GlobalFlags): Promise<void> {
   const target = args[0];
-  if (!target) outputError('Usage: openpencil save <file.op>');
+  if (!target) outputError('Usage: buildev save <file.op>');
   const doc = await openDocument(resolveDocPath(flags.file));
   await saveDocument(target, doc);
   output({ ok: true, filePath: target });

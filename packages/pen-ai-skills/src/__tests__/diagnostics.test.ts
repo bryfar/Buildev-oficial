@@ -6,7 +6,7 @@ import {
   detectSiblingInconsistencies,
   detectAllIssues,
 } from '../diagnostics/detectors';
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@buildev/pen-types';
 
 function doc(root: PenNode, variables: Record<string, unknown> = {}): PenDocument {
   return { version: '1.0.0', variables, children: [root] } as unknown as PenDocument;

@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-core — the canonical source
-export { normalizePenDocument } from '@zseven-w/pen-core';
+// Re-export from @buildev/pen-core — the canonical source
+export { normalizePenDocument } from '@buildev/pen-core';

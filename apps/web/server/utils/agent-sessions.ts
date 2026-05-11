@@ -4,7 +4,7 @@ import type {
   ProviderHandle,
   ToolRegistryHandle,
   TeamHandle,
-} from '@zseven-w/agent-native';
+} from '@buildev/agent-native';
 import type { ClientSideConnection } from '@agentclientprotocol/sdk';
 import type { LayoutPhase } from './agent-tool-guard';
 import {
@@ -15,7 +15,7 @@ import {
   destroyProvider,
   abortTeam,
   destroyTeam,
-} from '@zseven-w/agent-native';
+} from '@buildev/agent-native';
 
 export interface NativeAgentSession {
   type: 'native';

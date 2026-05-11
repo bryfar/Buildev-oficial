@@ -25,12 +25,12 @@ fi
 
 # Reverse topological order: dependents first, then dependencies
 PACKAGES=(
-  @zseven-w/openpencil
-  @zseven-w/pen-sdk
-  @zseven-w/pen-renderer
-  @zseven-w/pen-figma
-  @zseven-w/pen-core
-  @zseven-w/pen-types
+  @buildev/buildev
+  @buildev/pen-sdk
+  @buildev/pen-renderer
+  @buildev/pen-figma
+  @buildev/pen-core
+  @buildev/pen-types
 )
 
 FAILED=()

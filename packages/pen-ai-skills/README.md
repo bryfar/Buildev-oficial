@@ -1,18 +1,18 @@
-# @zseven-w/pen-ai-skills
+# @buildev/pen-ai-skills
 
-AI prompt skill engine for [OpenPencil](https://github.com/ZSeven-W/openpencil) — phase-driven prompt loading with intent matching, token budgets, and design memory.
+AI prompt skill engine for [Buildev](https://github.com/bryfar/Buildev-oficial) — phase-driven prompt loading with intent matching, token budgets, and design memory.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-ai-skills
+npm install @buildev/pen-ai-skills
 # or
-bun add @zseven-w/pen-ai-skills
+bun add @buildev/pen-ai-skills
 ```
 
 ## Overview
 
-When an LLM generates designs for OpenPencil, it needs context: PenNode schema, layout rules, semantic roles, icon names, style guides, and more. Loading everything at once wastes tokens. This package solves that with **phase-based skill resolution** — only the relevant prompts are loaded for each stage of the design workflow.
+When an LLM generates designs for Buildev, it needs context: PenNode schema, layout rules, semantic roles, icon names, style guides, and more. Loading everything at once wastes tokens. This package solves that with **phase-based skill resolution** — only the relevant prompts are loaded for each stage of the design workflow.
 
 ```
 User message ──► resolveSkills(phase, message, options)
@@ -30,7 +30,7 @@ User message ──► resolveSkills(phase, message, options)
 ## Quick Start
 
 ```typescript
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@buildev/pen-ai-skills';
 
 // Generation phase — user wants a landing page
 const ctx = resolveSkills('generation', 'design a SaaS landing page', {
@@ -94,7 +94,7 @@ Track context across multi-turn generation sessions:
 ### Document Context
 
 ```typescript
-import { createDesignContext, contextToPromptString } from '@zseven-w/pen-ai-skills';
+import { createDesignContext, contextToPromptString } from '@buildev/pen-ai-skills';
 
 const ctx = createDesignContext('/path/to/doc.op');
 // Accumulates: palette, typography, spacing, aesthetic, page structure
@@ -106,7 +106,7 @@ const prompt = contextToPromptString(ctx);
 ### Generation History
 
 ```typescript
-import { createHistoryEntry, getRecentEntries } from '@zseven-w/pen-ai-skills';
+import { createHistoryEntry, getRecentEntries } from '@buildev/pen-ai-skills';
 
 const entry = createHistoryEntry({
   documentPath: '/path/to/doc.op',
@@ -126,7 +126,7 @@ const recent = getRecentEntries(allEntries, 5);
 Detect common design issues in generated output:
 
 ```typescript
-import { detectAllIssues } from '@zseven-w/pen-ai-skills';
+import { detectAllIssues } from '@buildev/pen-ai-skills';
 
 const issues = detectAllIssues(document);
 // [{ severity: 'warning', category: 'invisible-container', nodeId: 'frame-7', message: '...' }]
@@ -169,7 +169,7 @@ The Vite plugin auto-compiles skills into a TypeScript registry on save during d
 Parse and apply external style guides:
 
 ```typescript
-import { parseStyleGuideFile, buildStyleMapping } from '@zseven-w/pen-ai-skills';
+import { parseStyleGuideFile, buildStyleMapping } from '@buildev/pen-ai-skills';
 
 const guide = parseStyleGuideFile(markdownContent);
 const mappings = buildStyleMapping(guide);

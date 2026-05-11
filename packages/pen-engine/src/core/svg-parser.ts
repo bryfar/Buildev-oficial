@@ -5,9 +5,9 @@
  *   - packages/pen-mcp/src/utils/svg-node-parser.ts  (Node.js, regex-based)
  */
 
-import type { PenNode, PenNodeBase, LineNode } from '@zseven-w/pen-types';
-import type { PenFill, PenStroke } from '@zseven-w/pen-types';
-import { generateId } from '@zseven-w/pen-core';
+import type { PenNode, PenNodeBase, LineNode } from '@buildev/pen-types';
+import type { PenFill, PenStroke } from '@buildev/pen-types';
+import { generateId } from '@buildev/pen-core';
 
 interface StyleCtx {
   fill: string | null;

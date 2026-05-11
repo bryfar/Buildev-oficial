@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DesignEngine } from '../core/design-engine';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 
 function makeRect(id: string, x = 0): PenNode {
   return {

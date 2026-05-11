@@ -5,7 +5,7 @@ import type {
   DesignEngineOptions,
   DesignEngineEvents,
   VariableDefinition,
-} from '@zseven-w/pen-types';
+} from '@buildev/pen-types';
 import { TypedEventEmitter } from './event-emitter.js';
 import { HistoryManager } from './history-manager.js';
 import { DocumentManager } from './document-manager.js';
@@ -366,7 +366,7 @@ export class DesignEngine {
     // Dynamic import to avoid bundling pen-figma in headless scenarios
     // that don't use Figma import.
     throw new Error(
-      'importFigma requires the pen-figma package. Use: import { parseFigFile, figmaToPenDocument } from "@zseven-w/pen-figma"',
+      'importFigma requires the pen-figma package. Use: import { parseFigFile, figmaToPenDocument } from "@buildev/pen-figma"',
     );
   }
 

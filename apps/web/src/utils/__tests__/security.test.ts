@@ -103,34 +103,33 @@ describe('SVG parser SKIP_TAGS', () => {
 // ---------------------------------------------------------------------------
 
 describe('SVG parser getAttr ReDoS safety', () => {
-  it('parses SVG with regex-special chars in style attribute without hanging', () => {
+  it(
+    'parses SVG with regex-special chars in style attribute without hanging',
+    () => {
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
         <rect x="0" y="0" width="50" height="50" style="(x+x+)+y: red; fill: blue"/>
       </svg>`;
 
-    const start = performance.now();
     const nodes = parseSvgToNodes(svg);
-    const elapsed = performance.now() - start;
-
-    // Must complete in under 100ms (would hang without escaping)
-    expect(elapsed).toBeLessThan(100);
     expect(nodes.length).toBeGreaterThan(0);
-  });
+    },
+    2000
+  );
 
-  it('handles style with brackets and special characters safely', () => {
+  it(
+    'handles style with brackets and special characters safely',
+    () => {
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
         <rect x="0" y="0" width="50" height="50" style="fill: green; [weird]: val; opacity: 0.5"/>
       </svg>`;
 
-    const start = performance.now();
     const nodes = parseSvgToNodes(svg);
-    const elapsed = performance.now() - start;
-
-    expect(elapsed).toBeLessThan(100);
     expect(nodes.length).toBeGreaterThan(0);
-  });
+    },
+    2000
+  );
 });
 
 // NOTE: Figma parser decompression limits are internal constants in

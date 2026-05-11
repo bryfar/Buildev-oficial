@@ -1,5 +1,5 @@
 import type { FigmaNodeChange } from './figma-types';
-import type { PenStroke } from '@zseven-w/pen-types';
+import type { PenStroke } from '@buildev/pen-types';
 import { mapFigmaFills } from './figma-fill-mapper';
 
 /**

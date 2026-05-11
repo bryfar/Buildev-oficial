@@ -6,8 +6,8 @@
 //
 // We don't subscribe to Zustand's isDirty transitions because that fires for
 // many reasons besides "the user just saved" (load file, MCP sync, undo to
-// clean, etc.). The single `useDocumentStore.save()` action is the only place
-// 'saved' is ever emitted, after a successful disk write.
+// clean, etc.). `useDocumentStore` emits `saved` after successful save/saveAs
+// paths and updates recent files in the same layer so shortcuts (e.g. Ctrl+S) stay in sync.
 
 import type { PenDocument } from '@/types/pen';
 

@@ -576,7 +576,7 @@ export const AVAILABLE_LUCIDE_ICONS: readonly string[] = Object.keys(
 export const AVAILABLE_FEATHER_ICONS: readonly string[] = AVAILABLE_LUCIDE_ICONS;
 
 // ---------------------------------------------------------------------------
-// Built-in icon collection export — powers the "OpenPencil" picker collection
+// Built-in icon collection export — powers the "Buildev" picker collection
 // ---------------------------------------------------------------------------
 
 /** A single entry in the locally bundled icon collection */

@@ -1,4 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+// agent-sessions pulls @buildev/agent-native (native .node); not loadable in Vitest workers.
+vi.mock('../utils/agent-sessions', () => ({
+  touchSession: (session: { lastActivity: number }, now = Date.now()) => {
+    session.lastActivity = now;
+  },
+}));
+
 import { startSSEKeepAlive } from '../utils/sse-keepalive';
 import { touchSession } from '../utils/agent-sessions';
 

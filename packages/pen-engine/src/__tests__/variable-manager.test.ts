@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { VariableManager } from '../core/variable-manager';
-import type { PenDocument } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
-import { createEmptyDocument, migrateToPages, ensureDocumentNodeIds } from '@zseven-w/pen-core';
+import type { PenDocument } from '@buildev/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
+import { createEmptyDocument, migrateToPages, ensureDocumentNodeIds } from '@buildev/pen-core';
 
 describe('VariableManager', () => {
   let vm: VariableManager;

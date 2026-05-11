@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { EngineSpatialIndex } from '../core/spatial-index';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 function makeRenderNode(id: string, x: number, y: number, w: number, h: number) {
   return {

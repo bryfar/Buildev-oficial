@@ -4,8 +4,8 @@ import { mkTempDir, writeOpFile } from './test-helpers';
 import { initSingleFile, commitFile, type IsoRepoHandle } from '../git-iso';
 import { runMerge, applyResolutions } from '../merge-orchestrator';
 import { buildConflictBag } from '../merge-session';
-import type { PenDocument } from '@zseven-w/pen-types';
-import { mergeDocuments } from '@zseven-w/pen-core';
+import type { PenDocument } from '@buildev/pen-types';
+import { mergeDocuments } from '@buildev/pen-core';
 
 const author = { name: 't', email: 't@example.com' };
 

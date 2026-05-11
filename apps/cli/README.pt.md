@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [**Português**](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-CLI para o [OpenPencil](https://github.com/ZSeven-W/openpencil) — controle a ferramenta de design pelo seu terminal.
+CLI para o [Buildev](https://github.com/bryfar/Buildev-oficial) — controle a ferramenta de design pelo seu terminal.
 
 ## Instalar
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Suporte a Plataformas
 
-A CLI detecta e inicia automaticamente o aplicativo desktop OpenPencil em todas as plataformas:
+A CLI detecta e inicia automaticamente o aplicativo desktop Buildev em todas as plataformas:
 
 | Plataforma  | Caminhos de instalacao detectados                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS por usuario (`%LOCALAPPDATA%`), por maquina (`%PROGRAMFILES%`), portatil                           |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Ler da entrada padrao (piping)
 ### Controle do Aplicativo
 
 ```bash
-op start [--desktop|--web]   # Iniciar o OpenPencil (desktop por padrao)
+op start [--desktop|--web]   # Iniciar o Buildev (desktop por padrao)
 op stop                      # Parar a instancia em execucao
 op status                    # Verificar se esta em execucao
 ```

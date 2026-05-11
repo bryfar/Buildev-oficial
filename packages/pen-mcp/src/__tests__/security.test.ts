@@ -12,7 +12,7 @@ import {
 } from '../document-manager';
 import { handleBatchDesign } from '../tools/batch-design';
 
-const TMP_DIR = join(tmpdir(), 'openpencil-security-tests');
+const TMP_DIR = join(tmpdir(), 'buildev-security-tests');
 const originalFetch = globalThis.fetch;
 
 beforeEach(async () => {
@@ -157,7 +157,7 @@ describe('live sync diagnostics', () => {
 
 describe('getReachableSyncUrl', () => {
   it('returns the IPv6 URL when only [::1] responds (Vite 6+ default)', async () => {
-    // Reproduces the OpenPencil dev server scenario: Vite binds to [::1] only,
+    // Reproduces the Buildev dev server scenario: Vite binds to [::1] only,
     // 127.0.0.1 / localhost both fail with connection refused.
     globalThis.fetch = vi.fn(async (input: string | URL | Request) => {
       const url = String(input);

@@ -1,5 +1,11 @@
 import { create } from 'zustand';
-import type { PenDocument, PenNode } from '@/types/pen';
+import type {
+  PenDesignMotionConfig,
+  PenDocument,
+  PenIdeVirtualFile,
+  PenNode,
+  ProjectMetadata,
+} from '@/types/pen';
 import type { VariableDefinition } from '@/types/variables';
 
 import { normalizePenDocument } from '@/utils/normalize-pen-file';
@@ -16,6 +22,7 @@ import { createNodeActions } from './document-store-node-actions';
 import { createComponentActions } from './document-store-component-actions';
 import { createVariableActions } from './document-store-variable-actions';
 import { createPageActions } from './document-store-pages';
+import { createIdeActions } from './document-store-ide-actions';
 import {
   isElectron,
   supportsFileSystemAccess,
@@ -25,6 +32,20 @@ import {
   downloadDocument,
 } from '@/utils/file-operations';
 import { documentEvents } from '@/utils/document-events';
+import { getEffectiveApiBase } from '@/utils/api-base';
+import { useAuthStore } from './auth-store';
+import { assignSavedFileToPendingWorkspace } from '@/stores/workspace-registry-store';
+
+/** Every successful disk/write path should go through this so recents stay in sync (incl. Ctrl+S). */
+function notifyDocumentSaved(payload: {
+  filePath: string | null;
+  fileName: string;
+  document: PenDocument;
+}) {
+  addRecentFile({ fileName: payload.fileName, filePath: payload.filePath ?? null });
+  assignSavedFileToPendingWorkspace(payload.filePath, payload.fileName);
+  documentEvents.emit('saved', payload);
+}
 
 interface DocumentStoreState {
   document: PenDocument;
@@ -36,6 +57,7 @@ interface DocumentStoreState {
   filePath: string | null;
   /** Whether the "save as" dialog is open (fallback for browsers without FS API). */
   saveDialogOpen: boolean;
+  isLoading: boolean;
 
   addNode: (parentId: string | null, node: PenNode, index?: number) => void;
   updateNode: (id: string, updates: Partial<PenNode>) => void;
@@ -85,9 +107,24 @@ interface DocumentStoreState {
     filePath?: string | null,
   ) => void;
   newDocument: () => void;
+  loadCloudDocument: (siteId: string) => Promise<boolean>;
   markClean: () => void;
   setFileHandle: (handle: FileSystemFileHandle | null) => void;
   setSaveDialogOpen: (open: boolean) => void;
+  setProjectMetadata: (meta: ProjectMetadata | null) => void;
+  /** Persisted on `PenDocument.designMotion`; pass undefined to clear. */
+  setDesignMotion: (config: PenDesignMotionConfig | undefined) => void;
+
+  upsertIdeFrameFile: (
+    frameId: string,
+    path: string,
+    content: string,
+    options?: { language?: string; markDirty?: boolean },
+  ) => void;
+  replaceIdeFrameFiles: (frameId: string, files: PenIdeVirtualFile[]) => void;
+  setIdeFrameDirty: (frameId: string, dirty: boolean) => void;
+  clearIdeWorkspaceForFrame: (frameId: string) => void;
+  getIdeFrameFile: (frameId: string, path: string) => string | undefined;
 
   // --- Save pipeline (consolidated single entry point) ---
   // save() saves to the existing target if any, falls back to saveAs() otherwise.
@@ -114,6 +151,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
   fileHandle: null,
   filePath: null,
   saveDialogOpen: false,
+  isLoading: false,
 
   // --- Node CRUD (extracted to document-store-node-actions.ts) ---
   ...createNodeActions(set, get),
@@ -126,6 +164,9 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
 
   // --- Page management (extracted to document-store-pages.ts) ---
   ...createPageActions(set, get),
+
+  // --- IDE virtual files (document-store-ide-actions.ts) ---
+  ...createIdeActions(set, () => ({ document: get().document, isDirty: get().isDirty })),
 
   // --- Lifecycle actions (remain inline — small) ---
 
@@ -177,6 +218,32 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
     });
   },
 
+  loadCloudDocument: async (siteId: string) => {
+    const { token } = useAuthStore.getState();
+    if (!token) return false;
+    const base = getEffectiveApiBase();
+    if (!base) return false;
+
+    set({ isLoading: true } as any);
+    try {
+      const res = await fetch(`${base}/api/sites/${siteId}/pencil`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.ok && json.data) {
+          get().loadDocument(json.data, 'Cloud Project', null, null);
+          return true;
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load cloud document', err);
+    } finally {
+      set({ isLoading: false } as any);
+    }
+    return false;
+  },
+
   newDocument: () => {
     useHistoryStore.getState().clear();
     const doc = createEmptyDocument();
@@ -197,6 +264,23 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
   markClean: () => set({ isDirty: false }),
   setFileHandle: (fileHandle) => set({ fileHandle }),
   setSaveDialogOpen: (saveDialogOpen) => set({ saveDialogOpen }),
+  setProjectMetadata: (meta) =>
+    set((state) => ({
+      document: {
+        ...state.document,
+        ...(meta ? { projectMeta: meta } : { projectMeta: undefined }),
+      },
+      isDirty: true,
+    })),
+
+  setDesignMotion: (config) =>
+    set((state) => ({
+      document: {
+        ...state.document,
+        ...(config === undefined ? { designMotion: undefined } : { designMotion: config }),
+      },
+      isDirty: true,
+    })),
 
   save: async () => {
     const state = get();
@@ -212,7 +296,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
         return null;
       }
       set({ isDirty: false });
-      documentEvents.emit('saved', { filePath, fileName: fileName!, document: doc });
+      notifyDocumentSaved({ filePath, fileName: fileName!, document: doc });
       return fileName!;
     }
 
@@ -221,7 +305,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
       try {
         await writeToFileHandle(fileHandle, doc);
         set({ isDirty: false });
-        documentEvents.emit('saved', { filePath: null, fileName: fileName!, document: doc });
+        notifyDocumentSaved({ filePath: null, fileName: fileName!, document: doc });
         return fileName!;
       } catch (err) {
         console.warn('[document-store.save] writeToFileHandle failed, falling back:', err);
@@ -230,7 +314,33 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
       }
     }
 
-    // Path 3: No in-place target → delegate to saveAs() which handles the
+    // Path 3: Cloud site saving.
+    const params = new URLSearchParams(window.location.search);
+    const siteId = params.get('siteId');
+    const { token, isAuthenticated } = useAuthStore.getState();
+    if (siteId && isAuthenticated && token) {
+      const base = getEffectiveApiBase();
+      if (!base) return get().saveAs();
+      try {
+        const res = await fetch(`${base}/api/sites/${siteId}/pencil`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ document: doc }),
+        });
+        if (res.ok) {
+          set({ isDirty: false });
+          notifyDocumentSaved({ filePath: null, fileName: fileName || 'Cloud Site', document: doc });
+          return fileName || 'Cloud Site';
+        }
+      } catch (err) {
+        console.error('[document-store.save] cloud save failed:', err);
+      }
+    }
+
+    // Path 4: No in-place target → delegate to saveAs() which handles the
     // dialog flow per backend.
     return get().saveAs();
   },
@@ -263,7 +373,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
         fileHandle: null,
         isDirty: false,
       });
-      documentEvents.emit('saved', { filePath: savedPath, fileName: savedName, document: doc });
+      notifyDocumentSaved({ filePath: savedPath, fileName: savedName, document: doc });
       return savedName;
     }
 
@@ -277,7 +387,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
         filePath: null,
         isDirty: false,
       });
-      documentEvents.emit('saved', { filePath: null, fileName: result.fileName, document: doc });
+      notifyDocumentSaved({ filePath: null, fileName: result.fileName, document: doc });
       return result.fileName;
     }
 
@@ -290,7 +400,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
       return null;
     }
     set({ fileName: suggestedName, isDirty: false });
-    documentEvents.emit('saved', { filePath: null, fileName: suggestedName, document: doc });
+    notifyDocumentSaved({ filePath: null, fileName: suggestedName, document: doc });
     return suggestedName;
   },
 
@@ -313,7 +423,7 @@ export const useDocumentStore = create<DocumentStoreState>((set, get) => ({
       fileHandle: null,
       isDirty: false,
     });
-    documentEvents.emit('saved', { filePath, fileName: savedName, document: doc });
+    notifyDocumentSaved({ filePath, fileName: savedName, document: doc });
     return savedName;
   },
 }));

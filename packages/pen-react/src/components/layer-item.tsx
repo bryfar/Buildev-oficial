@@ -19,7 +19,7 @@ import {
   Diamond,
   Smile,
 } from 'lucide-react';
-import type { PenNodeType } from '@zseven-w/pen-types';
+import type { PenNodeType } from '@buildev/pen-types';
 
 const TYPE_ICONS: Record<PenNodeType, typeof Square> = {
   rectangle: Square,

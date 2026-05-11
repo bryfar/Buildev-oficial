@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import type { PenNode, PathNode } from '@zseven-w/pen-types';
+import type { PenNode, PathNode } from '@buildev/pen-types';
 
 export type BooleanOpType = 'union' | 'subtract' | 'intersect';
 
@@ -44,15 +44,36 @@ interface PaperModule {
 let paperModule: PaperModule | null | undefined;
 let scope: PaperScope | null = null;
 
+/**
+ * Resolve a Node `require` for loading CJS `paper` when running as ESM (Vitest)
+ * without a global `require`. Uses dynamic `require` so browser bundles don't
+ * pull a static `node:module` import.
+ */
+function getPenCoreNodeRequire(): NodeRequire | undefined {
+  if (typeof process === 'undefined' || !process.versions?.node) return undefined;
+  try {
+    const g = (globalThis as Record<string, unknown>)['require'];
+    if (typeof g === 'function') return g as NodeRequire;
+    if (typeof require !== 'undefined') return require as NodeRequire;
+    // eslint-disable-next-line no-eval -- only evaluated in Node; avoids static `node:module` in browser graphs.
+    const dynamicRequire = (0, eval)('typeof require !== "undefined" ? require : undefined') as
+      | NodeRequire
+      | undefined;
+    if (!dynamicRequire) return undefined;
+    const nm = dynamicRequire('node:module') as typeof import('node:module');
+    return nm.createRequire(import.meta.url);
+  } catch {
+    return undefined;
+  }
+}
+
 function getPaperModule(): PaperModule | null {
   if (paperModule !== undefined) return paperModule;
   try {
-    // Indirect require via globalThis to load paper.js at runtime without
-    // triggering esbuild's direct-eval warning. The assignment to globalThis
-    // happens once; subsequent calls read from the cached paperModule.
     const _r =
       ((globalThis as any)['require'] as NodeRequire | undefined) ??
-      (typeof require !== 'undefined' ? require : undefined);
+      (typeof require !== 'undefined' ? (require as NodeRequire) : undefined) ??
+      getPenCoreNodeRequire();
     if (!_r) throw new Error('require not available');
     paperModule = _r('paper') as PaperModule;
   } catch {

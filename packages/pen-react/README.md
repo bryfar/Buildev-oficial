@@ -1,20 +1,20 @@
-# @zseven-w/pen-react
+# @buildev/pen-react
 
-React UI SDK for [OpenPencil](https://github.com/ZSeven-W/openpencil) — a complete set of hooks, components, and panels to build a design editor with React.
+React UI SDK for [Buildev](https://github.com/bryfar/Buildev-oficial) — a complete set of hooks, components, and panels to build a design editor with React.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-react
+npm install @buildev/pen-react
 # or
-bun add @zseven-w/pen-react
+bun add @buildev/pen-react
 ```
 
 **Peer dependencies:** `react@^19`, `react-dom@^19`, `@radix-ui/react-*` (popover, select, separator, slider, switch, toggle, tooltip)
 
 ## Overview
 
-`pen-react` wraps [`@zseven-w/pen-engine`](../pen-engine) into idiomatic React: a context provider, 10 semantic hooks, and 39 ready-to-use components covering the full editor UI.
+`pen-react` wraps [`@buildev/pen-engine`](../pen-engine) into idiomatic React: a context provider, 10 semantic hooks, and 39 ready-to-use components covering the full editor UI.
 
 ```
 <DesignProvider>
@@ -36,7 +36,7 @@ import {
   CoreToolbar,
   LayerPanel,
   PropertyPanel,
-} from '@zseven-w/pen-react';
+} from '@buildev/pen-react';
 
 function Editor() {
   return (
@@ -70,7 +70,7 @@ import {
   useActivePage,
   useHover,
   useVariables,
-} from '@zseven-w/pen-react';
+} from '@buildev/pen-react';
 
 function Inspector() {
   const node = useActiveNode(); // PenNode | null
@@ -182,7 +182,7 @@ Drop these into your own property panel or use `PropertyPanel` which includes al
 Ephemeral UI state (panel open/close, drag state) managed by Zustand — separate from engine state:
 
 ```tsx
-import { useUIStore } from '@zseven-w/pen-react';
+import { useUIStore } from '@buildev/pen-react';
 
 const { layerPanelOpen, toggleLayerPanel } = useUIStore();
 ```

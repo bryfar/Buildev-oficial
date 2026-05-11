@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [**日本語**](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-[OpenPencil](https://github.com/ZSeven-W/openpencil) 用 CLI — ターミナルからデザインツールを操作できます。
+[Buildev](https://github.com/bryfar/Buildev-oficial) 用 CLI — ターミナルからデザインツールを操作できます。
 
 ## インストール
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## プラットフォーム対応
 
-CLI はすべてのプラットフォームで OpenPencil デスクトップアプリを自動検出して起動します：
+CLI はすべてのプラットフォームで Buildev デスクトップアプリを自動検出して起動します：
 
 | プラットフォーム | 検出されるインストールパス                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**        | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**        | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows**      | NSIS ユーザー単位 (`%LOCALAPPDATA%`)、マシン単位 (`%PROGRAMFILES%`)、ポータブル                         |
 | **Linux**        | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # 標準入力から読み込み（パイプ）
 ### アプリ制御
 
 ```bash
-op start [--desktop|--web]   # OpenPencil を起動（デフォルトはデスクトップ）
+op start [--desktop|--web]   # Buildev を起動（デフォルトはデスクトップ）
 op stop                      # 実行中のインスタンスを停止
 op status                    # 実行中かどうかを確認
 ```

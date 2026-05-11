@@ -88,7 +88,7 @@ WORKFLOW:
 DIAGNOSING OVERLAP / STACKING BUGS — read this before "fixing" any visual overlap:
 - When snapshot_layout.overlaps is non-empty, two or more siblings share screen area. Do NOT blindly enlarge heights, shrink fonts, or tweak padding — those are surface patches.
 - Inspect the overlapping nodes' shared PARENT via batch_get. Look at its \`layout\` field:
-  • \`layout: "none"\` (or missing) → children positioned via absolute x/y. OpenPencil's renderer has a known bug where absolute-positioned children stack vertically instead of honoring x/y. This is almost always the true root cause.
+  • \`layout: "none"\` (or missing) → children positioned via absolute x/y. Buildev's renderer has a known bug where absolute-positioned children stack vertically instead of honoring x/y. This is almost always the true root cause.
   • \`layout: "vertical"\` with gap=0 and children using textGrowth:"fit_content" → text can visually touch; bump \`gap\` or add padding on the children.
 - Preferred fix for \`layout: "none"\` parents that contain stacked content (badges, titles, rows):
   update_node(parent, { layout: "vertical", gap: 8, alignItems: "flex-start" })

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { PenNode } from '@zseven-w/pen-types';
-import { findNodeInTree } from '@zseven-w/pen-core';
-import { resolveRefs } from '@zseven-w/pen-renderer';
+import type { PenNode } from '@buildev/pen-types';
+import { findNodeInTree } from '@buildev/pen-core';
+import { resolveRefs } from '@buildev/pen-renderer';
 import SectionHeader from '@/components/shared/section-header';
 import {
   Select,

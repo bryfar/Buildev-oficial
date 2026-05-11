@@ -1,9 +1,9 @@
-import { handleGetVariables, handleSetVariables, handleSetThemes } from '@zseven-w/pen-mcp';
+import { handleGetVariables, handleSetVariables, handleSetThemes } from '@buildev/pen-mcp';
 import {
   handleSaveThemePreset,
   handleLoadThemePreset,
   handleListThemePresets,
-} from '@zseven-w/pen-mcp';
+} from '@buildev/pen-mcp';
 import { output, outputError, parseJsonArg } from '../output';
 
 interface GlobalFlags {

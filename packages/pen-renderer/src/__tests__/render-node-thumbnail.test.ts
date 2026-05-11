@@ -10,13 +10,13 @@
 //   5. resolveNodeForCanvas is called with document variables + active theme (I6)
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
-import * as penCore from '@zseven-w/pen-core';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
+import * as penCore from '@buildev/pen-core';
 
-// Mock @zseven-w/pen-core to allow spying on resolveNodeForCanvas while
+// Mock @buildev/pen-core to allow spying on resolveNodeForCanvas while
 // keeping all other exports from the real module intact.
-vi.mock('@zseven-w/pen-core', async () => {
-  const actual = await vi.importActual<typeof penCore>('@zseven-w/pen-core');
+vi.mock('@buildev/pen-core', async () => {
+  const actual = await vi.importActual<typeof penCore>('@buildev/pen-core');
   return { ...actual };
 });
 

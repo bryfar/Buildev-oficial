@@ -1,13 +1,13 @@
-# @zseven-w/pen-renderer
+# @buildev/pen-renderer
 
-Standalone CanvasKit/Skia renderer for [OpenPencil](https://github.com/ZSeven-W/openpencil) design files. Render `.op` documents to a GPU-accelerated canvas — works in browsers, Node.js, and headless environments.
+Standalone CanvasKit/Skia renderer for [Buildev](https://github.com/bryfar/Buildev-oficial) design files. Render `.op` documents to a GPU-accelerated canvas — works in browsers, Node.js, and headless environments.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-renderer canvaskit-wasm
+npm install @buildev/pen-renderer canvaskit-wasm
 # or
-bun add @zseven-w/pen-renderer canvaskit-wasm
+bun add @buildev/pen-renderer canvaskit-wasm
 ```
 
 `canvaskit-wasm` is a peer dependency — you provide the WASM binary.
@@ -25,7 +25,7 @@ PenDocument → flattenToRenderNodes() → absolute positions → SkiaNodeRender
 ## Quick Start
 
 ```typescript
-import { loadCanvasKit, PenRenderer } from '@zseven-w/pen-renderer';
+import { loadCanvasKit, PenRenderer } from '@buildev/pen-renderer';
 
 // 1. Initialize CanvasKit WASM (once, globally)
 await loadCanvasKit();
@@ -77,7 +77,7 @@ import {
   resolveRefs,
   premeasureTextHeights,
   remapIds,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 
 // Flatten tree → absolute positions
 const renderNodes = flattenToRenderNodes(children, viewport);
@@ -101,7 +101,7 @@ import {
   zoomToPoint,
   getViewportBounds,
   isRectInViewport,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 
 const matrix = viewportMatrix(zoom, panX, panY); // 3x3 CanvasKit matrix
 const scene = screenToScene(mouseX, mouseY, viewport);
@@ -114,7 +114,7 @@ const newVp = zoomToPoint(viewport, 2.0, centerX, centerY);
 R-tree backed spatial queries for click hit testing and marquee selection:
 
 ```typescript
-import { SpatialIndex } from '@zseven-w/pen-renderer';
+import { SpatialIndex } from '@buildev/pen-renderer';
 
 const index = new SpatialIndex();
 index.rebuild(renderNodes);
@@ -134,7 +134,7 @@ import {
   SkiaTextRenderer,
   SkiaFontManager,
   SkiaImageLoader,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 ```
 
 | Class              | Handles                                                                                                                                                                                 |
@@ -149,7 +149,7 @@ import {
 Render individual nodes to offscreen thumbnails (used for git conflict UI, exports):
 
 ```typescript
-import { renderNodeThumbnail } from '@zseven-w/pen-renderer';
+import { renderNodeThumbnail } from '@buildev/pen-renderer';
 
 const dataUrl = renderNodeThumbnail(node, { width: 200, height: 200 });
 ```
@@ -164,7 +164,7 @@ import {
   wrapLine,
   cssFontFamily,
   sanitizeSvgPath,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 
 const color = parseColor('#2563EB'); // CanvasKit Color4f
 ```

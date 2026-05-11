@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { handleValidationReport } from '../tools/debug-validation-report';
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 
 describe('handleValidationReport', () => {
   it('returns empty result for an empty document', async () => {

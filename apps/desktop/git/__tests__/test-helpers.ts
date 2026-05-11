@@ -4,9 +4,21 @@
 // a fresh temp dir, runs its operation, and cleans up via the returned
 // disposer. This keeps tests isolated and parallel-safe.
 
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { mkdtemp, rm, writeFile, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+
+const execFileAsync = promisify(execFile);
+
+/**
+ * Point a bare repo's HEAD at `refs/heads/<branch>` so a plain `git clone`
+ * checks out that branch (Git for Windows often defaults to `master` otherwise).
+ */
+export async function setBareRemoteDefaultBranch(bareRepoDir: string, branch: string): Promise<void> {
+  await execFileAsync('git', ['-C', bareRepoDir, 'symbolic-ref', 'HEAD', `refs/heads/${branch}`]);
+}
 
 /**
  * Create a fresh temp directory under the OS temp path. Returns the path
@@ -21,7 +33,12 @@ export async function mkTempDir(prefix = 'op-git-test-'): Promise<{
   return {
     dir,
     dispose: async () => {
-      await rm(dir, { recursive: true, force: true });
+      await rm(dir, {
+        recursive: true,
+        force: true,
+        maxRetries: 12,
+        retryDelay: 75,
+      });
     },
   };
 }

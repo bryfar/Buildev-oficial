@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import type { DesignMdSpec } from '@/types/design-md';
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_PREFIX = 'openpencil-design-md:';
-const CURRENT_KEY_STORAGE = 'openpencil-design-md-current-key';
+const STORAGE_PREFIX = 'buildev-design-md:';
+const CURRENT_KEY_STORAGE = 'buildev-design-md-current-key';
 
 /** Derive a storage key from a file identifier. Returns null for untitled documents. */
 function fileKey(fileName: string | null, filePath: string | null): string | null {

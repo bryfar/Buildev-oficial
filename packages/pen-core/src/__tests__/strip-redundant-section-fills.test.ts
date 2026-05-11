@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { stripRedundantSectionFills } from '../layout/strip-redundant-section-fills';
 
 const frame = (props: Partial<PenNode> & { children?: PenNode[] }): PenNode =>

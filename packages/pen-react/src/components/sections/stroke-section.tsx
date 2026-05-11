@@ -2,9 +2,9 @@ import { ColorPicker } from '../color-picker.js';
 import { NumberInput } from '../number-input.js';
 import { SectionHeader } from '../section-header.js';
 import { VariablePicker } from '../variable-picker.js';
-import { isVariableRef } from '@zseven-w/pen-core';
-import type { PenNode } from '@zseven-w/pen-types';
-import type { PenStroke, PenFill } from '@zseven-w/pen-types';
+import { isVariableRef } from '@buildev/pen-core';
+import type { PenNode } from '@buildev/pen-types';
+import type { PenStroke, PenFill } from '@buildev/pen-types';
 
 interface StrokeSectionProps {
   stroke?: PenStroke;

@@ -2,10 +2,10 @@ import { readFile, writeFile, access, unlink } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { normalizePenDocument } from '@zseven-w/pen-core';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import { normalizePenDocument } from '@buildev/pen-core';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import { sanitizeObject } from './utils/sanitize';
-import { PORT_FILE_DIR_NAME, PORT_FILE_NAME } from './constants';
+import { PORT_FILE_DIR_NAME, PORT_FILE_LEGACY_DIR_NAME, PORT_FILE_NAME } from './constants';
 
 const cache = new Map<string, { doc: PenDocument; mtime: number }>();
 
@@ -39,6 +39,19 @@ export function clearSyncUrl(): void {
 }
 
 const PORT_FILE_PATH = join(homedir(), PORT_FILE_DIR_NAME, PORT_FILE_NAME);
+const PORT_FILE_PATH_LEGACY = join(homedir(), PORT_FILE_LEGACY_DIR_NAME, PORT_FILE_NAME);
+
+async function readPortFileRaw(): Promise<{ raw: string; path: string } | null> {
+  for (const p of [PORT_FILE_PATH, PORT_FILE_PATH_LEGACY]) {
+    try {
+      const raw = await readFile(p, 'utf-8');
+      return { raw, path: p };
+    } catch {
+      /* try next */
+    }
+  }
+  return null;
+}
 // IPv6 [::1] comes first because Vite 6+ resolves `localhost` to ::1 only on
 // macOS — it's the most likely successful host. IPv4 + named localhost are
 // kept as fallbacks for systems where the dev server binds to IPv4 only.
@@ -123,14 +136,14 @@ function buildLiveSyncMessage(status: LiveSyncAvailability, port?: number | null
   const portHint = port ? ` (port ${port})` : '';
   switch (status) {
     case 'connected':
-      return `Connected to OpenPencil live canvas${portHint}.`;
+      return `Connected to Buildev live canvas${portHint}.`;
     case 'no-document':
-      return `OpenPencil is running${portHint}, but no live document is loaded in the editor yet. Open the editor page and wait for sync.`;
+      return `Buildev is running${portHint}, but no live document is loaded in the editor yet. Open the editor page and wait for sync.`;
     case 'unreachable':
-      return `Found an OpenPencil port file${portHint}, but the live sync server is unreachable. Restart OpenPencil and try again.`;
+      return `Found a Buildev port file${portHint}, but the live sync server is unreachable. Restart Buildev and try again.`;
     case 'missing-port-file':
     default:
-      return 'No running OpenPencil instance found. Start the Electron app or dev server first.';
+      return 'No running Buildev instance found. Start the Electron app or dev server first.';
   }
 }
 
@@ -165,7 +178,9 @@ export async function getSyncUrl(): Promise<string | null> {
 /** Inspect the current live canvas sync state with a user-facing diagnosis. */
 export async function getLiveSyncState(): Promise<LiveSyncState> {
   try {
-    const raw = await readFile(PORT_FILE_PATH, 'utf-8');
+    const read = await readPortFileRaw();
+    if (!read) throw new Error('no port file');
+    const { raw, path: portFilePath } = read;
     const { port, pid } = JSON.parse(raw) as { port: number; pid: number };
     const url = await getReachableSyncUrl(port);
     if (url) {
@@ -189,7 +204,7 @@ export async function getLiveSyncState(): Promise<LiveSyncState> {
 
     if (!isPidAlive(pid)) {
       try {
-        await unlink(PORT_FILE_PATH);
+        await unlink(portFilePath);
       } catch {
         // Ignore cleanup failures for stale port files.
       }
@@ -267,8 +282,8 @@ async function pushLiveDocument(doc: PenDocument): Promise<void> {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-openpencil-client-id': 'mcp-server:live-canvas',
-        'x-openpencil-body-bytes': String(bodyBytes),
+        'x-buildev-client-id': 'mcp-server:live-canvas',
+        'x-buildev-body-bytes': String(bodyBytes),
       },
       body,
     });

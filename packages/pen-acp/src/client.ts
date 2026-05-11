@@ -75,7 +75,7 @@ async function connectLocal(config: AcpAgentConfig): Promise<AcpConnectionState>
   const initResult = await state.connection.initialize({
     protocolVersion: PROTOCOL_VERSION,
     clientCapabilities: {},
-    clientInfo: { name: 'openpencil', version: '0.7.1' },
+    clientInfo: { name: 'buildev', version: '0.7.1' },
   });
 
   state.agentInfo = {
@@ -124,7 +124,7 @@ async function connectRemote(config: AcpAgentConfig): Promise<AcpConnectionState
   const initResult = await state.connection.initialize({
     protocolVersion: PROTOCOL_VERSION,
     clientCapabilities: {},
-    clientInfo: { name: 'openpencil', version: '0.7.1' },
+    clientInfo: { name: 'buildev', version: '0.7.1' },
   });
 
   state.agentInfo = {

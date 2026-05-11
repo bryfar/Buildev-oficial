@@ -16,7 +16,7 @@ import {
   sysAbortMerge,
   sysReadHead,
 } from '../worktree-merge';
-import { mkTempDir } from './test-helpers';
+import { mkTempDir, setBareRemoteDefaultBranch } from './test-helpers';
 
 const execFileAsync = promisify(execFile);
 
@@ -60,13 +60,14 @@ describe('git-sys real (gated on system git)', () => {
     );
     await execFileAsync('git', ['remote', 'add', 'origin', remoteDir], { cwd: sourceDir });
     await execFileAsync('git', ['push', 'origin', 'main'], { cwd: sourceDir });
+    await setBareRemoteDefaultBranch(remoteDir, 'main');
 
     // Now clone via sysClone.
     await sysClone({ url: remoteDir, dest: cloneDir });
 
     // Verify the clone has the README.
     const content = await fsp.readFile(join(cloneDir, 'README.md'), 'utf-8');
-    expect(content).toBe('# test\n');
+    expect(content.replace(/\r\n/g, '\n')).toBe('# test\n');
   });
 
   it.skipIf(!systemGitAvailable)('fetch updates remote-tracking refs', async () => {
@@ -86,6 +87,7 @@ describe('git-sys real (gated on system git)', () => {
       {},
     );
     await execFileAsync('git', ['-C', aDir, 'push', '-u', 'origin', 'main']);
+    await setBareRemoteDefaultBranch(remoteDir, 'main');
 
     // b: clone the same remote (now has main with one.txt)
     await execFileAsync('git', ['clone', remoteDir, bDir]);
@@ -155,6 +157,7 @@ describe('git-sys real (gated on system git)', () => {
       {},
     );
     await execFileAsync('git', ['-C', aDir, 'push', '-u', 'origin', 'main']);
+    await setBareRemoteDefaultBranch(remoteDir, 'main');
 
     // b: clone, then a pushes a 2nd commit
     await execFileAsync('git', ['clone', remoteDir, bDir]);

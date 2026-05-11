@@ -59,21 +59,21 @@ export function GitPanelNodeConflictCard({ conflict, onResolve }: GitPanelNodeCo
 
     async function renderThumbnails() {
       try {
-        const { renderNodeThumbnail } = await import('@zseven-w/pen-renderer');
+        const { renderNodeThumbnail } = await import('@buildev/pen-renderer');
         // Use the real document so $variable references and ref-type nodes resolve
         // correctly. A stub document with empty children silently broke resolution.
         const ctx = { document: penDocument, pageId: conflict.pageId, size: 120 };
 
         if (conflict.ours && typeof conflict.ours === 'object') {
           const url = await renderNodeThumbnail(
-            conflict.ours as import('@zseven-w/pen-types').PenNode,
+            conflict.ours as import('@buildev/pen-types').PenNode,
             ctx,
           );
           if (!cancelled) setOursThumbnail(url);
         }
         if (conflict.theirs && typeof conflict.theirs === 'object') {
           const url = await renderNodeThumbnail(
-            conflict.theirs as import('@zseven-w/pen-types').PenNode,
+            conflict.theirs as import('@buildev/pen-types').PenNode,
             ctx,
           );
           if (!cancelled) setTheirsThumbnail(url);

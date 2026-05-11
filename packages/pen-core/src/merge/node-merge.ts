@@ -2,7 +2,7 @@
 //
 // Pure 3-way merge of PenDocument trees.
 
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import {
   indexNodesById,
   nodeFieldsEqual,

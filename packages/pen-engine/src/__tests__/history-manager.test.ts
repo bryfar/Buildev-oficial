@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { HistoryManager } from '../core/history-manager';
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 
 function makeDoc(name: string): PenDocument {
   return { version: '1.0.0', name, children: [] };

@@ -11,7 +11,7 @@ import type {
   ImageNode,
   IconFontNode,
 } from '@/types/pen';
-import { Component, Diamond, ArrowUpRight, Unlink } from 'lucide-react';
+import { Component, Diamond, ArrowUpRight, Unlink, PenTool } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SizeSection from './size-section';
 import LayoutSection from './layout-section';
@@ -21,6 +21,7 @@ import AppearanceSection from './appearance-section';
 import TextSection from './text-section';
 import TextLayoutSection from './text-layout-section';
 import EffectsSection from './effects-section';
+import AnimationSection from './animation-section';
 import ExportSection from './export-section';
 import IconSection from './icon-section';
 import ImageSection from './image-section';
@@ -44,6 +45,7 @@ const INSTANCE_DIRECT_PROPS = new Set([
 
 export default function PropertyPanel({ embedded }: { embedded?: boolean } = {}) {
   const { t } = useTranslation();
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const activeId = useCanvasStore((s) => s.selection.activeId);
   const setSelection = useCanvasStore((s) => s.setSelection);
   const activePageId = useCanvasStore((s) => s.activePageId);
@@ -64,8 +66,22 @@ export default function PropertyPanel({ embedded }: { embedded?: boolean } = {})
     setIsEditingName(false);
   }, [activeId]);
 
+  if (ideModeOpen) return null;
+
   if (!node) {
-    return null;
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center p-8 text-center space-y-4">
+        <div className="w-12 h-12 rounded-full bg-muted/30 flex items-center justify-center">
+          <PenTool size={20} className="text-muted-foreground/40" />
+        </div>
+        <div className="space-y-1">
+          <p className="text-[11px] font-medium text-foreground">No selection</p>
+          <p className="text-[10px] text-muted-foreground leading-relaxed">
+            Select a layer to view and edit its properties
+          </p>
+        </div>
+      </div>
+    );
   }
 
   const nodeIsReusable = 'reusable' in node && node.reusable === true;
@@ -237,7 +253,7 @@ export default function PropertyPanel({ embedded }: { embedded?: boolean } = {})
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="min-h-0 flex-1 overflow-y-auto">
         {(isContainer || nodeIsInstance) && (
           <div className="px-3 py-2">
             {nodeIsReusable ? (
@@ -379,6 +395,11 @@ export default function PropertyPanel({ embedded }: { embedded?: boolean } = {})
             </div>
           </>
         )}
+
+        <Separator />
+        <div className="px-3 py-2">
+          <AnimationSection />
+        </div>
 
         <Separator />
         <div className="px-3 py-2">

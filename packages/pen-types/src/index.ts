@@ -26,6 +26,23 @@ export type { ToolType, ViewportState, SelectionState, CanvasInteraction } from 
 export type {
   PenPage,
   PenDocument,
+  ProjectCreationMode,
+  ProjectType,
+  ProjectStack,
+  ProjectBackendStack,
+  CmsProviderId,
+  ProjectDashboardMode,
+  ProjectTemplatePolicy,
+  ProjectMetadata,
+  PenMotionLibraryId,
+  PenDesignMotionPresetId,
+  PenDesignMotionAnimationRow,
+  PenDesignMotionEffectKind,
+  PenDesignMotionEffectRow,
+  PenDesignMotionConfig,
+  PenIdeVirtualFile,
+  PenIdeFrameWorkspace,
+  PenIdeWorkspace,
   PenNodeType,
   SizingBehavior,
   PenNodeBase,
@@ -52,7 +69,7 @@ export type {
 export type { ComponentCategory, KitComponent, UIKit } from './uikit.js';
 
 // Theme presets
-export type { ThemePreset, ThemePresetFile } from './theme-preset.js';
+export type { ThemePreset, ThemePresetFile, ThemePresetFileType } from './theme-preset.js';
 
 // Design.md
 export type { DesignMdSpec, DesignMdColor, DesignMdTypography } from './design-md.js';

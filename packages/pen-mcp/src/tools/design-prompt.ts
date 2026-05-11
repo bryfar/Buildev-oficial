@@ -1,6 +1,6 @@
-import { getSkillByName } from '@zseven-w/pen-ai-skills';
+import { getSkillByName } from '@buildev/pen-ai-skills';
 import { buildDesignMdStylePolicy } from '../utils/design-md-style-policy';
-import type { DesignMdSpec } from '@zseven-w/pen-types';
+import type { DesignMdSpec } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Skill name mapping — maps legacy section keys to skill registry names
@@ -30,7 +30,7 @@ function getSkillContent(key: string): string {
 // Named prompt sections — can be retrieved individually via section parameter
 // ---------------------------------------------------------------------------
 
-const INTRO = `You are working with OpenPencil, a vector design tool.
+const INTRO = `You are working with Buildev, a vector design tool.
 
 TOOL SELECTION — match the user's intent:
 - READ/INSPECT the canvas: batch_get (search nodes, get IDs), snapshot_layout (spatial overview), get_selection (selected nodes)

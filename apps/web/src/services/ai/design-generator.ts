@@ -4,7 +4,7 @@ import type { AIProviderType } from '@/types/agent-settings';
 import type { DesignMdSpec } from '@/types/design-md';
 import type { AIDesignRequest } from './ai-types';
 import { streamChat } from './ai-service';
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@buildev/pen-ai-skills';
 import { buildDesignMdStylePolicy } from './ai-prompts';
 import { executeOrchestration } from './orchestrator';
 import { DESIGN_STREAM_TIMEOUTS } from './ai-runtime-config';

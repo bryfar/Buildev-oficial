@@ -1,5 +1,5 @@
 /**
- * `op install` — install openpencil-skill for AI coding agents.
+ * `op install` — install buildev-skill for AI coding agents.
  *
  * The skill files are embedded at build time (via skill-bundle.json).
  * If the bundle is empty (e.g. dev build without the skill repo), falls back to git clone.
@@ -22,9 +22,10 @@ import { join, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import bundle from './skill-bundle.json';
 
-const REPO = 'zseven-w/openpencil-skill';
+/** Override with `BUILDDEV_SKILL_REPO` or `SKILL_GITHUB_REPO` (format `owner/repo`) when changing remotes. */
+const REPO = process.env.BUILDDEV_SKILL_REPO || process.env.SKILL_GITHUB_REPO || 'zseven-w/buildev-skill';
 const REPO_URL = `https://github.com/${REPO}.git`;
-const SKILL_NAME = 'openpencil-skill';
+const SKILL_NAME = 'buildev-skill';
 
 type Target = 'claude' | 'codex' | 'cursor' | 'gemini' | 'opencode';
 

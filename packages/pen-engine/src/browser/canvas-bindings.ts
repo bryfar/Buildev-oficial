@@ -1,6 +1,6 @@
 import type { DesignEngine } from '../core/design-engine.js';
 import { CanvasRenderer } from './canvas-renderer.js';
-import { loadCanvasKit } from '@zseven-w/pen-renderer';
+import { loadCanvasKit } from '@buildev/pen-renderer';
 
 export interface CanvasBinding {
   render(): void;

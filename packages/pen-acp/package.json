@@ -1,7 +1,7 @@
 {
-  "name": "@zseven-w/pen-acp",
+  "name": "@buildev/pen-acp",
   "version": "0.7.5",
-  "description": "ACP (Agent Client Protocol) client for OpenPencil — connect to external ACP agents",
+  "description": "ACP (Agent Client Protocol) client for Buildev — connect to external ACP agents",
   "files": [
     "src"
   ],

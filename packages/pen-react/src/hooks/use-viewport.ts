@@ -1,5 +1,5 @@
 import { useRef, useCallback } from 'react';
-import type { ViewportState } from '@zseven-w/pen-types';
+import type { ViewportState } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useEngineSubscribe } from '../utils/use-engine-subscribe.js';
 

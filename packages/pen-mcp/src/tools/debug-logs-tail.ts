@@ -23,7 +23,7 @@ export function __setLogDirForTests(dir: string | null): void {
 }
 
 function logDir(): string {
-  return _logDirOverride ?? join(homedir(), '.openpencil', 'logs');
+  return _logDirOverride ?? join(homedir(), '.buildev', 'logs');
 }
 
 function todayStamp(): string {

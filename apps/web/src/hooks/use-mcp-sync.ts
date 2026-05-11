@@ -1,7 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useDocumentStore } from '@/stores/document-store';
 import { useCanvasStore } from '@/stores/canvas-store';
+import { usePresenceStore } from '@/stores/presence-store';
+import { getSkiaEngineRef } from '@/canvas/skia-engine-ref';
 import type { PenDocument } from '@/types/pen';
+
+const PRESENCE_DEBOUNCE_MS = 100;
 
 const PUSH_DEBOUNCE_MS = 2000;
 const SELECTION_DEBOUNCE_MS = 300;
@@ -118,8 +122,8 @@ async function pushDocumentToServer(clientId: string | null) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-openpencil-client-id': clientId ?? 'renderer:unknown',
-      'x-openpencil-body-bytes': String(bodyBytes),
+      'x-buildev-client-id': clientId ?? 'renderer:unknown',
+      'x-buildev-body-bytes': String(bodyBytes),
     },
     // Keep smaller requests alive through page transitions and HMR churn.
     ...(bodyBytes <= 60_000 ? { keepalive: true } : {}),
@@ -216,6 +220,12 @@ export function useMcpSync() {
             // may trigger multiple cascading setState calls.
             skipPushUntilRef.current = Date.now() + 200;
             useDocumentStore.getState().applyExternalDocument(doc);
+          } else if (data.type === 'presence:init') {
+            usePresenceStore.getState().initRemoteUsers(data.users);
+          } else if (data.type === 'presence:join' || data.type === 'presence:update') {
+            usePresenceStore.getState().updateRemoteUser(data.user);
+          } else if (data.type === 'presence:leave') {
+            usePresenceStore.getState().removeRemoteUser(data.clientId);
           } else if (data.type === 'screenshot:request') {
             void handleScreenshotRequest(
               data as {
@@ -310,10 +320,52 @@ export function useMcpSync() {
       if (selectionTimer) clearTimeout(selectionTimer);
       unsubDoc();
       unsubSelection();
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('focus', sendActivePing);
-        document.removeEventListener('visibilitychange', sendActivePing);
-      }
+    };
+  }, []);
+
+  // Track local cursor and push presence
+  useEffect(() => {
+    let lastSceneX = 0;
+    let lastSceneY = 0;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    const onMove = (e: MouseEvent) => {
+      const engine = getSkiaEngineRef();
+      if (!engine) return;
+
+      const rect = engine.getCanvasRect();
+      if (!rect) return;
+
+      // Convert viewport clientX/Y to scene x/y
+      lastSceneX = (e.clientX - rect.left - engine.panX) / engine.zoom;
+      lastSceneY = (e.clientY - rect.top - engine.panY) / engine.zoom;
+
+      if (timer) return;
+      timer = setTimeout(() => {
+        timer = null;
+        const clientId = clientIdRef.current;
+        if (!clientId) return;
+
+        const { localUser } = usePresenceStore.getState();
+        fetch(`${getBaseUrl()}/api/mcp/presence`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-buildev-client-id': clientId,
+          },
+          body: JSON.stringify({
+            name: localUser.name,
+            sceneX: lastSceneX,
+            sceneY: lastSceneY,
+          }),
+        }).catch(() => {});
+      }, PRESENCE_DEBOUNCE_MS);
+    };
+
+    window.addEventListener('mousemove', onMove);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      if (timer) clearTimeout(timer);
     };
   }, []);
 }

@@ -1,6 +1,6 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
-export type { ViewportState } from '@zseven-w/pen-types';
+export type { ViewportState } from '@buildev/pen-types';
 
 export interface RenderNode {
   node: PenNode;

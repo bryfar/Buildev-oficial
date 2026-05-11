@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-renderer
-export { loadCanvasKit, getCanvasKit } from '@zseven-w/pen-renderer';
+// Re-export from @buildev/pen-renderer
+export { loadCanvasKit, getCanvasKit } from '@buildev/pen-renderer';

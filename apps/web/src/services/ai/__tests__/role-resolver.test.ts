@@ -17,7 +17,7 @@ import {
   resolveTreeRoles,
 } from '../role-resolver';
 import type { RoleContext } from '../role-resolver';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 // Ensure role definitions are registered
 import '../role-definitions/index';

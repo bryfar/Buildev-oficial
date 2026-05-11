@@ -15,9 +15,9 @@ import {
   normalizeOptionalBaseURL,
   requireOpenAICompatBaseURL,
 } from './provider-url';
-// SENSITIVE_LOG_PATTERN + readDebugTail are now canonical in @zseven-w/pen-mcp.
+// SENSITIVE_LOG_PATTERN + readDebugTail are now canonical in @buildev/pen-mcp.
 // Re-export here to keep existing consumers (tests, other modules) working.
-import { SENSITIVE_LOG_PATTERN, readDebugTail } from '@zseven-w/pen-mcp';
+import { SENSITIVE_LOG_PATTERN, readDebugTail } from '@buildev/pen-mcp';
 export { SENSITIVE_LOG_PATTERN };
 
 /** Allowed media types for image attachments */
@@ -182,7 +182,7 @@ function getAgentThinkingConfig(
 /**
  * Save base64 attachments to temp files. Returns { tempDir, files[] } — caller must clean up tempDir.
  *
- * When `insideProject` is true, files are saved under `.openpencil-tmp/` in the
+ * When `insideProject` is true, files are saved under `.buildev-tmp/` in the
  * current working directory so that Claude Code Agent SDK (which restricts reads
  * to the project directory in plan mode) can access them.
  */
@@ -193,12 +193,12 @@ async function saveAttachmentsToTempFiles(
   let tempDir: string;
   if (insideProject) {
     const { mkdirSync, chmodSync } = await import('node:fs');
-    const baseDir = join(process.cwd(), '.openpencil-tmp');
+    const baseDir = join(process.cwd(), '.buildev-tmp');
     mkdirSync(baseDir, { recursive: true, mode: 0o700 });
     chmodSync(baseDir, 0o700);
     tempDir = await mkdtemp(join(baseDir, 'attach-'));
   } else {
-    tempDir = await mkdtemp(join(tmpdir(), 'openpencil-attach-'));
+    tempDir = await mkdtemp(join(tmpdir(), 'buildev-attach-'));
   }
   const files: string[] = [];
   for (const att of attachments) {
@@ -614,7 +614,7 @@ function streamViaOpenCode(body: ChatBody, model?: string) {
 
         // Create a session for this conversation
         const { data: session, error: sessionError } = await ocClient.session.create({
-          title: 'OpenPencil Chat',
+          title: 'Buildev Chat',
         });
         if (sessionError || !session) {
           throw new Error(
@@ -998,7 +998,7 @@ function streamViaBuiltin(body: ChatBody) {
           destroyIterator,
           destroyQueryEngine,
           destroyProvider,
-        } = await import('@zseven-w/agent-native');
+        } = await import('@buildev/agent-native');
 
         const apiKey = body.builtinApiKey;
         const rawModel = body.model?.trim() ?? '';

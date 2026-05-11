@@ -1,18 +1,18 @@
-# @zseven-w/pen-figma
+# @buildev/pen-figma
 
-Figma `.fig` file parser and converter for [OpenPencil](https://github.com/ZSeven-W/openpencil). Import Figma designs directly into the OpenPencil document model — binary file parsing, multi-page support, clipboard paste, and full style conversion.
+Figma `.fig` file parser and converter for [Buildev](https://github.com/bryfar/Buildev-oficial). Import Figma designs directly into the Buildev document model — binary file parsing, multi-page support, clipboard paste, and full style conversion.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-figma
+npm install @buildev/pen-figma
 # or
-bun add @zseven-w/pen-figma
+bun add @buildev/pen-figma
 ```
 
 ## Overview
 
-This package handles the complete pipeline from Figma's proprietary binary format to OpenPencil's `PenDocument`:
+This package handles the complete pipeline from Figma's proprietary binary format to Buildev's `PenDocument`:
 
 ```
 .fig binary → Kiwi schema decode → FigmaNodeChange[] → tree building → PenNode[] → PenDocument
@@ -21,7 +21,7 @@ This package handles the complete pipeline from Figma's proprietary binary forma
 It supports:
 
 - Binary `.fig` files (Kiwi schema + zstd/zip compression)
-- Figma clipboard HTML (copy from Figma → paste in OpenPencil)
+- Figma clipboard HTML (copy from Figma → paste in Buildev)
 - All node types: frames, groups, components, instances, shapes, text, vectors, images
 - Full style conversion: fills, strokes, effects, gradients, auto-layout, typography
 
@@ -30,7 +30,7 @@ It supports:
 ### Parse a `.fig` file
 
 ```typescript
-import { parseFigFile, figmaAllPagesToPenDocument } from '@zseven-w/pen-figma';
+import { parseFigFile, figmaAllPagesToPenDocument } from '@buildev/pen-figma';
 
 const buffer = await fs.readFile('design.fig');
 const figFile = parseFigFile(buffer);
@@ -42,7 +42,7 @@ console.log(`Imported ${document.pages?.length} pages`);
 ### Single page import
 
 ```typescript
-import { parseFigFile, getFigmaPages, figmaToPenDocument } from '@zseven-w/pen-figma';
+import { parseFigFile, getFigmaPages, figmaToPenDocument } from '@buildev/pen-figma';
 
 const figFile = parseFigFile(buffer);
 const pages = getFigmaPages(figFile);
@@ -53,14 +53,14 @@ const document = figmaToPenDocument(figFile, pages[0]);
 
 ### Clipboard paste
 
-Detect and convert Figma clipboard data (when users copy from Figma and paste into OpenPencil):
+Detect and convert Figma clipboard data (when users copy from Figma and paste into Buildev):
 
 ```typescript
 import {
   isFigmaClipboardHtml,
   extractFigmaClipboardData,
   figmaClipboardToNodes,
-} from '@zseven-w/pen-figma';
+} from '@buildev/pen-figma';
 
 document.addEventListener('paste', (e) => {
   const html = e.clipboardData?.getData('text/html');
@@ -77,7 +77,7 @@ document.addEventListener('paste', (e) => {
 For lower-level access (e.g., incremental sync):
 
 ```typescript
-import { figmaNodeChangesToPenNodes } from '@zseven-w/pen-figma';
+import { figmaNodeChangesToPenNodes } from '@buildev/pen-figma';
 
 const penNodes = figmaNodeChangesToPenNodes(figmaNodeChanges, options);
 ```
@@ -87,7 +87,7 @@ const penNodes = figmaNodeChangesToPenNodes(figmaNodeChanges, options);
 Register an icon lookup function for converting Figma component instances to icon nodes:
 
 ```typescript
-import { setIconLookup } from '@zseven-w/pen-figma';
+import { setIconLookup } from '@buildev/pen-figma';
 
 setIconLookup((name) => {
   // Return SVG path data for the icon name, or null
@@ -100,7 +100,7 @@ setIconLookup((name) => {
 Resolve embedded image blob references to data URLs:
 
 ```typescript
-import { resolveImageBlobs } from '@zseven-w/pen-figma';
+import { resolveImageBlobs } from '@buildev/pen-figma';
 
 const images = resolveImageBlobs(figFile);
 // Map<blobHash, dataURL>

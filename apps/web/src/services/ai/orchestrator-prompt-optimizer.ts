@@ -7,9 +7,9 @@ import {
   SUB_AGENT_TIMEOUT_PROFILES,
 } from './ai-runtime-config';
 import { detectDesignType } from './design-type-presets';
-import { getSkillByName } from '@zseven-w/pen-ai-skills';
-import { extractStyleGuideValues, selectStyleGuide } from '@zseven-w/pen-ai-skills/style-guide';
-import { styleGuideRegistry } from '@zseven-w/pen-ai-skills/_generated/style-guide-registry';
+import { getSkillByName } from '@buildev/pen-ai-skills';
+import { extractStyleGuideValues, selectStyleGuide } from '@buildev/pen-ai-skills/style-guide';
+import { styleGuideRegistry } from '@buildev/pen-ai-skills/_generated/style-guide-registry';
 import { resolveModelProfile, applyProfileToTimeouts, type ModelTier } from './model-profiles';
 import { buildDesignMdStylePolicy } from './ai-prompts';
 

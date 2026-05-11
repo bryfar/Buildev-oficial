@@ -1,6 +1,6 @@
 import { defineEventHandler, readBody, createError } from 'h3';
 import { submitChunkResult } from '../../../utils/codegen-plan-store';
-import type { ChunkResult } from '@zseven-w/pen-types';
+import type { ChunkResult } from '@buildev/pen-types';
 
 interface SubmitBody {
   planId: string;

@@ -19,6 +19,13 @@
  */
 import { createRequire } from 'node:module';
 
+// Vitest runs as ESM: `require` is undefined, but pen-core boolean-ops and some
+// desktop git helpers load CJS (`paper`, `sshpk`) via `globalThis.require`.
+const nodeRequire = createRequire(import.meta.url);
+if (typeof (globalThis as Record<string, unknown>).require !== 'function') {
+  (globalThis as Record<string, unknown>).require = nodeRequire;
+}
+
 // Import 'react' via vite's transform pipeline — same instance that pen-react hooks use
 import * as viteTranformedReact from 'react';
 
@@ -26,8 +33,7 @@ import * as viteTranformedReact from 'react';
 // Resolve dynamically via node's own module lookup so this file is not tied to
 // any single developer's machine (the previous hardcoded absolute path broke
 // the entire apps/web test suite on every checkout outside that user's home).
-const require = createRequire(import.meta.url);
-const cjsReact = require('react') as Record<string, any>;
+const cjsReact = nodeRequire('react') as Record<string, any>;
 
 const viteInternals = (viteTranformedReact as any)
   .__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE as Record<string, any>;

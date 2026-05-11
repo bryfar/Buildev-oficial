@@ -1,6 +1,6 @@
 # Packages
 
-Shared libraries consumed by `apps/web` and `apps/desktop`. All re-exported via `@zseven-w/pen-sdk`.
+Shared libraries consumed by `apps/web` and `apps/desktop`. All re-exported via `@buildev/pen-sdk`.
 
 ## pen-types (`pen-types/src/`)
 

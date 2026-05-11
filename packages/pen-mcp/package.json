@@ -1,10 +1,10 @@
 {
-  "name": "@zseven-w/pen-mcp",
+  "name": "@buildev/pen-mcp",
   "version": "0.7.5",
-  "description": "MCP server, document manager, and tools for OpenPencil",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-mcp",
+  "description": "MCP server, document manager, and tools for Buildev",
+  "homepage": "https://github.com/ZSeven-W/buildev/tree/main/packages/pen-mcp",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/ZSeven-W/buildev/issues"
   },
   "license": "MIT",
   "author": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/ZSeven-W/buildev.git",
     "directory": "packages/pen-mcp"
   },
   "files": [
@@ -33,10 +33,10 @@
     "@iconify-json/feather": "^1.2.1",
     "@iconify-json/lucide": "^1.2.93",
     "@modelcontextprotocol/sdk": "^1.12.1",
-    "@zseven-w/pen-ai-skills": "workspace:*",
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-engine": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@buildev/pen-ai-skills": "workspace:*",
+    "@buildev/pen-core": "workspace:*",
+    "@buildev/pen-engine": "workspace:*",
+    "@buildev/pen-types": "workspace:*",
     "nanoid": "^5.1.6"
   },
   "devDependencies": {

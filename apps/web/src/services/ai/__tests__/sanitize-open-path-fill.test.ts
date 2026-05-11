@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { rewriteOpenStrokePathsWithDuplicateFill } from '../sanitize-llm-anti-patterns';
 
 describe('rewriteOpenStrokePathsWithDuplicateFill', () => {

@@ -1,10 +1,10 @@
 {
-  "name": "@zseven-w/openpencil",
+  "name": "@buildev/buildev",
   "version": "0.7.5",
-  "description": "CLI for OpenPencil — control the design tool from your terminal",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/apps/cli",
+  "description": "CLI for Buildev — control the design tool from your terminal",
+  "homepage": "https://github.com/ZSeven-W/buildev/tree/main/apps/cli",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/ZSeven-W/buildev/issues"
   },
   "license": "MIT",
   "author": {
@@ -13,11 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/ZSeven-W/buildev.git",
     "directory": "apps/cli"
   },
   "bin": {
-    "op": "dist/openpencil-cli.cjs"
+    "op": "dist/buildev-cli.cjs"
   },
   "files": [
     "dist"
@@ -27,7 +27,7 @@
     "compile": "cd ../.. && bun run cli:compile"
   },
   "dependencies": {
-    "@zseven-w/pen-figma": "workspace:*",
-    "@zseven-w/pen-mcp": "workspace:*"
+    "@buildev/pen-figma": "workspace:*",
+    "@buildev/pen-mcp": "workspace:*"
   }
 }

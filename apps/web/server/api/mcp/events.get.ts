@@ -4,6 +4,8 @@ import {
   registerSSEClient,
   unregisterSSEClient,
   getSyncDocument,
+  getActivePresences,
+  removePresence,
 } from '../../utils/mcp-sync-state';
 
 // Bun.serve has a default idleTimeout of 10s. Heartbeat must be shorter
@@ -21,6 +23,7 @@ export default defineEventHandler((event) => {
     closed = true;
     clearInterval(heartbeat);
     unregisterSSEClient(clientId);
+    removePresence(clientId);
     stream.close();
   };
 
@@ -37,6 +40,10 @@ export default defineEventHandler((event) => {
   if (doc) {
     write(JSON.stringify({ type: 'document:init', version, document: doc }));
   }
+
+  // Send initial presence list
+  const presences = getActivePresences();
+  write(JSON.stringify({ type: 'presence:init', users: presences }));
 
   registerSSEClient(clientId, { push: write });
 

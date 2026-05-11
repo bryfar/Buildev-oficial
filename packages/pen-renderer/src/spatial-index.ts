@@ -1,6 +1,6 @@
 import RBush from 'rbush';
 import type { RenderNode } from './types.js';
-import type { PenEffect, PenFill, PenNode, PenStroke } from '@zseven-w/pen-types';
+import type { PenEffect, PenFill, PenNode, PenStroke } from '@buildev/pen-types';
 
 interface RTreeItem {
   minX: number;

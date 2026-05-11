@@ -18,7 +18,7 @@ import type {
   SubAgentResult,
 } from './ai-types';
 import { streamChat } from './ai-service';
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@buildev/pen-ai-skills';
 import { SUB_AGENT_DEBUG_FLAGS } from './sub-agent-debug-flags';
 import { type PreparedDesignPrompt, getSubAgentTimeouts } from './orchestrator-prompt-optimizer';
 import {

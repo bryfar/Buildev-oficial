@@ -1,6 +1,6 @@
-import type { DesignMdSpec, DesignMdColor, DesignMdTypography } from '@zseven-w/pen-types';
-import type { PenDocument } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { DesignMdSpec, DesignMdColor, DesignMdTypography } from '@buildev/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Section header patterns (fuzzy matching)

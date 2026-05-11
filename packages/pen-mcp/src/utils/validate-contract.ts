@@ -1,4 +1,4 @@
-import type { ChunkResult, ContractValidationResult } from '@zseven-w/pen-types';
+import type { ChunkResult, ContractValidationResult } from '@buildev/pen-types';
 
 export function validateContract(result: ChunkResult): ContractValidationResult {
   const issues: string[] = [];

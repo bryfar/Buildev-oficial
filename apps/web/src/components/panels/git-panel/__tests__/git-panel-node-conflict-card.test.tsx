@@ -56,7 +56,7 @@ vi.mock('@/components/panels/git-panel/git-panel-conflict-json-editor', () => ({
 }));
 
 // Stub pen-renderer to avoid WASM loading
-vi.mock('@zseven-w/pen-renderer', () => ({
+vi.mock('@buildev/pen-renderer', () => ({
   renderNodeThumbnail: vi.fn(async () => null),
 }));
 

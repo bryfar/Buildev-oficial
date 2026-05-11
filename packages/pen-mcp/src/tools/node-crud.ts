@@ -14,7 +14,7 @@ import {
 import { generateId } from '../utils/id';
 import { sanitizeObject } from '../utils/sanitize';
 import { getMcpHooks } from '../hooks';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Node data validation

@@ -1,7 +1,7 @@
 /**
  * Simple file logger for the Nitro server process.
  *
- * Writes to `~/.openpencil/logs/server-{YYYY-MM-DD}.log`.
+ * Writes to `~/.buildev/logs/server-{YYYY-MM-DD}.log`.
  * Also forwards to console for dev mode visibility.
  * Keeps the last 7 days of logs, auto-cleans on first write.
  */
@@ -12,7 +12,7 @@ import { join } from 'node:path';
 
 const MAX_LOG_DAYS = 7;
 
-const logDir = join(homedir(), '.openpencil', 'logs');
+const logDir = join(homedir(), '.buildev', 'logs');
 let dirEnsured = false;
 let cleanedUp = false;
 

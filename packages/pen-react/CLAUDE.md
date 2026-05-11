@@ -1,6 +1,6 @@
 # pen-react
 
-React UI SDK for OpenPencil -- provider, hooks, panels, toolbar, and property editor components.
+React UI SDK for Buildev -- provider, hooks, panels, toolbar, and property editor components.
 
 ## Structure
 

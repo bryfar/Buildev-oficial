@@ -444,7 +444,7 @@ function normalizeJustifyContent(
  * fall through to the `start` default when they meant something else.
  *
  * `baseline` specifically is treated as `end`:
- *   OpenPencil's layout engine doesn't implement text-baseline
+ *   Buildev's layout engine doesn't implement text-baseline
  *   alignment (there's no font-metrics pipeline in the position step).
  *   LLMs routinely emit `alignItems: 'baseline'` from web CSS reflex
  *   for patterns like "big number + small unit" (e.g. "72 BPM"), where

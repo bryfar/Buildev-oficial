@@ -5,9 +5,9 @@
  * optionally matching themed values to an active theme context.
  */
 
-import type { PenNode } from '@zseven-w/pen-types';
-import type { PenFill, PenStroke, PenEffect } from '@zseven-w/pen-types';
-import type { VariableDefinition, ThemedValue } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
+import type { PenFill, PenStroke, PenEffect } from '@buildev/pen-types';
+import type { VariableDefinition, ThemedValue } from '@buildev/pen-types';
 
 type Vars = Record<string, VariableDefinition>;
 type Theme = Record<string, string>;

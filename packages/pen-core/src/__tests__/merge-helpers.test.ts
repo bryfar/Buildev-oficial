@@ -1,6 +1,6 @@
 // packages/pen-core/src/__tests__/merge-helpers.test.ts
 import { describe, it, expect } from 'vitest';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import {
   indexNodesById,
   getAllPages,

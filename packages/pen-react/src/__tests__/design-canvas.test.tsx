@@ -8,7 +8,7 @@ import { DesignCanvas } from '../components/design-canvas';
 // sub-path export (matches the source `import` statement), so the mock
 // resolves the same way under any checkout location — earlier the test
 // pinned an absolute /Users/... path which silently no-op'd in CI.
-vi.mock('@zseven-w/pen-engine/browser', () => ({
+vi.mock('@buildev/pen-engine/browser', () => ({
   attachCanvas: vi.fn(() =>
     Promise.resolve({
       render: vi.fn(),

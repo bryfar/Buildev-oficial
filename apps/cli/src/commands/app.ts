@@ -19,7 +19,7 @@ export async function cmdStart(flags: { desktop?: boolean; web?: boolean }): Pro
 export async function cmdStop(): Promise<void> {
   const stopped = await stopApp();
   if (stopped) {
-    output({ ok: true, message: 'OpenPencil stopped' });
+    output({ ok: true, message: 'Buildev stopped' });
   } else {
     output({ ok: true, message: 'No running instance found' });
   }

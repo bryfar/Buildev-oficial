@@ -16,7 +16,7 @@ import {
 import type { PenNode } from '@/types/pen';
 import type { AIProviderType } from '@/types/agent-settings';
 import { getCurrentVisualReference, clearVisualReference } from './visual-ref-orchestrator';
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@buildev/pen-ai-skills';
 import { runPreValidationFixes } from './design-pre-validation';
 import { captureRootFrameScreenshot } from './design-screenshot';
 import {

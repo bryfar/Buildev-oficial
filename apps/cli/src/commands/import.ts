@@ -1,6 +1,6 @@
-import { handleImportSvg } from '@zseven-w/pen-mcp';
-import { saveDocument } from '@zseven-w/pen-mcp';
-import { parseFigFile, figmaAllPagesToPenDocument } from '@zseven-w/pen-figma';
+import { handleImportSvg } from '@buildev/pen-mcp';
+import { saveDocument } from '@buildev/pen-mcp';
+import { parseFigFile, figmaAllPagesToPenDocument } from '@buildev/pen-figma';
 import { readFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { output, outputError } from '../output';

@@ -1,6 +1,6 @@
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_KEY = 'openpencil-recent-files';
+const STORAGE_KEY = 'buildev-recent-files';
 const MAX_ENTRIES = 10;
 
 export interface RecentFile {

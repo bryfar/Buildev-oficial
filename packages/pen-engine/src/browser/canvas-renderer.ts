@@ -1,6 +1,6 @@
 import type { CanvasKit, Surface } from 'canvaskit-wasm';
 import type { DesignEngine } from '../core/design-engine.js';
-import { SkiaNodeRenderer, type RenderNode } from '@zseven-w/pen-renderer';
+import { SkiaNodeRenderer, type RenderNode } from '@buildev/pen-renderer';
 import {
   flattenToRenderNodes,
   resolveRefs,
@@ -11,14 +11,14 @@ import {
   viewportMatrix,
   getViewportBounds,
   isRectInViewport,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 import {
   getActivePageChildren,
   getAllChildren,
   getDefaultTheme,
   resolveNodeForCanvas,
-} from '@zseven-w/pen-core';
-import type { DesignEngineOptions } from '@zseven-w/pen-types';
+} from '@buildev/pen-core';
+import type { DesignEngineOptions } from '@buildev/pen-types';
 
 /**
  * Manages CanvasKit rendering for a DesignEngine instance.

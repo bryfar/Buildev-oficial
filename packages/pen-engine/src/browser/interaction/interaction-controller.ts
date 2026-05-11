@@ -1,5 +1,5 @@
 import type { DesignEngine } from '../../core/design-engine.js';
-import type { ToolType } from '@zseven-w/pen-types';
+import type { ToolType } from '@buildev/pen-types';
 import { EngineSelectHandler } from './select-handler.js';
 import { EngineDrawHandler } from './draw-handler.js';
 import { EngineResizeHandler } from './resize-handler.js';

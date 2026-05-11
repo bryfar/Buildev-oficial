@@ -9,11 +9,128 @@ export interface PenPage {
   children: PenNode[];
 }
 
+// --- Project Flow Metadata ---
+
+export type ProjectType = 'landing' | 'multisite' | 'cms';
+export type ProjectStack = 'react' | 'vue' | 'astro';
+export type ProjectDashboardMode = 'page' | 'site' | 'cms';
+export type ProjectCreationMode = 'ai' | 'normal' | 'figma' | 'reverse';
+
+/** Target delivery / API surface for codegen notes (Buildev-style metadata). */
+export type ProjectBackendStack = 'static' | 'nodejs' | 'serverless' | 'edge';
+
+/** Headless CMS or editorial provider when type is CMS. */
+export type CmsProviderId =
+  | 'decap'
+  | 'sanity'
+  | 'contentful'
+  | 'strapi'
+  | 'payload'
+  | 'wordpress'
+  | 'custom';
+
+export interface ProjectTemplatePolicy {
+  stack: ProjectStack;
+  templatePreset: string;
+  dashboardMode: ProjectDashboardMode;
+  forcedStack?: boolean;
+}
+
+export interface ProjectMetadata {
+  creationMode: ProjectCreationMode;
+  type: ProjectType;
+  projectName: string;
+  policy: ProjectTemplatePolicy;
+  createdAt: string;
+  /** Optional; persisted for dashboards and export context. */
+  backendStack?: ProjectBackendStack;
+  /** Set when type === 'cms'. */
+  cmsProvider?: CmsProviderId;
+}
+
+// --- Design motion metadata (export / codegen; not Skia layer effects) ---
+
+/** Animation stack identifiers (Buildev-style; runners may map these later). */
+export type PenMotionLibraryId =
+  | 'none'
+  | 'css'
+  | 'framer-motion'
+  | 'gsap'
+  | 'animate-css'
+  | 'lottie';
+
+/** Shared semantic presets; generators map per library. */
+export type PenDesignMotionPresetId =
+  | 'none'
+  | 'fade-in'
+  | 'slide-up'
+  | 'slide-in-left'
+  | 'scale-in'
+  | 'zoom-in'
+  | 'stagger-children';
+
+export interface PenDesignMotionAnimationRow {
+  id: string;
+  library: Exclude<PenMotionLibraryId, 'none'>;
+  preset: PenDesignMotionPresetId;
+  label?: string;
+}
+
+export type PenDesignMotionEffectKind =
+  | 'scroll-reveal'
+  | 'backdrop-blur'
+  | 'stagger-children'
+  | 'parallax'
+  | 'prefers-reduced-motion'
+  | 'custom';
+
+export interface PenDesignMotionEffectRow {
+  id: string;
+  kind: PenDesignMotionEffectKind;
+  /** When kind is `custom`, a short slug for codegen notes. */
+  customId?: string;
+  label?: string;
+}
+
+/** User-chosen motion defaults and extra rows; safe to omit on legacy files. */
+export interface PenDesignMotionConfig {
+  primaryLibrary?: PenMotionLibraryId;
+  primaryPreset?: PenDesignMotionPresetId;
+  extraAnimations?: PenDesignMotionAnimationRow[];
+  motionEffects?: PenDesignMotionEffectRow[];
+}
+
+// --- IDE workspace (virtual files per frame, persisted on PenDocument) ---
+
+export interface PenIdeVirtualFile {
+  path: string;
+  content: string;
+  /** Monaco language id when not inferable from path */
+  language?: string;
+}
+
+export interface PenIdeFrameWorkspace {
+  frameId: string;
+  files: PenIdeVirtualFile[];
+  /** True when local IDE edits are not fully reflected by last regenerate */
+  dirty?: boolean;
+}
+
+export interface PenIdeWorkspace {
+  version: 1;
+  frames: Record<string, PenIdeFrameWorkspace>;
+}
+
 // --- Document Root ---
 
 export interface PenDocument {
   version: string;
   name?: string;
+  projectMeta?: ProjectMetadata;
+  /** Virtual source files keyed by frame id (IDE mode; channels A/C). */
+  ideWorkspace?: PenIdeWorkspace;
+  /** Motion / animation preferences for codegen and export (metadata only). */
+  designMotion?: PenDesignMotionConfig;
   themes?: Record<string, string[]>;
   variables?: Record<string, VariableDefinition>;
   pages?: PenPage[];

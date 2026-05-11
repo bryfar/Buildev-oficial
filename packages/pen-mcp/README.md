@@ -1,12 +1,12 @@
-# @zseven-w/pen-mcp
+# @buildev/pen-mcp
 
-[MCP](https://modelcontextprotocol.io/) server for [OpenPencil](https://github.com/ZSeven-W/openpencil) — enables Claude, GPT, Gemini, and other LLMs to read, create, and modify designs through a standard tool protocol.
+[MCP](https://modelcontextprotocol.io/) server for [Buildev](https://github.com/bryfar/Buildev-oficial) — enables Claude, GPT, Gemini, and other LLMs to read, create, and modify designs through a standard tool protocol.
 
-> **Note:** `pen-mcp` is shipped as part of the OpenPencil app (desktop + web) and is **not a standalone CLI**. The published package ships TypeScript source against workspace-only dependencies and has no `bin` entry, so `npx @zseven-w/pen-mcp` does not work. Run the server from the OpenPencil monorepo or connect external clients to the HTTP endpoint exposed by a running OpenPencil instance.
+> **Note:** `pen-mcp` is shipped as part of the Buildev app (desktop + web) and is **not a standalone CLI**. The published package ships TypeScript source against workspace-only dependencies and has no `bin` entry, so `npx @buildev/pen-mcp` does not work. Run the server from the Buildev monorepo or connect external clients to the HTTP endpoint exposed by a running Buildev instance.
 
 ## Overview
 
-`pen-mcp` exposes OpenPencil's full editing API as MCP tools. External AI agents can open documents, inspect the canvas, insert/update/delete nodes, and generate complete designs — all through structured tool calls.
+`pen-mcp` exposes Buildev's full editing API as MCP tools. External AI agents can open documents, inspect the canvas, insert/update/delete nodes, and generate complete designs — all through structured tool calls.
 
 Three workflows are supported:
 
@@ -23,19 +23,19 @@ The server supports both **stdio** and **streamable HTTP** transports. The defau
 ### From the monorepo (development)
 
 ```bash
-git clone https://github.com/ZSeven-W/openpencil.git
-cd openpencil && bun install
+git clone https://github.com/bryfar/Buildev-oficial.git
+cd buildev && bun install
 bun run mcp:dev              # starts stdio + HTTP on port 3100
 # flags: --http (HTTP only), --stdio (stdio only), --port <n>
 ```
 
-### Built-in to the OpenPencil app
+### Built-in to the Buildev app
 
 Launching the desktop or web app automatically starts the MCP server in the background. External MCP clients should connect over HTTP to the running instance — no separate install required.
 
 ### Connecting an MCP client
 
-Most MCP-aware clients (Claude Desktop, Cursor, Continue, etc.) accept an HTTP URL pointing at a running server. Point them at `http://localhost:3100/mcp` while the OpenPencil app or `bun run mcp:dev` is running.
+Most MCP-aware clients (Claude Desktop, Cursor, Continue, etc.) accept an HTTP URL pointing at a running server. Point them at `http://localhost:3100/mcp` while the Buildev app or `bun run mcp:dev` is running.
 
 ## Tools
 
@@ -133,12 +133,12 @@ All creation tools support `postProcess=true` for automatic:
 
 ## Live Canvas Sync
 
-When connected to a running OpenPencil desktop app, changes made via MCP tools appear on the canvas in real-time. The sync is bidirectional — user edits on the canvas are reflected in subsequent `batch_get` / `snapshot_layout` calls.
+When connected to a running Buildev desktop app, changes made via MCP tools appear on the canvas in real-time. The sync is bidirectional — user edits on the canvas are reflected in subsequent `batch_get` / `snapshot_layout` calls.
 
 ## Programmatic Usage
 
 ```typescript
-import { configureMcpHooks, MCP_DEFAULT_PORT } from '@zseven-w/pen-mcp';
+import { configureMcpHooks, MCP_DEFAULT_PORT } from '@buildev/pen-mcp';
 
 // Configure custom hooks (optional)
 configureMcpHooks({

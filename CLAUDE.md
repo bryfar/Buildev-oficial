@@ -40,10 +40,10 @@ Detailed module docs are loaded automatically when working in subdirectories:
 
 ## Architecture
 
-OpenPencil is an open-source vector design tool (alternative to Pencil.dev) with a Design-as-Code philosophy. Organized as a **Bun monorepo** with workspaces:
+Buildev is an open-source vector design tool (alternative to Pencil.dev) with a Design-as-Code philosophy. Organized as a **Bun monorepo** with workspaces:
 
 ```text
-openpencil/
+buildev/
 ├── apps/
 │   ├── web/           TanStack Start full-stack React app (Vite + Nitro)
 │   ├── desktop/       Electron desktop app (macOS, Windows, Linux)
@@ -135,7 +135,7 @@ The `op` command-line tool controls the desktop app or web server from the termi
 
 - **`.github/workflows/ci.yml`** — Push/PR on `main` and `v*` branches: type check, tests, web build
 - **`.github/workflows/build-electron.yml`** — Tag push (`v*`) or manual: builds Electron for all platforms, creates draft GitHub Release
-- **`.github/workflows/publish-cli.yml`** — Tag push (`v*`) or manual: publishes all `@zseven-w/*` npm packages in topological order
+- **`.github/workflows/publish-cli.yml`** — Tag push (`v*`) or manual: publishes all `@buildev/*` npm packages in topological order
 - **`.github/workflows/docker.yml`** — Docker image build and push
 
 ### Version Sync

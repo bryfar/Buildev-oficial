@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 // Mock canvas-text-measure to avoid alias resolution pulling browser-only deps.
 import { vi } from 'vitest';

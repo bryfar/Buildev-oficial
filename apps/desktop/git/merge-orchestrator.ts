@@ -10,8 +10,8 @@ import {
   type MergeResult,
   type NodeConflict,
   type DocFieldConflict,
-} from '@zseven-w/pen-core';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+} from '@buildev/pen-core';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 
 import { GitError } from './error';
 import { readBlobAtCommit, type IsoRepoHandle } from './git-iso';

@@ -8,7 +8,7 @@ import {
 } from '../document-manager';
 import { flattenNodes, getDocChildren } from '../utils/node-operations';
 import { buildDesignPrompt } from './design-prompt';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 
 export interface OpenDocumentParams {
   filePath?: string;

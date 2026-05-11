@@ -38,7 +38,7 @@ import {
 import { convertRectangle, convertEllipse, convertLine } from './shape-converter.js';
 import { convertText } from './text-converter.js';
 import { convertVector } from './path-converter.js';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 /** Convert all children of a parent TreeNode. */
 export function convertChildren(parent: TreeNode, ctx: ConversionContext): PenNode[] {

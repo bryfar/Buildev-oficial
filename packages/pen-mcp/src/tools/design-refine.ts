@@ -7,7 +7,7 @@ import {
   computeLayoutTree,
 } from '../utils/node-operations';
 import { getMcpHooks } from '../hooks';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import type { LayoutEntry } from '../utils/node-operations';
 
 // ---------------------------------------------------------------------------

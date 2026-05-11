@@ -1,6 +1,6 @@
 // packages/pen-mcp/src/tools/codegen-assemble.ts
 
-import type { Framework } from '@zseven-w/pen-types';
+import type { Framework } from '@buildev/pen-types';
 import { getSyncUrl } from '../document-manager';
 
 export interface CodegenAssembleParams {

@@ -159,7 +159,7 @@ export function buildClaudeAgentEnv(): EnvLike {
     // if the default ~/.claude directory is not writable (common in Windows Electron)
     if (!merged.CLAUDE_CONFIG_DIR) {
       try {
-        const fallbackDir = join(tmpdir(), 'openpencil-claude-config');
+        const fallbackDir = join(tmpdir(), 'buildev-claude-config');
         mkdirSync(fallbackDir, { recursive: true });
         // Only use fallback if we can't write to the default location
         const defaultDir = join(homedir(), '.claude');
@@ -187,7 +187,7 @@ export function buildClaudeAgentEnv(): EnvLike {
  */
 export function getClaudeAgentDebugFilePath(): string | undefined {
   try {
-    const dir = join(tmpdir(), 'openpencil-claude-debug');
+    const dir = join(tmpdir(), 'buildev-claude-debug');
     mkdirSync(dir, { recursive: true });
     return join(dir, 'claude-agent.log');
   } catch {

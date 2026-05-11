@@ -5,9 +5,9 @@
 #   bun run publish:beta          # auto-increment beta number
 #   bun run publish:beta 5        # force beta.5
 #
-# Publishes: pen-types → pen-core → pen-figma → pen-renderer → pen-sdk → openpencil CLI
+# Publishes: pen-types → pen-core → pen-figma → pen-renderer → pen-sdk → buildev CLI
 # All under the "beta" dist-tag, so `npm install` won't pick them up by default.
-# Install with: npm install @zseven-w/openpencil@beta
+# Install with: npm install @buildev/buildev@beta
 
 set -euo pipefail
 
@@ -16,7 +16,7 @@ BASE_VERSION=$(jq -r .version "$ROOT/package.json")
 FORCE_NUM="${1:-}"
 
 # --- Guard: block beta publish if release version already exists on npm ---
-RELEASE_CHECK=$(npm view "@zseven-w/pen-types@${BASE_VERSION}" version 2>/dev/null || true)
+RELEASE_CHECK=$(npm view "@buildev/pen-types@${BASE_VERSION}" version 2>/dev/null || true)
 if [ -n "$RELEASE_CHECK" ]; then
   echo "ERROR: Release version ${BASE_VERSION} already exists on npm."
   echo "Publishing a beta for an already-released version creates conflicting dependencies."
@@ -41,7 +41,7 @@ if [ -n "$FORCE_NUM" ]; then
 else
   # Query npm for the latest beta of this base version.
   # npm view returns a string (1 version) or array (multiple), or errors (404) if not found.
-  RAW=$(npm view "@zseven-w/pen-types" versions --json 2>/dev/null || true)
+  RAW=$(npm view "@buildev/pen-types" versions --json 2>/dev/null || true)
   LATEST=$(echo "$RAW" | jq -r --arg base "$BASE_VERSION" '
     if type == "object" and .error then empty          # npm 404 error object
     elif type == "array" then
@@ -108,7 +108,7 @@ echo "Compiling CLI..."
 echo ""
 
 # --- Verify CLI ---
-node "$ROOT/apps/cli/dist/openpencil-cli.cjs" --version
+node "$ROOT/apps/cli/dist/buildev-cli.cjs" --version
 echo ""
 
 # --- Publish ---
@@ -122,5 +122,5 @@ done
 
 echo "================================"
 echo "Published: $BETA_VERSION"
-echo "Install:   npm install @zseven-w/openpencil@beta"
+echo "Install:   npm install @buildev/buildev@beta"
 echo "================================"

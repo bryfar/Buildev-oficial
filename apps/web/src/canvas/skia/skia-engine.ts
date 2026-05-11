@@ -18,7 +18,7 @@ import {
   collectInstanceIds,
   getViewportBounds,
   isRectInViewport,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
 import { getActiveAgentIndicators, getActiveAgentFrames, isPreviewNode } from '../agent-indicator';
 import { isNodeBorderReady, getNodeRevealTime } from '@/services/ai/design-animation';
 import { lookupIconByName } from '@/services/ai/icon-resolver';
@@ -27,8 +27,8 @@ import { resolveRuntimeAssetSource } from '@/utils/document-assets';
 import { fitSceneBoundsToViewport, getFocusBounds } from './focus-fit';
 
 // Re-export for use by canvas component
-export { screenToScene } from '@zseven-w/pen-renderer';
-export { SpatialIndex } from '@zseven-w/pen-renderer';
+export { screenToScene } from '@buildev/pen-renderer';
+export { SpatialIndex } from '@buildev/pen-renderer';
 
 // ---------------------------------------------------------------------------
 // SkiaEngine — ties rendering, viewport, hit testing together

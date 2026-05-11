@@ -1,6 +1,6 @@
-appId: dev.openpencil.app
-productName: OpenPencil
-copyright: Copyright (c) 2024-2026 OpenPencil contributors
+appId: dev.buildev.app
+productName: Buildev
+copyright: Copyright (c) 2024-2026 Buildev contributors
 
 directories:
   output: out/release
@@ -19,8 +19,8 @@ extraResources:
     to: public
   - from: out/mcp-server.cjs
     to: mcp-server.cjs
-  - from: apps/cli/dist/openpencil-cli.cjs
-    to: openpencil-cli.cjs
+  - from: apps/cli/dist/buildev-cli.cjs
+    to: buildev-cli.cjs
   # agent-native is external in Vite/Nitro build — ship it alongside server/ so
   # Node can resolve `@zseven-w/agent-native` at runtime. The `napi/` directory
   # IS the package root (contains package.json with name "@zseven-w/agent-native"
@@ -43,6 +43,8 @@ dmg:
   title: '${productName} ${version}'
 
 win:
+  # Avoid winCodeSign 7z extract that requires symlink privileges on some Windows setups.
+  signAndEditExecutable: false
   icon: apps/desktop/build/icon.ico
   artifactName: '${productName}-${version}-${arch}-win.${ext}'
   target:
@@ -64,23 +66,23 @@ linux:
   desktop:
     entry: |
       [Desktop Entry]
-      Name=OpenPencil
+      Name=Buildev
       Exec=AppRun --no-sandbox %U
       Terminal=false
       Type=Application
-      Icon=openpencil
-      StartupWMClass=openpencil
+      Icon=buildev
+      StartupWMClass=buildev
       Categories=Graphics;
-      MimeType=application/x-openpencil;
+      MimeType=application/x-buildev;
   target:
     - AppImage
     - deb
 
 fileAssociations:
   - ext: op
-    name: OpenPencil Document
-    description: OpenPencil Design File
-    mimeType: application/x-openpencil
+    name: Buildev Document
+    description: Buildev Design File
+    mimeType: application/x-buildev
     role: Editor
     icon: apps/desktop/build/icon
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { isOverlayNode } from '../node-helpers';
 
 describe('isOverlayNode', () => {

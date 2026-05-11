@@ -1,4 +1,4 @@
-import type { DesignMdSpec } from '@zseven-w/pen-types';
+import type { DesignMdSpec } from '@buildev/pen-types';
 
 /** Build a condensed design.md style policy string for AI prompt injection. */
 export function buildDesignMdStylePolicy(spec: DesignMdSpec): string {

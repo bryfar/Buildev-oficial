@@ -1,5 +1,5 @@
 import type { DesignEngine } from '../../core/design-engine.js';
-import type { ToolType } from '@zseven-w/pen-types';
+import type { ToolType } from '@buildev/pen-types';
 import { createNodeForTool } from '../../core/node-creator.js';
 import { MIN_DRAW_SIZE, MIN_LINE_LENGTH } from '../../core/constants.js';
 

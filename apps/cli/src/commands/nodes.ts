@@ -5,7 +5,7 @@ import {
   handleMoveNode,
   handleCopyNode,
   handleReplaceNode,
-} from '@zseven-w/pen-mcp';
+} from '@buildev/pen-mcp';
 import { output, outputError, parseJsonArg } from '../output';
 
 interface GlobalFlags {
@@ -33,7 +33,7 @@ export async function cmdUpdate(
   flags: GlobalFlags & { postProcess?: boolean },
 ): Promise<void> {
   const nodeId = args[0];
-  if (!nodeId) outputError('Usage: openpencil update <node-id> <json>');
+  if (!nodeId) outputError('Usage: buildev update <node-id> <json>');
   const data = (await parseJsonArg(args[1])) as Record<string, unknown>;
   const result = await handleUpdateNode({
     filePath: flags.file,
@@ -47,7 +47,7 @@ export async function cmdUpdate(
 
 export async function cmdDelete(args: string[], flags: GlobalFlags): Promise<void> {
   const nodeId = args[0];
-  if (!nodeId) outputError('Usage: openpencil delete <node-id>');
+  if (!nodeId) outputError('Usage: buildev delete <node-id>');
   const result = await handleDeleteNode({
     filePath: flags.file,
     nodeId,
@@ -61,7 +61,7 @@ export async function cmdMove(
   flags: GlobalFlags & { parent?: string; index?: string },
 ): Promise<void> {
   const nodeId = args[0];
-  if (!nodeId) outputError('Usage: openpencil move <node-id> --parent <parent-id>');
+  if (!nodeId) outputError('Usage: buildev move <node-id> --parent <parent-id>');
   const result = await handleMoveNode({
     filePath: flags.file,
     nodeId,
@@ -77,7 +77,7 @@ export async function cmdCopy(
   flags: GlobalFlags & { parent?: string },
 ): Promise<void> {
   const sourceId = args[0];
-  if (!sourceId) outputError('Usage: openpencil copy <source-id> [--parent <parent-id>]');
+  if (!sourceId) outputError('Usage: buildev copy <source-id> [--parent <parent-id>]');
   const result = await handleCopyNode({
     filePath: flags.file,
     sourceId,
@@ -92,7 +92,7 @@ export async function cmdReplace(
   flags: GlobalFlags & { postProcess?: boolean },
 ): Promise<void> {
   const nodeId = args[0];
-  if (!nodeId) outputError('Usage: openpencil replace <node-id> <json>');
+  if (!nodeId) outputError('Usage: buildev replace <node-id> <json>');
   const data = (await parseJsonArg(args[1])) as Record<string, unknown>;
   const result = await handleReplaceNode({
     filePath: flags.file,

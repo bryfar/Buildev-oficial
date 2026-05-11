@@ -13,7 +13,9 @@ import { MCP_DEFAULT_PORT } from '@/constants/app';
 import { canonicalizeBuiltinProviderConfig } from '@/lib/builtin-provider-presets';
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_KEY = 'openpencil-agent-settings';
+const STORAGE_KEY = 'buildev-agent-settings';
+
+export type AgentSettingsDialogTab = 'general' | 'agents' | 'mcp' | 'images' | 'system';
 
 export type BuiltinProviderPreset =
   | 'anthropic'
@@ -69,6 +71,8 @@ interface AgentSettingsState extends PersistedState {
     { isConnected: boolean; agentInfo?: { name: string; title?: string; version?: string } }
   >;
   dialogOpen: boolean;
+  /** Active sidebar tab while the settings dialog is open. */
+  dialogTab: AgentSettingsDialogTab;
   isHydrated: boolean;
   mcpServerRunning: boolean;
   mcpServerLocalIp: string | null;
@@ -84,7 +88,8 @@ interface AgentSettingsState extends PersistedState {
   toggleMCPIntegration: (tool: string) => void;
   setMCPTransport: (mode: MCPTransportMode, port?: number) => void;
   setMcpServerStatus: (running: boolean, localIp?: string | null) => void;
-  setDialogOpen: (open: boolean) => void;
+  setDialogOpen: (open: boolean, opts?: { tab?: AgentSettingsDialogTab }) => void;
+  setDialogTab: (tab: AgentSettingsDialogTab) => void;
   setImageGenConfig: (config: Partial<ImageGenConfig>) => void;
   addImageGenProfile: (profile: Omit<ImageGenProfile, 'id'>) => string;
   updateImageGenProfile: (id: string, updates: Partial<Omit<ImageGenProfile, 'id'>>) => void;
@@ -173,6 +178,7 @@ export const useAgentSettingsStore = create<AgentSettingsState>((set, get) => ({
   teamDesignModel: null,
   acpConnectionStatus: {},
   dialogOpen: false,
+  dialogTab: 'agents',
   isHydrated: false,
   mcpServerRunning: false,
   mcpServerLocalIp: null,
@@ -218,7 +224,18 @@ export const useAgentSettingsStore = create<AgentSettingsState>((set, get) => ({
   setMcpServerStatus: (running, localIp) =>
     set({ mcpServerRunning: running, mcpServerLocalIp: localIp ?? null }),
 
-  setDialogOpen: (dialogOpen) => set({ dialogOpen }),
+  setDialogOpen: (dialogOpen, opts) =>
+    set(() => {
+      if (!dialogOpen) {
+        return { dialogOpen: false };
+      }
+      return {
+        dialogOpen: true,
+        ...(opts?.tab != null ? { dialogTab: opts.tab } : {}),
+      };
+    }),
+
+  setDialogTab: (dialogTab) => set({ dialogTab }),
 
   setImageGenConfig: (updates) =>
     set((s) => ({

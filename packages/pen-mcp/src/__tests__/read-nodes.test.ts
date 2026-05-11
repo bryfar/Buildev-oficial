@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { handleReadNodes } from '../tools/read-nodes';
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 
 const mockDoc: PenDocument = {
   version: '0.6.0',

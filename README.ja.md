@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="OpenPencil" width="120" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
-<h1 align="center">OpenPencil</h1>
+<h1 align="center">Buildev</h1>
 
 <p align="center">
   <strong>世界初のオープンソース AI ネイティブベクターデザインツール。</strong><br />
@@ -14,26 +14,26 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ZSeven-W/openpencil/stargazers"><img src="https://img.shields.io/github/stars/ZSeven-W/openpencil?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ZSeven-W/openpencil?color=64748b" alt="License" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ZSeven-W/openpencil/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
 <br />
 
 <p align="center">
-  <a href="https://oss.ioa.tech/zseven/openpencil/a46e24733239ce24de36702342201033.mp4">
-    <img src="./screenshot/op-cover.png" alt="OpenPencil — click to watch demo" width="100%" />
+  <a href="https://oss.ioa.tech/zseven/buildev/a46e24733239ce24de36702342201033.mp4">
+    <img src="./screenshot/op-cover.png" alt="Buildev — click to watch demo" width="100%" />
   </a>
 </p>
 <p align="center"><sub>画像をクリックしてデモ動画を視聴</sub></p>
 
 <br />
 
-> **注：** 同名の別のオープンソースプロジェクト — [OpenPencil](https://github.com/open-pencil/open-pencil) があります。そちらは Figma 互換のビジュアルデザインとリアルタイムコラボレーションに特化しています。本プロジェクトは AI ネイティブのデザインからコードへのワークフローに特化しています。
+> **注：** 同名の別のオープンソースプロジェクト — [Buildev](https://github.com/open-pencil/open-pencil) があります。そちらは Figma 互換のビジュアルデザインとリアルタイムコラボレーションに特化しています。本プロジェクトは AI ネイティブのデザインからコードへのワークフローに特化しています。
 
-## Why OpenPencil
+## Why Buildev
 
 <table>
 <tr>
@@ -126,18 +126,18 @@ bun run electron:dev
 
 | イメージ                     | サイズ  | 含まれるもの         |
 | ---------------------------- | ------- | -------------------- |
-| `openpencil:latest`          | ~226 MB | Web アプリのみ       |
-| `openpencil-claude:latest`   | —       | + Claude Code CLI    |
-| `openpencil-codex:latest`    | —       | + Codex CLI          |
-| `openpencil-opencode:latest` | —       | + OpenCode CLI       |
-| `openpencil-copilot:latest`  | —       | + GitHub Copilot CLI |
-| `openpencil-gemini:latest`   | —       | + Gemini CLI         |
-| `openpencil-full:latest`     | ~1 GB   | すべての CLI ツール  |
+| `buildev:latest`          | ~226 MB | Web アプリのみ       |
+| `buildev-claude:latest`   | —       | + Claude Code CLI    |
+| `buildev-codex:latest`    | —       | + Codex CLI          |
+| `buildev-opencode:latest` | —       | + OpenCode CLI       |
+| `buildev-copilot:latest`  | —       | + GitHub Copilot CLI |
+| `buildev-gemini:latest`   | —       | + Gemini CLI         |
+| `buildev-full:latest`     | ~1 GB   | すべての CLI ツール  |
 
 **実行（Web のみ）：**
 
 ```bash
-docker run -d -p 3000:3000 ghcr.io/zseven-w/openpencil:latest
+docker run -d -p 3000:3000 ghcr.io/bryfar/buildev:latest
 ```
 
 **AI CLI 付きで実行（例：Claude Code）：**
@@ -146,28 +146,28 @@ AI チャットは Claude CLI OAuth ログインに依存しています。Docke
 
 ```bash
 # ステップ 1 — ログイン（初回のみ）
-docker volume create openpencil-claude-auth
+docker volume create buildev-claude-auth
 docker run -it --rm \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest claude login
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest claude login
 
 # ステップ 2 — 起動
 docker run -d -p 3000:3000 \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest
 ```
 
 **ローカルビルド：**
 
 ```bash
 # ベース（Web のみ）
-docker build --target base -t openpencil .
+docker build --target base -t buildev .
 
 # 特定の CLI 付き
-docker build --target with-claude -t openpencil-claude .
+docker build --target with-claude -t buildev-claude .
 
 # フル（すべての CLI）
-docker build --target full -t openpencil-full .
+docker build --target full -t buildev-full .
 ```
 
 ## AI ネイティブデザイン
@@ -213,7 +213,7 @@ docker build --target full -t openpencil-full .
 グローバルインストールしてターミナルからデザインツールを操作：
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ```bash
@@ -226,7 +226,7 @@ cat design.dsl | op design - # stdin からパイプ入力
 
 3つの入力方法に対応：インライン文字列、`@filepath`（ファイルから読み込み）、`-`（stdin から読み込み）。デスクトップアプリまたは Web 開発サーバーと連携。完全なコマンドリファレンスは [CLI README](./apps/cli/README.md) を参照。
 
-**LLM スキル** — [OpenPencil Skill](https://github.com/ZSeven-W/openpencil-skill) プラグインをインストールすると、AIエージェント（Claude Code、Cursor、Codex、Gemini CLI など）に `op` を使ったデザインを教えられます。
+**LLM スキル** — [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) プラグインをインストールすると、AIエージェント（Claude Code、Cursor、Codex、Gemini CLI など）に `op` を使ったデザインを教えられます。
 
 ## 機能
 
@@ -301,7 +301,7 @@ cat design.dsl | op design - # stdin からパイプ入力
 ## プロジェクト構成
 
 ```text
-openpencil/
+buildev/
 ├── apps/
 │   ├── web/                 TanStack Start Web アプリ
 │   │   ├── src/
@@ -399,19 +399,19 @@ bun run cli:compile        # CLI を dist にコンパイル
 
 ## コントリビューター
 
-<a href="https://github.com/ZSeven-W/openpencil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZSeven-W/openpencil" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
 </a>
 
 ## スポンサー
 
-OpenPencil は無料でオープンソースです。開発は、これを便利だと感じてくださる皆さんの支援で成り立っています — キャンバスを開いたままにしてくれてありがとう。
+Buildev は無料でオープンソースです。開発は、これを便利だと感じてくださる皆さんの支援で成り立っています — キャンバスを開いたままにしてくれてありがとう。
 
 <a href="https://github.com/mrqyun" title="MrQyun">
   <img src="https://wsrv.nl/?url=github.com/mrqyun.png&w=128&h=128&mask=circle&maxage=7d" width="64" height="64" alt="MrQyun" />
 </a>
 
-**[MrQyun](https://github.com/mrqyun)** さん、ありがとうございます — あなたの名前もここに並べませんか？**[スポンサーになる →](https://github.com/sponsors/ZSeven-W)**
+**[MrQyun](https://github.com/mrqyun)** さん、ありがとうございます — あなたの名前もここに並べませんか？**[スポンサーになる →](https://github.com/sponsors/bryfar)**
 
 ## コミュニティ
 
@@ -423,17 +423,17 @@ OpenPencil は無料でオープンソースです。開発は、これを便利
 
 ## Star History
 
-<a href="https://star-history.com/#ZSeven-W/openpencil&Date">
+<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
  </picture>
 </a>
 
 ## セキュリティ評価
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/zseven-w-openpencil-badge.png)](https://mseep.ai/app/zseven-w-openpencil)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## ライセンス
 

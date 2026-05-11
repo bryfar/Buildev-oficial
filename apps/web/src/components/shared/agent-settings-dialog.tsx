@@ -1,16 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
-import { X, Terminal, Pen, Settings, Image } from 'lucide-react';
+import { X, Terminal, Pen, Settings, Image, SlidersHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAgentSettingsStore } from '@/stores/agent-settings-store';
+import { AgentSettingsGeneralTab } from './agent-settings-general-tab';
 import { ProvidersTab } from './agent-settings-providers-tab';
 import { McpTab } from './agent-settings-mcp-tab';
 import { ImagesPage } from './agent-settings-images-page';
 import { SystemTab } from './agent-settings-system-tab';
-
-type SettingsTab = 'agents' | 'mcp' | 'images' | 'system';
 
 /* ---------- Sidebar nav item ---------- */
 function NavItem({
@@ -45,9 +44,9 @@ export default function AgentSettingsDialog() {
   const { t } = useTranslation();
   const open = useAgentSettingsStore((s) => s.dialogOpen);
   const setDialogOpen = useAgentSettingsStore((s) => s.setDialogOpen);
+  const dialogTab = useAgentSettingsStore((s) => s.dialogTab);
+  const setDialogTab = useAgentSettingsStore((s) => s.setDialogTab);
   const dialogRef = useRef<HTMLDivElement>(null);
-
-  const [activeTab, setActiveTab] = useState<SettingsTab>('agents');
 
   useEffect(() => {
     if (!open) return;
@@ -61,7 +60,7 @@ export default function AgentSettingsDialog() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-[210] flex items-center justify-center">
       <div className="absolute inset-0 bg-background/80" onClick={() => setDialogOpen(false)} />
       <div
         ref={dialogRef}
@@ -72,30 +71,36 @@ export default function AgentSettingsDialog() {
           <div className="px-4 pt-4 pb-3">
             <h2 className="text-[15px] font-semibold text-foreground">{t('settings.title')}</h2>
           </div>
-          <nav className="flex-1 px-2 space-y-0.5">
+          <nav className="flex-1 space-y-0.5 px-2">
+            <NavItem
+              icon={SlidersHorizontal}
+              label={t('settings.general')}
+              active={dialogTab === 'general'}
+              onClick={() => setDialogTab('general')}
+            />
             <NavItem
               icon={Pen}
               label={t('settings.agents')}
-              active={activeTab === 'agents'}
-              onClick={() => setActiveTab('agents')}
+              active={dialogTab === 'agents'}
+              onClick={() => setDialogTab('agents')}
             />
             <NavItem
               icon={Terminal}
               label={t('settings.mcp')}
-              active={activeTab === 'mcp'}
-              onClick={() => setActiveTab('mcp')}
+              active={dialogTab === 'mcp'}
+              onClick={() => setDialogTab('mcp')}
             />
             <NavItem
               icon={Image}
               label={t('settings.images')}
-              active={activeTab === 'images'}
-              onClick={() => setActiveTab('images')}
+              active={dialogTab === 'images'}
+              onClick={() => setDialogTab('images')}
             />
             <NavItem
               icon={Settings}
               label={t('settings.system')}
-              active={activeTab === 'system'}
-              onClick={() => setActiveTab('system')}
+              active={dialogTab === 'system'}
+              onClick={() => setDialogTab('system')}
             />
           </nav>
         </div>
@@ -111,10 +116,11 @@ export default function AgentSettingsDialog() {
 
           {/* Page content */}
           <div className="flex-1 overflow-y-auto px-5 pb-5">
-            {activeTab === 'agents' && <ProvidersTab />}
-            {activeTab === 'mcp' && <McpTab />}
-            {activeTab === 'images' && <ImagesPage />}
-            {activeTab === 'system' && <SystemTab />}
+            {dialogTab === 'general' && <AgentSettingsGeneralTab />}
+            {dialogTab === 'agents' && <ProvidersTab />}
+            {dialogTab === 'mcp' && <McpTab />}
+            {dialogTab === 'images' && <ImagesPage />}
+            {dialogTab === 'system' && <SystemTab />}
           </div>
         </div>
       </div>

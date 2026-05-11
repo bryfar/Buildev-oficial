@@ -3,7 +3,7 @@ import type { UIKit, ComponentCategory } from '@/types/uikit';
 import { getBuiltInKits } from '@/uikit/built-in-registry';
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_KEY = 'openpencil-uikits';
+const STORAGE_KEY = 'buildev-uikits';
 
 interface PersistedState {
   importedKits: UIKit[];

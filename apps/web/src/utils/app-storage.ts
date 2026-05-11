@@ -18,6 +18,37 @@
 let cache: Record<string, string> | null = null;
 let initPromise: Promise<void> | null = null;
 
+/** One-time migration from OpenPencil storage keys (web + Electron prefs). */
+const LEGACY_STORAGE_PAIRS: [string, string][] = [
+  ['openpencil-api-base-override', 'buildev-api-base-override'],
+  ['openpencil-theme', 'buildev-theme'],
+  ['openpencil-agent-settings', 'buildev-agent-settings'],
+  ['openpencil-language', 'buildev-language'],
+  ['openpencil-theme-presets', 'buildev-theme-presets'],
+  ['openpencil-canvas-preferences', 'buildev-canvas-preferences'],
+];
+
+function migrateLegacyStorageKeys(
+  getItemKey: (key: string) => string | null,
+  setItemKey: (key: string, value: string) => void,
+  removeItemKey: (key: string) => void,
+): void {
+  for (const [oldKey, newKey] of LEGACY_STORAGE_PAIRS) {
+    if (getItemKey(newKey)) continue;
+    const v = getItemKey(oldKey);
+    if (!v) continue;
+    setItemKey(newKey, v);
+    removeItemKey(oldKey);
+  }
+  if (!getItemKey('buildev-user-name')) {
+    const legacyName = getItemKey('openpencil-user-name');
+    if (legacyName) {
+      setItemKey('buildev-user-name', legacyName);
+      removeItemKey('openpencil-user-name');
+    }
+  }
+}
+
 /** Whether we are running inside Electron with the IPC bridge available. */
 function isElectron(): boolean {
   return typeof window !== 'undefined' && !!window.electronAPI?.getPreferences;
@@ -30,7 +61,18 @@ function isElectron(): boolean {
  */
 export async function initAppStorage(): Promise<void> {
   if (typeof window === 'undefined') return;
-  if (!isElectron()) return;
+  if (!isElectron()) {
+    try {
+      migrateLegacyStorageKeys(
+        (k) => localStorage.getItem(k),
+        (k, v) => localStorage.setItem(k, v),
+        (k) => localStorage.removeItem(k),
+      );
+    } catch {
+      /* ignore */
+    }
+    return;
+  }
   if (initPromise) return initPromise;
   initPromise = (async () => {
     try {
@@ -39,6 +81,17 @@ export async function initAppStorage(): Promise<void> {
     } catch {
       cache = {};
     }
+    migrateLegacyStorageKeys(
+      (k) => cache![k] ?? null,
+      (k, v) => {
+        cache![k] = v;
+        void window.electronAPI?.setPreference(k, v);
+      },
+      (k) => {
+        delete cache![k];
+        void window.electronAPI?.removePreference(k);
+      },
+    );
   })();
   return initPromise;
 }

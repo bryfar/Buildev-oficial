@@ -1,6 +1,6 @@
 // packages/pen-core/src/__tests__/node-diff.test.ts
 import { describe, it, expect } from 'vitest';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 import { diffDocuments } from '../merge/node-diff';
 
 const rect = (id: string, props: Partial<PenNode> = {}): PenNode =>

@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [**Türkçe**](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-[OpenPencil](https://github.com/ZSeven-W/openpencil) icin CLI — tasarim aracini terminalinizden kontrol edin.
+[Buildev](https://github.com/bryfar/Buildev-oficial) icin CLI — tasarim aracini terminalinizden kontrol edin.
 
 ## Kurulum
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Platform Destegi
 
-CLI, tum platformlarda OpenPencil masaustu uygulamasini otomatik olarak algilar ve baslatir:
+CLI, tum platformlarda Buildev masaustu uygulamasini otomatik olarak algilar ve baslatir:
 
 | Platform    | Algilanan kurulum yollari                                                                               |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | Kullanici basina NSIS (`%LOCALAPPDATA%`), makine basina (`%PROGRAMFILES%`), tasinabilir                 |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Stdin'den oku (borulama)
 ### Uygulama Kontrolu
 
 ```bash
-op start [--desktop|--web]   # OpenPencil'i baslat (varsayilan: masaustu)
+op start [--desktop|--web]   # Buildev'i baslat (varsayilan: masaustu)
 op stop                      # Calisan ornegi durdur
 op status                    # Calisip calismadigini kontrol et
 ```

@@ -1,4 +1,4 @@
-import { MIN_ZOOM, MAX_ZOOM } from '@zseven-w/pen-core';
+import { MIN_ZOOM, MAX_ZOOM } from '@buildev/pen-core';
 import type { ViewportState } from './types.js';
 
 export type { ViewportState } from './types.js';

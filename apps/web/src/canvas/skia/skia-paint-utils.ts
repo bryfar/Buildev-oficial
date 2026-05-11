@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-renderer
+// Re-export from @buildev/pen-renderer
 export {
   parseColor,
   cornerRadiusValue,
@@ -8,4 +8,4 @@ export {
   resolveStrokeWidth,
   wrapLine,
   cssFontFamily,
-} from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';

@@ -27,7 +27,7 @@ interface InstallResult {
   fallbackHttp?: boolean;
 }
 
-const MCP_SERVER_NAME = 'openpencil';
+const MCP_SERVER_NAME = 'buildev';
 const CODEX_CONFIG_PATH = join(homedir(), '.codex', 'config.toml');
 
 /**
@@ -326,7 +326,7 @@ function uninstallCodexMcp(): { configPath: string } {
 
 /**
  * POST /api/ai/mcp-install
- * Install or uninstall the openpencil MCP server into a CLI tool's config.
+ * Install or uninstall the buildev MCP server into a CLI tool's config.
  */
 export default defineEventHandler(async (event) => {
   const body = await readBody<InstallBody>(event);

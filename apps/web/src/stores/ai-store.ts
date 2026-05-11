@@ -7,9 +7,9 @@ import { appStorage } from '@/utils/app-storage';
 export type PanelCorner = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
 const DEFAULT_MODEL = 'claude-sonnet-4-5-20250929';
-const MODEL_PREFERENCE_STORAGE_KEY = 'openpencil-ai-model-preference';
-const CONCURRENCY_STORAGE_KEY = 'openpencil-ai-concurrency';
-const UI_PREFS_KEY = 'openpencil-ai-ui-preferences';
+const MODEL_PREFERENCE_STORAGE_KEY = 'buildev-ai-model-preference';
+const CONCURRENCY_STORAGE_KEY = 'buildev-ai-concurrency';
+const UI_PREFS_KEY = 'buildev-ai-ui-preferences';
 
 interface AIUIPrefs {
   isPanelOpen?: boolean;

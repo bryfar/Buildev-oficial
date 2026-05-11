@@ -8,7 +8,7 @@
 // to source compilation, deposited the binary at `zig-out/napi/...`, and
 // electron-builder (which only ships `packages/agent-native/napi/`) silently
 // shipped without the addon — every chat request then died at the dynamic
-// `@zseven-w/agent-native` import.
+// `@buildev/agent-native` import.
 //
 // Build prerequisite: Zig 0.15+ on PATH. CI workflows install it via
 // `mlugg/setup-zig`; local devs install once via their package manager.
@@ -51,23 +51,37 @@ function bundleBinary() {
 }
 
 function buildFromSource() {
-  try {
-    execSync('zig version', { stdio: 'ignore' });
-  } catch {
-    return fail(
-      'Zig not installed (need 0.15+). Skipping. Install Zig and re-run `bun run agent:build`.',
-    );
-  }
+  const repoRoot = path.join(__dirname, '..');
   const target = process.env.ZIG_TARGET?.trim();
-  const targetFlag = target ? ` -Dtarget=${target}` : '';
-  log(`Building NAPI addon (zig build napi -Doptimize=ReleaseFast${targetFlag})…`);
-  try {
-    execSync(`zig build napi -Doptimize=ReleaseFast${targetFlag}`, {
-      cwd: AGENT_DIR,
-      stdio: 'inherit',
-    });
-  } catch (err) {
-    return fail(`Zig build failed: ${err.message}`);
+  if (target) {
+    log('ZIG_TARGET is set; using raw `zig build` (cross-compile). Install Zig 0.15.x on PATH.');
+    try {
+      execSync('zig version', { stdio: 'ignore' });
+    } catch {
+      return fail(
+        'Zig not installed (need 0.15+). Skipping. Install Zig and re-run `bun run agent:build`.',
+      );
+    }
+    const targetFlag = ` -Dtarget=${target}`;
+    log(`Building NAPI addon (zig build napi -Doptimize=ReleaseFast${targetFlag})…`);
+    try {
+      execSync(`zig build napi -Doptimize=ReleaseFast${targetFlag}`, {
+        cwd: AGENT_DIR,
+        stdio: 'inherit',
+      });
+    } catch (err) {
+      return fail(`Zig build failed: ${err.message}`);
+    }
+  } else {
+    log('Building NAPI addon (node scripts/run-agent-build.mjs)…');
+    try {
+      execSync('node scripts/run-agent-build.mjs', {
+        cwd: repoRoot,
+        stdio: 'inherit',
+      });
+    } catch (err) {
+      return fail(`Zig build failed: ${err.message}`);
+    }
   }
   if (!fs.existsSync(ZIG_OUT)) {
     return fail(`Zig build produced no output at ${ZIG_OUT}.`);

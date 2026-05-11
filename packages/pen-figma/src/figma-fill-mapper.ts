@@ -1,5 +1,5 @@
 import type { FigmaPaint, FigmaMatrix } from './figma-types';
-import type { ImageOriginalSize, ImageTransform, PenFill } from '@zseven-w/pen-types';
+import type { ImageOriginalSize, ImageTransform, PenFill } from '@buildev/pen-types';
 import { figmaColorToHex } from './figma-color-utils';
 
 const IMAGE_TRANSFORM_EPSILON = 0.000001;

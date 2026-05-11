@@ -214,7 +214,7 @@ async function generateViaOpenCode(
     ocServer = oc.server;
 
     const { data: session, error: sessionError } = await ocClient.session.create({
-      title: 'OpenPencil Generate',
+      title: 'Buildev Generate',
     });
     if (sessionError || !session) {
       const detail = formatOpenCodeError(sessionError);
@@ -390,7 +390,7 @@ function streamViaOpenCode(body: GenerateBody, model?: string) {
     try {
       const ocClient = oc.client;
       const { data: session, error: sessionError } = await ocClient.session.create({
-        title: 'OpenPencil Generate',
+        title: 'Buildev Generate',
       });
       if (sessionError || !session)
         throw new Error(`Session create failed: ${formatOpenCodeError(sessionError)}`);

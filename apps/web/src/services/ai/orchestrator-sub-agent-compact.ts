@@ -1,5 +1,5 @@
-import { extractStyleGuideValues } from '@zseven-w/pen-ai-skills/style-guide';
-import { styleGuideRegistry } from '@zseven-w/pen-ai-skills/_generated/style-guide-registry';
+import { extractStyleGuideValues } from '@buildev/pen-ai-skills/style-guide';
+import { styleGuideRegistry } from '@buildev/pen-ai-skills/_generated/style-guide-registry';
 
 export function compactSubAgentSkills<T extends { meta: { name: string }; content: string }>(
   skills: T[],

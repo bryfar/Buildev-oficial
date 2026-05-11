@@ -395,7 +395,7 @@ export function insertStreamingNode(node: PenNode, parentId: string | null): voi
  * or external MCP callers hedge with on section roots (they hide the real
  * page background and break theming).
  *
- * OpenPencil documents are multi-page — only the FIRST page uses the
+ * Buildev documents are multi-page — only the FIRST page uses the
  * constant DEFAULT_FRAME_ID for its root frame. Pages added later via
  * addPage() receive a fresh nanoid, so we cannot look the page root up by
  * a well-known id. Instead we pull the active page's top-level children

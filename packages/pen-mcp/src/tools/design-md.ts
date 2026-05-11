@@ -4,7 +4,7 @@ import {
   generateDesignMd,
   extractDesignMdFromDocument,
 } from '../utils/design-md-parser';
-import type { DesignMdSpec } from '@zseven-w/pen-types';
+import type { DesignMdSpec } from '@buildev/pen-types';
 import { setDesignMdForPrompt } from './design-prompt';
 
 // In MCP context (stdio mode), there's no Zustand store.

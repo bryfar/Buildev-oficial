@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readNodeWithDepth } from '../utils/node-operations';
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@buildev/pen-types';
 
 describe('readNodeWithDepth', () => {
   it('returns raw $ref values when resolveRefs is not set', () => {

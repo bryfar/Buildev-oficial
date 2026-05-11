@@ -1,9 +1,9 @@
 /**
- * @zseven-w/pen-renderer — Standalone CanvasKit/Skia renderer for OpenPencil (.op) files
+ * @buildev/pen-renderer — Standalone CanvasKit/Skia renderer for Buildev (.op) files
  *
  * @example
  * ```ts
- * import { loadCanvasKit, PenRenderer } from '@zseven-w/pen-renderer'
+ * import { loadCanvasKit, PenRenderer } from '@buildev/pen-renderer'
  *
  * const ck = await loadCanvasKit('/canvaskit/')
  * const renderer = new PenRenderer(ck, { fontBasePath: '/fonts/' })

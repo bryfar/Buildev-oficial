@@ -17,6 +17,8 @@ import FigmaImportDialog from '@/components/shared/figma-import-dialog';
 import UnsavedChangesDialog from '@/components/shared/unsaved-changes-dialog';
 import type { UnsavedResult } from '@/components/shared/unsaved-changes-dialog';
 import UpdateReadyBanner from './update-ready-banner';
+import ShareDialog from '@/components/shared/share-dialog';
+import RemoteCursors from './remote-cursors';
 import { useAIStore } from '@/stores/ai-store';
 import { useCanvasStore } from '@/stores/canvas-store';
 import { useGitStore } from '@/stores/git-store';
@@ -32,11 +34,12 @@ import { useFileDrop } from '@/hooks/use-file-drop';
 import { initAppStorage } from '@/utils/app-storage';
 import { getRecentFiles } from '@/utils/recent-files';
 import SkiaCanvas from '@/canvas/skia/skia-canvas';
+import IdeLayout from './ide-layout';
 
 export default function EditorLayout() {
   const toggleMinimize = useAIStore((s) => s.toggleMinimize);
-  const hasSelection = useCanvasStore((s) => s.selection.activeId !== null);
   const layerPanelOpen = useCanvasStore((s) => s.layerPanelOpen);
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const variablesPanelOpen = useCanvasStore((s) => s.variablesPanelOpen);
   const designMdPanelOpen = useCanvasStore((s) => s.designMdPanelOpen);
   const figmaImportOpen = useCanvasStore((s) => s.figmaImportDialogOpen);
@@ -49,6 +52,10 @@ export default function EditorLayout() {
     useDocumentStore.getState().setSaveDialogOpen(false);
   }, []);
   const exportOpen = useCanvasStore((s) => s.exportDialogOpen);
+  const shareDialogOpen = useCanvasStore((s) => s.shareDialogOpen);
+  const closeShareDialog = useCallback(() => {
+    useCanvasStore.getState().setShareDialogOpen(false);
+  }, []);
   const [unsavedDialog, setUnsavedDialog] = useState<{
     open: boolean;
     fileName: string;
@@ -105,7 +112,9 @@ export default function EditorLayout() {
       // Cmd+Shift+C: switch right panel to code tab
       if (isMod && e.shiftKey && e.key.toLowerCase() === 'c') {
         e.preventDefault();
-        useCanvasStore.getState().setRightPanelTab('code');
+        const canvas = useCanvasStore.getState();
+        canvas.setCodePanelOpen(true);
+        canvas.setRightPanelTab('code');
         return;
       }
 
@@ -140,7 +149,7 @@ export default function EditorLayout() {
       // Cmd+,: open agent settings
       if (isMod && e.key === ',') {
         e.preventDefault();
-        useAgentSettingsStore.getState().setDialogOpen(true);
+        useAgentSettingsStore.getState().setDialogOpen(true, { tab: 'agents' });
         return;
       }
     };
@@ -212,48 +221,51 @@ export default function EditorLayout() {
       <div className="h-screen flex flex-col bg-background">
         <UpdateReadyBanner />
         <TopBar />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 flex overflow-hidden">
-            {layerPanelOpen && <LayerPanel />}
-            <div className="flex-1 flex flex-col min-w-0 relative">
-              <SkiaCanvas />
-              <Toolbar />
-              <BooleanToolbar />
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          {ideModeOpen ? (
+            <IdeLayout />
+          ) : (
+            <div className="flex min-h-0 flex-1 overflow-hidden">
+              {layerPanelOpen && <LayerPanel />}
+              <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+                <SkiaCanvas />
+                <Toolbar />
+                <BooleanToolbar />
 
-              {/* Floating variables panel — anchored to the right of the toolbar */}
-              {variablesPanelOpen && <VariablesPanel />}
+                {variablesPanelOpen && <VariablesPanel />}
 
-              {/* Floating design system panel */}
-              {designMdPanelOpen && <DesignMdPanel />}
+                {designMdPanelOpen && <DesignMdPanel />}
 
-              {/* Floating UIKit browser panel */}
-              {browserOpen && <ComponentBrowserPanel />}
+                {browserOpen && <ComponentBrowserPanel />}
 
-              {/* Bottom bar: minimized AI (left) + zoom controls (right) */}
-              <div className="absolute bottom-2 left-2 right-2 z-10 flex items-center justify-between pointer-events-none">
-                <div className="pointer-events-auto">
-                  <AIChatMinimizedBar />
+                <div className="pointer-events-none absolute bottom-2 left-2 right-2 z-10 flex items-center justify-between">
+                  <div className="pointer-events-auto">
+                    <AIChatMinimizedBar />
+                  </div>
+                  <div className="pointer-events-auto">
+                    <StatusBar />
+                  </div>
                 </div>
-                <div className="pointer-events-auto">
-                  <StatusBar />
-                </div>
+
+                <AIChatPanel />
               </div>
-
-              {/* Expanded AI panel (floating, draggable) */}
-              <AIChatPanel />
+              <RightPanel />
             </div>
-            {hasSelection && <RightPanel />}
-          </div>
+          )}
         </div>
         <ExportDialog open={exportOpen} onClose={closeExport} />
         <SaveDialog open={saveDialogOpen} onClose={closeSaveDialog} />
         <AgentSettingsDialog />
         <FigmaImportDialog open={figmaImportOpen} onClose={closeFigmaImport} />
+        <ShareDialog open={shareDialogOpen} onClose={closeShareDialog} />
         <UnsavedChangesDialog
           open={unsavedDialog.open}
           fileName={unsavedDialog.fileName}
           onResult={unsavedDialog.onResult}
         />
+
+        {/* Remote cursors overlay */}
+        <RemoteCursors />
 
         {/* Drop zone overlay */}
         {isDragging && (

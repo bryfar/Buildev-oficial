@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="OpenPencil" width="120" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
-<h1 align="center">OpenPencil</h1>
+<h1 align="center">Buildev</h1>
 
 <p align="center">
   <strong>Công cụ thiết kế vector mã nguồn mở thuần AI đầu tiên trên thế giới.</strong><br />
@@ -14,26 +14,26 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ZSeven-W/openpencil/stargazers"><img src="https://img.shields.io/github/stars/ZSeven-W/openpencil?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ZSeven-W/openpencil?color=64748b" alt="License" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ZSeven-W/openpencil/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
 <br />
 
 <p align="center">
-  <a href="https://oss.ioa.tech/zseven/openpencil/a46e24733239ce24de36702342201033.mp4">
-    <img src="./screenshot/op-cover.png" alt="OpenPencil — nhấp để xem demo" width="100%" />
+  <a href="https://oss.ioa.tech/zseven/buildev/a46e24733239ce24de36702342201033.mp4">
+    <img src="./screenshot/op-cover.png" alt="Buildev — nhấp để xem demo" width="100%" />
   </a>
 </p>
 <p align="center"><sub>Nhấp vào hình ảnh để xem video demo</sub></p>
 
 <br />
 
-> **Lưu ý:** Có một dự án mã nguồn mở khác cùng tên — [OpenPencil](https://github.com/open-pencil/open-pencil), tập trung vào thiết kế trực quan tương thích Figma với cộng tác thời gian thực. Dự án này tập trung vào quy trình AI-native từ thiết kế sang mã.
+> **Lưu ý:** Có một dự án mã nguồn mở khác cùng tên — [Buildev](https://github.com/open-pencil/open-pencil), tập trung vào thiết kế trực quan tương thích Figma với cộng tác thời gian thực. Dự án này tập trung vào quy trình AI-native từ thiết kế sang mã.
 
-## Tại sao chọn OpenPencil
+## Tại sao chọn Buildev
 
 <table>
 <tr>
@@ -126,18 +126,18 @@ Có nhiều biến thể image khác nhau — chọn loại phù hợp với nhu
 
 | Image                        | Kích thước | Bao gồm              |
 | ---------------------------- | ---------- | -------------------- |
-| `openpencil:latest`          | ~226 MB    | Chỉ ứng dụng web     |
-| `openpencil-claude:latest`   | —          | + Claude Code CLI    |
-| `openpencil-codex:latest`    | —          | + Codex CLI          |
-| `openpencil-opencode:latest` | —          | + OpenCode CLI       |
-| `openpencil-copilot:latest`  | —          | + GitHub Copilot CLI |
-| `openpencil-gemini:latest`   | —          | + Gemini CLI         |
-| `openpencil-full:latest`     | ~1 GB      | Tất cả công cụ CLI   |
+| `buildev:latest`          | ~226 MB    | Chỉ ứng dụng web     |
+| `buildev-claude:latest`   | —          | + Claude Code CLI    |
+| `buildev-codex:latest`    | —          | + Codex CLI          |
+| `buildev-opencode:latest` | —          | + OpenCode CLI       |
+| `buildev-copilot:latest`  | —          | + GitHub Copilot CLI |
+| `buildev-gemini:latest`   | —          | + Gemini CLI         |
+| `buildev-full:latest`     | ~1 GB      | Tất cả công cụ CLI   |
 
 **Chạy (chỉ web):**
 
 ```bash
-docker run -d -p 3000:3000 ghcr.io/zseven-w/openpencil:latest
+docker run -d -p 3000:3000 ghcr.io/bryfar/buildev:latest
 ```
 
 **Chạy với AI CLI (ví dụ Claude Code):**
@@ -146,28 +146,28 @@ Chat AI dựa vào đăng nhập OAuth của Claude CLI. Sử dụng Docker volu
 
 ```bash
 # Bước 1 — Đăng nhập (một lần)
-docker volume create openpencil-claude-auth
+docker volume create buildev-claude-auth
 docker run -it --rm \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest claude login
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest claude login
 
 # Bước 2 — Khởi động
 docker run -d -p 3000:3000 \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest
 ```
 
 **Build cục bộ:**
 
 ```bash
 # Cơ bản (chỉ web)
-docker build --target base -t openpencil .
+docker build --target base -t buildev .
 
 # Với một CLI cụ thể
-docker build --target with-claude -t openpencil-claude .
+docker build --target with-claude -t buildev-claude .
 
 # Đầy đủ (tất cả CLI)
-docker build --target full -t openpencil-full .
+docker build --target full -t buildev-full .
 ```
 
 ## Thiết kế thuần AI
@@ -213,7 +213,7 @@ docker build --target full -t openpencil-full .
 Cài đặt toàn cục và điều khiển công cụ thiết kế từ terminal của bạn:
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ```bash
@@ -226,7 +226,7 @@ cat design.dsl | op design - # Pipe từ stdin
 
 Hỗ trợ ba phương thức nhập liệu: chuỗi inline, `@filepath` (đọc từ tệp), hoặc `-` (đọc từ stdin). Hoạt động với ứng dụng desktop hoặc web dev server. Xem [CLI README](./apps/cli/README.md) để biết đầy đủ các lệnh.
 
-**LLM Skill** — cài đặt plugin [OpenPencil Skill](https://github.com/ZSeven-W/openpencil-skill) để dạy AI agent (Claude Code, Cursor, Codex, Gemini CLI, v.v.) thiết kế bằng `op`.
+**LLM Skill** — cài đặt plugin [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) để dạy AI agent (Claude Code, Cursor, Codex, Gemini CLI, v.v.) thiết kế bằng `op`.
 
 ## Tính năng
 
@@ -301,7 +301,7 @@ Hỗ trợ ba phương thức nhập liệu: chuỗi inline, `@filepath` (đọc
 ## Cấu trúc dự án
 
 ```text
-openpencil/
+buildev/
 ├── apps/
 │   ├── web/                 Ứng dụng web TanStack Start
 │   │   ├── src/
@@ -399,19 +399,19 @@ Chào mừng đóng góp! Xem [CLAUDE.md](./CLAUDE.md) để biết chi tiết v
 
 ## Người đóng góp
 
-<a href="https://github.com/ZSeven-W/openpencil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZSeven-W/openpencil" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
 </a>
 
 ## Nhà tài trợ
 
-OpenPencil miễn phí và mã nguồn mở. Việc phát triển được tài trợ bởi những người thấy nó hữu ích — cảm ơn bạn đã giữ cho canvas luôn mở.
+Buildev miễn phí và mã nguồn mở. Việc phát triển được tài trợ bởi những người thấy nó hữu ích — cảm ơn bạn đã giữ cho canvas luôn mở.
 
 <a href="https://github.com/mrqyun" title="MrQyun">
   <img src="https://wsrv.nl/?url=github.com/mrqyun.png&w=128&h=128&mask=circle&maxage=7d" width="64" height="64" alt="MrQyun" />
 </a>
 
-Cảm ơn **[MrQyun](https://github.com/mrqyun)** — muốn tên mình xuất hiện ở đây? **[Trở thành nhà tài trợ →](https://github.com/sponsors/ZSeven-W)**
+Cảm ơn **[MrQyun](https://github.com/mrqyun)** — muốn tên mình xuất hiện ở đây? **[Trở thành nhà tài trợ →](https://github.com/sponsors/bryfar)**
 
 ## Cộng đồng
 
@@ -423,17 +423,17 @@ Cảm ơn **[MrQyun](https://github.com/mrqyun)** — muốn tên mình xuất h
 
 ## Star History
 
-<a href="https://star-history.com/#ZSeven-W/openpencil&Date">
+<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
  </picture>
 </a>
 
 ## Đánh giá
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/zseven-w-openpencil-badge.png)](https://mseep.ai/app/zseven-w-openpencil)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## Giấy phép
 

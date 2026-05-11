@@ -7,7 +7,7 @@ import { resolveServableLocalImagePath } from './local-asset';
 
 describe('resolveServableLocalImagePath', () => {
   it('resolves an extensionless png file by sniffing its bytes', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'openpencil-local-asset-'));
+    const dir = mkdtempSync(join(tmpdir(), 'buildev-local-asset-'));
     try {
       const filePath = join(dir, 'hero');
       writeFileSync(
@@ -25,7 +25,7 @@ describe('resolveServableLocalImagePath', () => {
   });
 
   it('resolves a sibling image file when the requested path is missing an extension', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'openpencil-local-asset-'));
+    const dir = mkdtempSync(join(tmpdir(), 'buildev-local-asset-'));
     try {
       const filePath = join(dir, 'hero.jpg');
       writeFileSync(filePath, Buffer.from([0xff, 0xd8, 0xff, 0xe0]));
@@ -40,7 +40,7 @@ describe('resolveServableLocalImagePath', () => {
   });
 
   it('returns null for explicit unsupported extensions', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'openpencil-local-asset-'));
+    const dir = mkdtempSync(join(tmpdir(), 'buildev-local-asset-'));
     try {
       const filePath = join(dir, 'hero.pdf');
       writeFileSync(filePath, Buffer.from('%PDF-1.7'));

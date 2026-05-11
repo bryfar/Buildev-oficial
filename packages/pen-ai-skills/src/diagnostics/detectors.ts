@@ -1,4 +1,4 @@
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@buildev/pen-types';
 import type { Issue } from './types';
 
 /** Extract the first fill color from a node (raw, including variable refs) */

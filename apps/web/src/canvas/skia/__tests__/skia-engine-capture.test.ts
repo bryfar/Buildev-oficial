@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Must mock before importing SkiaEngine to prevent CanvasKit WASM initialization.
 // SkiaEngine → SkiaRenderer → SkiaNodeRenderer → CanvasKit TypefaceFontProvider.Make()
-vi.mock('@zseven-w/pen-renderer', async () => {
+vi.mock('@buildev/pen-renderer', async () => {
   // Minimal stub of SkiaNodeRenderer and associated exports
   const SkiaNodeRenderer = vi.fn().mockImplementation(() => ({
     setIconLookup: vi.fn(),

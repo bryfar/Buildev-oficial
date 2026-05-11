@@ -1,10 +1,10 @@
 {
-  "name": "@zseven-w/pen-core",
+  "name": "@buildev/pen-core",
   "version": "0.7.5",
-  "description": "Core document operations, tree utils, variables, layout engine for OpenPencil",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-core",
+  "description": "Core document operations, tree utils, variables, layout engine for Buildev",
+  "homepage": "https://github.com/ZSeven-W/buildev/tree/main/packages/pen-core",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/ZSeven-W/buildev/issues"
   },
   "license": "MIT",
   "author": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/ZSeven-W/buildev.git",
     "directory": "packages/pen-core"
   },
   "files": [
@@ -30,7 +30,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@zseven-w/pen-types": "workspace:*",
+    "@buildev/pen-types": "workspace:*",
     "nanoid": "^5.1.6",
     "paper": "^0.12.18"
   },

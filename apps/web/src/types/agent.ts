@@ -1,4 +1,4 @@
-// Agent event types — extracted from @zseven-w/agent for zero-runtime-dependency usage.
+// Agent event types — extracted from @buildev/agent for zero-runtime-dependency usage.
 // These types define the SSE protocol between server and client.
 
 export type AuthLevel = 'read' | 'create' | 'modify' | 'delete' | 'orchestrate';

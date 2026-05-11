@@ -1,4 +1,4 @@
-import type { ToolType } from '@zseven-w/pen-types';
+import type { ToolType } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useEngineSubscribe } from '../utils/use-engine-subscribe.js';
 

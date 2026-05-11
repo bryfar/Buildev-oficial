@@ -1,4 +1,4 @@
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 import { DEFAULT_MAX_HISTORY, HISTORY_DEBOUNCE_MS } from './constants.js';
 
 export interface HistoryManagerOptions {

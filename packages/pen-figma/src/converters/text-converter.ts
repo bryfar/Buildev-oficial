@@ -1,4 +1,4 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { mapFigmaFills } from '../figma-fill-mapper.js';
 import { mapFigmaEffects } from '../figma-effect-mapper.js';
 import { mapFigmaTextProps } from '../figma-text-mapper.js';

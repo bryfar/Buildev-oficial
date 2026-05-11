@@ -20,9 +20,9 @@ import type {
 } from './ai-types';
 import type { DesignMdSpec } from '@/types/design-md';
 import { streamChat } from './ai-service';
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
-import { styleGuideRegistry } from '@zseven-w/pen-ai-skills/_generated/style-guide-registry';
-import { selectStyleGuide } from '@zseven-w/pen-ai-skills/style-guide';
+import { resolveSkills } from '@buildev/pen-ai-skills';
+import { styleGuideRegistry } from '@buildev/pen-ai-skills/_generated/style-guide-registry';
+import { selectStyleGuide } from '@buildev/pen-ai-skills/style-guide';
 import {
   getOrchestratorTimeouts,
   prepareDesignPrompt,

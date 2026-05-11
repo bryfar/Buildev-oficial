@@ -1,4 +1,4 @@
-import type { PenPathAnchor, PenPathHandle, PenPathPointType } from '@zseven-w/pen-types';
+import type { PenPathAnchor, PenPathHandle, PenPathPointType } from '@buildev/pen-types';
 
 export interface PathAnchorParseResult {
   anchors: PenPathAnchor[];

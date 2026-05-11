@@ -1,4 +1,4 @@
-import type { PenDocument } from '@zseven-w/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useEngineSubscribe } from '../utils/use-engine-subscribe.js';
 

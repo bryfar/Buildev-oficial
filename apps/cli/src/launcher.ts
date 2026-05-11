@@ -1,4 +1,4 @@
-/** Start/stop OpenPencil app from the CLI. */
+/** Start/stop Buildev app from the CLI. */
 
 import { spawn, fork, execSync } from 'node:child_process';
 import { createServer } from 'node:net';
@@ -9,7 +9,7 @@ import { existsSync } from 'node:fs';
 import { getAppInfo } from './connection';
 
 const IS_WIN = process.platform === 'win32';
-const PORT_FILE_DIR = join(homedir(), '.openpencil');
+const PORT_FILE_DIR = join(homedir(), '.buildev');
 const PORT_FILE_PATH = join(PORT_FILE_DIR, '.port');
 
 function getFreePort(): Promise<number> {
@@ -35,7 +35,7 @@ async function waitForPortFile(timeoutMs = 15_000): Promise<{ port: number; pid:
     if (info) return { port: info.port, pid: info.pid };
     await new Promise((r) => setTimeout(r, 300));
   }
-  throw new Error('Timeout waiting for OpenPencil to start');
+  throw new Error('Timeout waiting for Buildev to start');
 }
 
 /** Find the installed desktop app binary. */
@@ -43,26 +43,26 @@ function findDesktopBinary(): string | null {
   const candidates: string[] = [];
 
   if (process.platform === 'darwin') {
-    candidates.push('/Applications/OpenPencil.app/Contents/MacOS/OpenPencil');
+    candidates.push('/Applications/Buildev.app/Contents/MacOS/Buildev');
     candidates.push(
-      join(homedir(), 'Applications', 'OpenPencil.app', 'Contents', 'MacOS', 'OpenPencil'),
+      join(homedir(), 'Applications', 'Buildev.app', 'Contents', 'MacOS', 'Buildev'),
     );
   } else if (process.platform === 'win32') {
     const localAppData = process.env.LOCALAPPDATA ?? join(homedir(), 'AppData', 'Local');
     const programFiles = process.env.PROGRAMFILES ?? 'C:\\Program Files';
     const programFilesX86 = process.env['PROGRAMFILES(X86)'] ?? 'C:\\Program Files (x86)';
     // NSIS per-user install (default)
-    candidates.push(join(localAppData, 'Programs', 'openpencil', 'OpenPencil.exe'));
+    candidates.push(join(localAppData, 'Programs', 'buildev', 'Buildev.exe'));
     // NSIS per-machine install
-    candidates.push(join(programFiles, 'OpenPencil', 'OpenPencil.exe'));
-    candidates.push(join(programFilesX86, 'OpenPencil', 'OpenPencil.exe'));
+    candidates.push(join(programFiles, 'Buildev', 'Buildev.exe'));
+    candidates.push(join(programFilesX86, 'Buildev', 'Buildev.exe'));
     // Portable — same directory as CLI
-    candidates.push(join(__dirname, '..', 'OpenPencil.exe'));
+    candidates.push(join(__dirname, '..', 'Buildev.exe'));
   } else {
     // Linux — AppImage, deb, snap, flatpak, manual
-    candidates.push('/usr/bin/openpencil');
-    candidates.push('/usr/local/bin/openpencil');
-    candidates.push(join(homedir(), '.local', 'bin', 'openpencil'));
+    candidates.push('/usr/bin/buildev');
+    candidates.push('/usr/local/bin/buildev');
+    candidates.push(join(homedir(), '.local', 'bin', 'buildev'));
     // AppImage in common download locations
     const appImageDirs = [
       join(homedir(), 'Applications'),
@@ -70,12 +70,12 @@ function findDesktopBinary(): string | null {
       join(homedir(), '.local', 'share', 'applications'),
     ];
     for (const dir of appImageDirs) {
-      // Match OpenPencil*.AppImage (version may vary)
+      // Match Buildev*.AppImage (version may vary)
       try {
         if (existsSync(dir)) {
           const files = require('node:fs').readdirSync(dir) as string[];
           const appImage = files.find(
-            (f: string) => f.startsWith('OpenPencil') && f.endsWith('.AppImage'),
+            (f: string) => f.startsWith('Buildev') && f.endsWith('.AppImage'),
           );
           if (appImage) candidates.push(join(dir, appImage));
         }
@@ -84,11 +84,11 @@ function findDesktopBinary(): string | null {
       }
     }
     // Snap
-    candidates.push('/snap/bin/openpencil');
+    candidates.push('/snap/bin/buildev');
     // Flatpak
-    candidates.push('/var/lib/flatpak/exports/bin/dev.openpencil.app');
+    candidates.push('/var/lib/flatpak/exports/bin/dev.buildev.app');
     candidates.push(
-      join(homedir(), '.local', 'share', 'flatpak', 'exports', 'bin', 'dev.openpencil.app'),
+      join(homedir(), '.local', 'share', 'flatpak', 'exports', 'bin', 'dev.buildev.app'),
     );
   }
 
@@ -120,7 +120,7 @@ export async function startDesktop(): Promise<{ port: number; pid: number }> {
   const binary = findDesktopBinary();
   if (!binary) {
     throw new Error(
-      'OpenPencil desktop app not found. Install it or use `op start --web` for the web server.',
+      'Buildev desktop app not found. Install it or use `op start --web` for the web server.',
     );
   }
 

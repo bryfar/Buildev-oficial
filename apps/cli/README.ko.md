@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [**한국어**](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-[OpenPencil](https://github.com/ZSeven-W/openpencil)용 CLI — 터미널에서 디자인 도구를 제어합니다.
+[Buildev](https://github.com/bryfar/Buildev-oficial)용 CLI — 터미널에서 디자인 도구를 제어합니다.
 
 ## 설치
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## 플랫폼 지원
 
-CLI는 모든 플랫폼에서 OpenPencil 데스크톱 앱을 자동으로 감지하고 실행합니다:
+CLI는 모든 플랫폼에서 Buildev 데스크톱 앱을 자동으로 감지하고 실행합니다:
 
 | 플랫폼      | 감지되는 설치 경로                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS 사용자별 (`%LOCALAPPDATA%`), 시스템 전체 (`%PROGRAMFILES%`), 포터블                                |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # 표준 입력에서 읽기 (파이핑)
 ### 앱 제어
 
 ```bash
-op start [--desktop|--web]   # OpenPencil 실행 (기본값: 데스크톱)
+op start [--desktop|--web]   # Buildev 실행 (기본값: 데스크톱)
 op stop                      # 실행 중인 인스턴스 중지
 op status                    # 실행 상태 확인
 ```

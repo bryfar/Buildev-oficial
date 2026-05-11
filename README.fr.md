@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="OpenPencil" width="120" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
-<h1 align="center">OpenPencil</h1>
+<h1 align="center">Buildev</h1>
 
 <p align="center">
   <strong>Le premier outil de design vectoriel open-source natif IA au monde.</strong><br />
@@ -14,26 +14,26 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ZSeven-W/openpencil/stargazers"><img src="https://img.shields.io/github/stars/ZSeven-W/openpencil?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ZSeven-W/openpencil?color=64748b" alt="License" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ZSeven-W/openpencil/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
 <br />
 
 <p align="center">
-  <a href="https://oss.ioa.tech/zseven/openpencil/a46e24733239ce24de36702342201033.mp4">
-    <img src="./screenshot/op-cover.png" alt="OpenPencil — cliquez pour regarder la démo" width="100%" />
+  <a href="https://oss.ioa.tech/zseven/buildev/a46e24733239ce24de36702342201033.mp4">
+    <img src="./screenshot/op-cover.png" alt="Buildev — cliquez pour regarder la démo" width="100%" />
   </a>
 </p>
 <p align="center"><sub>Cliquez sur l'image pour regarder la vidéo de démonstration</sub></p>
 
 <br />
 
-> **Note :** Il existe un autre projet open-source portant le même nom — [OpenPencil](https://github.com/open-pencil/open-pencil), axé sur le design visuel compatible Figma avec collaboration en temps réel. Ce projet est axé sur les workflows AI-natifs de design vers code.
+> **Note :** Il existe un autre projet open-source portant le même nom — [Buildev](https://github.com/open-pencil/open-pencil), axé sur le design visuel compatible Figma avec collaboration en temps réel. Ce projet est axé sur les workflows AI-natifs de design vers code.
 
-## Pourquoi OpenPencil
+## Pourquoi Buildev
 
 <table>
 <tr>
@@ -126,18 +126,18 @@ Plusieurs variantes d'images sont disponibles — choisissez celle qui correspon
 
 | Image                        | Taille  | Contenu                    |
 | ---------------------------- | ------- | -------------------------- |
-| `openpencil:latest`          | ~226 Mo | Application web uniquement |
-| `openpencil-claude:latest`   | —       | + Claude Code CLI          |
-| `openpencil-codex:latest`    | —       | + Codex CLI                |
-| `openpencil-opencode:latest` | —       | + OpenCode CLI             |
-| `openpencil-copilot:latest`  | —       | + GitHub Copilot CLI       |
-| `openpencil-gemini:latest`   | —       | + Gemini CLI               |
-| `openpencil-full:latest`     | ~1 Go   | Tous les outils CLI        |
+| `buildev:latest`          | ~226 Mo | Application web uniquement |
+| `buildev-claude:latest`   | —       | + Claude Code CLI          |
+| `buildev-codex:latest`    | —       | + Codex CLI                |
+| `buildev-opencode:latest` | —       | + OpenCode CLI             |
+| `buildev-copilot:latest`  | —       | + GitHub Copilot CLI       |
+| `buildev-gemini:latest`   | —       | + Gemini CLI               |
+| `buildev-full:latest`     | ~1 Go   | Tous les outils CLI        |
 
 **Exécuter (web uniquement) :**
 
 ```bash
-docker run -d -p 3000:3000 ghcr.io/zseven-w/openpencil:latest
+docker run -d -p 3000:3000 ghcr.io/bryfar/buildev:latest
 ```
 
 **Exécuter avec un CLI IA (ex. Claude Code) :**
@@ -146,28 +146,28 @@ Le chat IA repose sur la connexion OAuth de Claude CLI. Utilisez un volume Docke
 
 ```bash
 # Étape 1 — Connexion (une seule fois)
-docker volume create openpencil-claude-auth
+docker volume create buildev-claude-auth
 docker run -it --rm \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest claude login
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest claude login
 
 # Étape 2 — Démarrer
 docker run -d -p 3000:3000 \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest
 ```
 
 **Compiler localement :**
 
 ```bash
 # Base (web uniquement)
-docker build --target base -t openpencil .
+docker build --target base -t buildev .
 
 # Avec un CLI spécifique
-docker build --target with-claude -t openpencil-claude .
+docker build --target with-claude -t buildev-claude .
 
 # Complet (tous les CLIs)
-docker build --target full -t openpencil-full .
+docker build --target full -t buildev-full .
 ```
 
 ## Design natif IA
@@ -213,7 +213,7 @@ docker build --target full -t openpencil-full .
 Installez globalement et contrôlez l'outil de design depuis votre terminal :
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ```bash
@@ -226,7 +226,7 @@ cat design.dsl | op design - # Pipe depuis stdin
 
 Supporte trois méthodes d'entrée : chaîne en ligne, `@filepath` (lecture depuis un fichier), ou `-` (lecture depuis stdin). Fonctionne avec l'app de bureau ou le serveur de développement web. Voir le [README du CLI](./apps/cli/README.md) pour la référence complète des commandes.
 
-**Compétence LLM** — installez le plugin [OpenPencil Skill](https://github.com/ZSeven-W/openpencil-skill) pour apprendre aux agents IA (Claude Code, Cursor, Codex, Gemini CLI, etc.) à concevoir avec `op`.
+**Compétence LLM** — installez le plugin [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) pour apprendre aux agents IA (Claude Code, Cursor, Codex, Gemini CLI, etc.) à concevoir avec `op`.
 
 ## Fonctionnalités
 
@@ -301,7 +301,7 @@ Supporte trois méthodes d'entrée : chaîne en ligne, `@filepath` (lecture depu
 ## Structure du projet
 
 ```text
-openpencil/
+buildev/
 ├── apps/
 │   ├── web/                 Application web TanStack Start
 │   │   ├── src/
@@ -399,19 +399,19 @@ Les contributions sont les bienvenues ! Consultez [CLAUDE.md](./CLAUDE.md) pour 
 
 ## Contributeurs
 
-<a href="https://github.com/ZSeven-W/openpencil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZSeven-W/openpencil" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
 </a>
 
 ## Sponsors
 
-OpenPencil est gratuit et open source. Le développement est financé par celles et ceux qui le trouvent utile — merci de garder le canevas ouvert.
+Buildev est gratuit et open source. Le développement est financé par celles et ceux qui le trouvent utile — merci de garder le canevas ouvert.
 
 <a href="https://github.com/mrqyun" title="MrQyun">
   <img src="https://wsrv.nl/?url=github.com/mrqyun.png&w=128&h=128&mask=circle&maxage=7d" width="64" height="64" alt="MrQyun" />
 </a>
 
-Merci à **[MrQyun](https://github.com/mrqyun)** — vous voulez voir votre nom ici ? **[Devenir sponsor →](https://github.com/sponsors/ZSeven-W)**
+Merci à **[MrQyun](https://github.com/mrqyun)** — vous voulez voir votre nom ici ? **[Devenir sponsor →](https://github.com/sponsors/bryfar)**
 
 ## Communauté
 
@@ -423,17 +423,17 @@ Merci à **[MrQyun](https://github.com/mrqyun)** — vous voulez voir votre nom 
 
 ## Star History
 
-<a href="https://star-history.com/#ZSeven-W/openpencil&Date">
+<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
  </picture>
 </a>
 
 ## Évaluations
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/zseven-w-openpencil-badge.png)](https://mseep.ai/app/zseven-w-openpencil)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## Licence
 

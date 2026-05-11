@@ -53,7 +53,7 @@ with 24px gap inside a card with 24px padding on a 375px-wide page. Total
 
 NO FIXED-POSITION LAYOUT — DO NOT EMIT BOTTOM SPACERS:
 
-OpenPencil has no `position: fixed` / `position: sticky`. Bottom navigation
+Buildev has no `position: fixed` / `position: sticky`. Bottom navigation
 bars are inline children of the page, not floating overlays. You do NOT need
 to (and MUST NOT) reserve space for them with empty spacer frames.
 
@@ -80,7 +80,7 @@ RING / CIRCLE WITH CENTER CONTENT (Apple Activity Ring, progress ring, badge, av
   └── text(content="8,432", fontSize=16, fontWeight=700, fill:[textColor])
 - For an EMPTY RING (stroke only), set fill: [] on the frame. Do NOT add a smaller "inner" ellipse
   with the parent's background color trying to "punch a hole" — that's a raster-era trick that
-  doesn't work in OpenPencil's flex-layout model.
+  doesn't work in Buildev's flex-layout model.
 - For SOLID DISC, set frame fill: [{type:"solid", color:...}] and omit stroke.
 - DO NOT use layout: "none" + nested frame with absolute x/y to overlay text on a circle.
   layout=none + nested children renders unreliably. Always use frame+cornerRadius with standard

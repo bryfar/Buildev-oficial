@@ -1,7 +1,7 @@
-import { getSkillByName } from '@zseven-w/pen-ai-skills';
-import type { Framework, ChunkContract, CodePlanFromAI } from '@zseven-w/pen-types';
-import type { PenNode } from '@zseven-w/pen-types';
-import { nodeTreeToSummary } from '@zseven-w/pen-core';
+import { getSkillByName } from '@buildev/pen-ai-skills';
+import type { Framework, ChunkContract, CodePlanFromAI } from '@buildev/pen-types';
+import type { PenNode } from '@buildev/pen-types';
+import { nodeTreeToSummary } from '@buildev/pen-core';
 import type { CodegenAssetHint } from './codegen-assets';
 
 function loadSkill(name: string): string {
@@ -40,16 +40,20 @@ function compactNodes(nodes: PenNode[]): string {
 
 /**
  * Build system prompt for Step 1: planning.
+ * @param motionHint Optional block from `formatDesignMotionForPrompt` (document-level motion metadata).
  */
 export function buildPlanningPrompt(
   nodes: PenNode[],
   framework: Framework,
+  motionHint?: string,
 ): {
   system: string;
   user: string;
 } {
   const planningSkill = loadSkill('codegen-planning');
   const summary = nodeTreeToSummary(nodes);
+  const motionBlock =
+    motionHint && motionHint.trim().length > 0 ? ['', motionHint.trim(), ''] : [];
 
   return {
     system: planningSkill,
@@ -58,6 +62,7 @@ export function buildPlanningPrompt(
       '',
       'Node tree:',
       summary,
+      ...motionBlock,
       '',
       'Analyze this node tree and output a JSON code generation plan.',
     ].join('\n'),

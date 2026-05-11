@@ -2,8 +2,8 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { Braces, X } from 'lucide-react';
 import { cn } from '../ui-primitives.js';
 import { useDocument } from '../hooks/use-document.js';
-import { isVariableRef, resolveVariableRef, getDefaultTheme } from '@zseven-w/pen-core';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import { isVariableRef, resolveVariableRef, getDefaultTheme } from '@buildev/pen-core';
+import type { VariableDefinition } from '@buildev/pen-types';
 
 export interface VariablePickerProps {
   /** Variable type to filter by */

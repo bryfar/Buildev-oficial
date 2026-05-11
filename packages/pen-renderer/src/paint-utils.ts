@@ -1,8 +1,8 @@
 import type { CanvasKit } from 'canvaskit-wasm';
-import type { PenFill, PenStroke } from '@zseven-w/pen-types';
-import { DEFAULT_FILL, DEFAULT_STROKE_WIDTH } from '@zseven-w/pen-core';
+import type { PenFill, PenStroke } from '@buildev/pen-types';
+import { DEFAULT_FILL, DEFAULT_STROKE_WIDTH } from '@buildev/pen-core';
 
-export { cssFontFamily } from '@zseven-w/pen-core';
+export { cssFontFamily } from '@buildev/pen-core';
 
 // ---------------------------------------------------------------------------
 // Color parsing — ck.Color4f takes 0-1 floats for all channels (r, g, b, a)

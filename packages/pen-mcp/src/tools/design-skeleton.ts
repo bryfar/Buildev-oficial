@@ -6,8 +6,8 @@ import {
   removeNodeFromTree,
 } from '../utils/node-operations';
 import { generateId } from '../utils/id';
-import type { PenNode, ContainerProps } from '@zseven-w/pen-types';
-import type { PenFill } from '@zseven-w/pen-types';
+import type { PenNode, ContainerProps } from '@buildev/pen-types';
+import type { PenFill } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Types

@@ -16,7 +16,7 @@ vi.mock('@/stores/document-store', () => ({
   },
 }));
 
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { resolveTreePostPass, resolveTreeRoles } from '../role-resolver';
 import '../role-definitions/index';
 

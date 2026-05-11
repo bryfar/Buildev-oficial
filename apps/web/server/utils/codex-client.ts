@@ -99,7 +99,7 @@ export async function runCodexExec(
   userPrompt: string,
   options: CodexExecOptions = {},
 ): Promise<CodexCliResult> {
-  const tempDir = await mkdtemp(join(tmpdir(), 'openpencil-codex-'));
+  const tempDir = await mkdtemp(join(tmpdir(), 'buildev-codex-'));
   const outputPath = join(tempDir, 'last-message.txt');
   const prompt = buildPrompt(options.systemPrompt, userPrompt, options.imageFiles);
   const codexEffort = resolveCodexEffort(options.thinkingMode, options.effort);
@@ -157,7 +157,7 @@ export async function* streamCodexExec(
   userPrompt: string,
   options: CodexExecOptions = {},
 ): AsyncGenerator<{ type: 'text'; content: string } | { type: 'error'; content: string }> {
-  const tempDir = await mkdtemp(join(tmpdir(), 'openpencil-codex-'));
+  const tempDir = await mkdtemp(join(tmpdir(), 'buildev-codex-'));
   const prompt = buildPrompt(options.systemPrompt, userPrompt, options.imageFiles);
   const codexEffort = resolveCodexEffort(options.thinkingMode, options.effort);
 

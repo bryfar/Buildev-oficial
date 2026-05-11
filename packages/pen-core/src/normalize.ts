@@ -1,5 +1,5 @@
 /**
- * Normalize a Pencil.dev .pen document into OpenPencil's internal format.
+ * Normalize a Pencil.dev .pen document into Buildev's internal format.
  *
  * Handles format normalization ONLY — does NOT resolve $variable references:
  * - fill type: "color" → "solid"
@@ -13,8 +13,8 @@
  * canvas render time, preserving $variable bindings in the document.
  */
 
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
-import type { PenFill, PenStroke, GradientStop } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
+import type { PenFill, PenStroke, GradientStop } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -118,7 +118,7 @@ function normalizeSingleFill(raw: Record<string, unknown> | string): PenFill | n
   if (!raw || typeof raw !== 'object') return null;
   const t = raw.type as string | undefined;
 
-  // Pencil "color" → OpenPencil "solid"
+  // Pencil "color" → Buildev "solid"
   if (t === 'color' || t === 'solid') {
     return {
       type: 'solid',

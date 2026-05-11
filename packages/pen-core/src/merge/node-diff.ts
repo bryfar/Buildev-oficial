@@ -2,7 +2,7 @@
 //
 // One-direction diff: compute the patches needed to transform `base` into `next`.
 
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@buildev/pen-types';
 import { indexNodesById, nodeFieldsEqual, stripChildren, jsonEqual } from './merge-helpers.js';
 
 export interface NodePatch {

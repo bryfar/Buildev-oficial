@@ -1,17 +1,53 @@
 import { useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCanvasStore } from '@/stores/canvas-store';
 import type { RightPanelTab } from '@/stores/canvas-store';
 import PropertyPanel from './property-panel';
 import CodePanel from './code-panel';
+import DesignMotionSettings from './design-motion-settings';
 
 const MIN_WIDTH = 256; // 16rem (w-64)
 const MAX_WIDTH = 640; // 40rem
 const DEFAULT_WIDTH = 256;
 
+function DesignMotionCollapsible() {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="min-w-0">
+      <button
+        type="button"
+        className="flex w-full items-center gap-1.5 px-3 py-2 text-left hover:bg-accent/40"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        <ChevronDown
+          className={cn(
+            'h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform',
+            open && 'rotate-180',
+          )}
+        />
+        <span className="text-xs font-medium text-muted-foreground">
+          {t('rightPanel.design.motion.section', {
+            defaultValue: 'Motion & codegen',
+          })}
+        </span>
+      </button>
+      {open ? (
+        <div className="min-h-0">
+          <DesignMotionSettings className="max-h-[min(220px,32vh)] overflow-y-auto border-0 bg-transparent" />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function RightPanel() {
   const { t } = useTranslation();
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const activeTab = useCanvasStore((s) => s.rightPanelTab);
   const setTab = useCanvasStore((s) => s.setRightPanelTab);
   const [width, setWidth] = useState(DEFAULT_WIDTH);
@@ -51,13 +87,15 @@ export default function RightPanel() {
   );
 
   const tabs: { key: RightPanelTab; label: string }[] = [
-    { key: 'design', label: t('rightPanel.design') },
-    { key: 'code', label: t('rightPanel.code') },
+    { key: 'design', label: t('rightPanel.design', { defaultValue: 'Design' }) },
+    { key: 'code', label: t('rightPanel.code', { defaultValue: 'Code' }) },
   ];
+
+  if (ideModeOpen) return null;
 
   return (
     <div
-      className="bg-card border-l border-border flex flex-col shrink-0 relative"
+      className="relative flex h-full min-h-0 shrink-0 flex-col border-l border-border bg-card"
       style={{ width }}
     >
       {/* Resize handle */}
@@ -67,14 +105,14 @@ export default function RightPanel() {
       />
 
       {/* Tab bar */}
-      <div className="h-8 flex items-center px-2 border-b border-border shrink-0 gap-1">
+      <div className="flex h-8 shrink-0 items-center gap-1 border-b border-border bg-card px-2">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             type="button"
             onClick={() => setTab(tab.key)}
             className={cn(
-              'text-[11px] font-medium px-2 py-0.5 rounded transition-colors',
+              'rounded px-2 py-0.5 text-[11px] font-medium transition-colors',
               activeTab === tab.key
                 ? 'bg-secondary text-foreground'
                 : 'text-muted-foreground hover:text-foreground',
@@ -86,7 +124,20 @@ export default function RightPanel() {
       </div>
 
       {/* Content */}
-      {activeTab === 'design' ? <PropertyPanel embedded /> : <CodePanel />}
+      {activeTab === 'design' ? (
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+            <PropertyPanel embedded />
+          </div>
+          <div className="shrink-0 border-t border-border bg-muted/30">
+            <DesignMotionCollapsible />
+          </div>
+        </div>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          <CodePanel />
+        </div>
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@
 // trigger (via showAuthorPrompt() when authorIdentity === null).
 //
 // The form validates name (non-empty) and email (must contain @). On
-// submit, calls setAuthorIdentity which persists to OpenPencil prefs and
+// submit, calls setAuthorIdentity which persists to Buildev prefs and
 // updates the in-memory cache. Cancel hides the form without persisting.
 
 import { useState } from 'react';

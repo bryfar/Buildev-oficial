@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ToolType } from '@zseven-w/pen-types';
+import type { ToolType } from '@buildev/pen-types';
 import { useActiveTool } from '../hooks/use-active-tool.js';
 
 interface ToolButtonProps {

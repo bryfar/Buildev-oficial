@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [**English**](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-CLI for [OpenPencil](https://github.com/ZSeven-W/openpencil) — control the design tool from your terminal.
+CLI for [Buildev](https://github.com/bryfar/Buildev-oficial) — control the design tool from your terminal.
 
 ## Install
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Platform Support
 
-The CLI automatically detects and launches the OpenPencil desktop app on all platforms:
+The CLI automatically detects and launches the Buildev desktop app on all platforms:
 
 | Platform    | Installation paths detected                                                                             |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS per-user (`%LOCALAPPDATA%`), per-machine (`%PROGRAMFILES%`), portable                              |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Read from stdin (piping)
 ### App Control
 
 ```bash
-op start [--desktop|--web]   # Launch OpenPencil (desktop by default)
+op start [--desktop|--web]   # Launch Buildev (desktop by default)
 op stop                      # Stop running instance
 op status                    # Check if running
 ```

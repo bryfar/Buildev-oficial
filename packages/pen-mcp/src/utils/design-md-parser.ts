@@ -3,4 +3,4 @@ export {
   generateDesignMd,
   designMdColorsToVariables,
   extractDesignMdFromDocument,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';

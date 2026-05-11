@@ -53,9 +53,9 @@ let pendingFilePath: string | null = null;
 
 const isDev = !app.isPackaged;
 // Settings stored in platform-standard app data dir (Electron-managed):
-// macOS: ~/Library/Application Support/OpenPencil/
-// Windows: %APPDATA%\OpenPencil\
-// Linux: ~/.config/OpenPencil/
+// macOS: ~/Library/Application Support/Buildev/
+// Windows: %APPDATA%\Buildev\
+// Linux: ~/.config/Buildev/
 const SETTINGS_PATH = join(app.getPath('userData'), 'settings.json');
 const PREFS_PATH = join(app.getPath('userData'), 'preferences.json');
 
@@ -175,7 +175,7 @@ async function writeAppSettings(patch: Partial<AppSettings>): Promise<void> {
 }
 
 // ---------------------------------------------------------------------------
-// Port file for MCP sync discovery (~/.openpencil/.port)
+// Port file for MCP sync discovery (~/.buildev/.port)
 // ---------------------------------------------------------------------------
 
 const PORT_FILE_DIR = join(homedir(), PORT_FILE_DIR_NAME);
@@ -360,7 +360,7 @@ function createWindow(): void {
     height: WINDOW_HEIGHT,
     minWidth: WINDOW_MIN_WIDTH,
     minHeight: WINDOW_MIN_HEIGHT,
-    title: 'OpenPencil',
+    title: 'Buildev',
     titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'hidden',
     ...(isWinOrLinux
       ? {
@@ -378,7 +378,7 @@ function createWindow(): void {
       nodeIntegration: false,
       // Persist localStorage/cookies in a fixed partition so data survives
       // across random Nitro server port changes (origin-independent storage).
-      partition: 'persist:openpencil',
+      partition: 'persist:buildev',
       // Disable DevTools entirely in packaged builds. This blocks the API,
       // any role-based menu item, and keyboard shortcuts at the lowest level.
       devTools: isDev,
@@ -647,7 +647,7 @@ app.on('ready', async () => {
     } catch (err) {
       log.error(`Failed to start Nitro server: ${err}`);
       dialog.showErrorBox(
-        'OpenPencil',
+        'Buildev',
         `Failed to start the application server.\n\n${err instanceof Error ? err.message : String(err)}\n\nThe application will now quit.`,
       );
       app.quit();
@@ -699,8 +699,8 @@ app.on('before-quit', () => {
 /** Kill the detached MCP server child (spawned by Nitro via mcp-server-manager). */
 function killMcpServer(): void {
   // PID file path matches apps/web/server/utils/mcp-server-manager.ts
-  const pidFile = join(tmpdir(), 'openpencil-mcp-server.pid');
-  const portFile = join(tmpdir(), 'openpencil-mcp-server.port');
+  const pidFile = join(tmpdir(), 'buildev-mcp-server.pid');
+  const portFile = join(tmpdir(), 'buildev-mcp-server.port');
   try {
     if (!existsSync(pidFile)) return;
     const pid = parseInt(readFileSync(pidFile, 'utf-8').trim(), 10);

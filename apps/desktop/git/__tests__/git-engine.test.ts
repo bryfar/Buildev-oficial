@@ -33,7 +33,7 @@ import {
   engineRemoteSet,
 } from '../git-engine';
 import { clearAllSessions, sessionCount } from '../repo-session';
-import { mkTempDir, writeOpFile, mkSubdir } from './test-helpers';
+import { mkTempDir, writeOpFile, mkSubdir, setBareRemoteDefaultBranch } from './test-helpers';
 
 const execFileAsync = promisify(execFile);
 
@@ -189,7 +189,7 @@ describe('git-engine', () => {
       const result = await engineOpen(repoRoot);
       expect(result.candidates).toHaveLength(1);
 
-      // Add a new file outside OpenPencil and refresh.
+      // Add a new file outside Buildev and refresh.
       await writeOpFile(repoRoot, 'b.op');
       const fresh = await engineListCandidates(result.repoId);
       expect(fresh).toHaveLength(2);
@@ -246,7 +246,7 @@ describe('git-engine', () => {
       // milestone path will do in Task 8).
       await setRef({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         value: hash,
       });
 
@@ -353,7 +353,7 @@ describe('git-engine', () => {
       });
       await setRef({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         value: h1,
       });
 
@@ -382,7 +382,7 @@ describe('git-engine', () => {
       });
       await setRef({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         value: m1,
       });
       // Then an autosave on top.
@@ -393,7 +393,7 @@ describe('git-engine', () => {
       const { hash: a1 } = await commitFile({
         handle: session.handle,
         filepath: 'login.op',
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
         message: 'auto',
         author: { name: 't', email: 't@example.com' },
       });
@@ -430,7 +430,7 @@ describe('git-engine', () => {
         });
         await setRef({
           handle: session.handle,
-          ref: 'refs/openpencil/autosaves/main',
+          ref: 'refs/buildev/autosaves/main',
           value: hash,
         });
       }
@@ -464,7 +464,7 @@ describe('git-engine', () => {
       const autoTip = await isoGit.resolveRef({
         fs: fsMod,
         gitdir: session.handle.gitdir,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
       });
       expect(headsTip).toBe(hash);
       expect(autoTip).toBe(hash);
@@ -505,7 +505,7 @@ describe('git-engine', () => {
       const autoTip = await isoGit.resolveRef({
         fs: fsMod,
         gitdir: session.handle.gitdir,
-        ref: 'refs/openpencil/autosaves/main',
+        ref: 'refs/buildev/autosaves/main',
       });
       expect(headsTip).toBe(m1); // unchanged
       expect(autoTip).toBe(a1); // advanced
@@ -983,6 +983,7 @@ describe('git-engine', () => {
         {},
       );
       await execFileAsync('git', ['-C', aDir, 'push', '-u', 'origin', 'main']);
+      await setBareRemoteDefaultBranch(remoteDir, 'main');
       await execFileAsync('git', ['clone', remoteDir, bDir]);
       return { remoteDir, aDir, bDir };
     }
@@ -1268,7 +1269,7 @@ describe('git-engine', () => {
       });
       await sr({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/feature',
+        ref: 'refs/buildev/autosaves/feature',
         value: theirs,
       });
       // Restore main's content.
@@ -1389,7 +1390,7 @@ describe('git-engine', () => {
       });
       await sr({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/feature',
+        ref: 'refs/buildev/autosaves/feature',
         value: theirs,
       });
 
@@ -1497,7 +1498,7 @@ describe('git-engine', () => {
       });
       await sr({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/feature',
+        ref: 'refs/buildev/autosaves/feature',
         value: theirsHash,
       });
 
@@ -1682,7 +1683,7 @@ describe('git-engine', () => {
       });
       await sr({
         handle: session.handle,
-        ref: 'refs/openpencil/autosaves/feature',
+        ref: 'refs/buildev/autosaves/feature',
         value: theirs,
       });
       await writeOpFile(temp.dir, 'login.op', {
@@ -1825,6 +1826,7 @@ describe('git-engine', () => {
       'base',
     ]);
     await execFileAsync('git', ['-C', aDir, 'push', '-u', 'origin', 'main']);
+    await setBareRemoteDefaultBranch(remoteDir, 'main');
     await execFileAsync('git', ['clone', remoteDir, bDir]);
     return { aDir, bDir };
   }
@@ -2234,7 +2236,7 @@ describe('git-engine', () => {
         const session = (await import('../repo-session')).getSession(result.repoId)!;
         await setRef({
           handle: session.handle,
-          ref: 'refs/openpencil/autosaves/main',
+          ref: 'refs/buildev/autosaves/main',
           value: mainHash,
         });
         const featureHash = await isoGit.resolveRef({
@@ -2244,7 +2246,7 @@ describe('git-engine', () => {
         });
         await setRef({
           handle: session.handle,
-          ref: 'refs/openpencil/autosaves/feature',
+          ref: 'refs/buildev/autosaves/feature',
           value: featureHash,
         });
 

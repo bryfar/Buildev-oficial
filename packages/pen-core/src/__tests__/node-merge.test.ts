@@ -1,6 +1,6 @@
 // packages/pen-core/src/__tests__/node-merge.test.ts
 import { describe, it, expect } from 'vitest';
-import type { PenDocument, PenNode, VariableDefinition } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode, VariableDefinition } from '@buildev/pen-types';
 import { mergeDocuments } from '../merge/node-merge';
 
 const rect = (id: string, props: Partial<PenNode> = {}): PenNode =>

@@ -20,8 +20,8 @@ import { generateCode } from '@/services/ai/code-generation-pipeline';
 import { buildCodegenBundleManifest, type CodegenAssetFile } from '@/services/ai/codegen-assets';
 import { buildAIStructureBundle, encodeAIStructureBundleZip } from '@/services/ai/structure-bundle';
 import { highlightCode } from '@/utils/syntax-highlight';
-import type { Framework, CodeGenProgress, ChunkStatus } from '@zseven-w/pen-types';
-import { FRAMEWORKS } from '@zseven-w/pen-types';
+import type { Framework, CodeGenProgress, ChunkStatus } from '@buildev/pen-types';
+import { FRAMEWORKS } from '@buildev/pen-types';
 import type { PenNode } from '@/types/pen';
 import type { SyntaxLanguage } from '@/utils/syntax-highlight';
 import { encode as encodeZip } from 'uzip';
@@ -106,6 +106,7 @@ function CodePanelInner() {
   const getNodeById = useDocumentStore((s) => s.getNodeById);
   const children = useDocumentStore((s) => getActivePageChildren(s.document, activePageId));
   const variables = useDocumentStore((s) => s.document?.variables);
+  const designMotion = useDocumentStore((s) => s.document.designMotion);
   const model = useAIStore((s) => s.model);
   // For builtin models, force provider to 'builtin' — modelGroups may report
   // 'anthropic'/'openai' based on the upstream API type, but streamChat needs
@@ -202,6 +203,7 @@ function CodePanelInner() {
         model,
         provider,
         abortRef.current.signal,
+        designMotion,
       );
       setCodeCache((prev) => ({
         ...prev,
@@ -219,7 +221,7 @@ function CodePanelInner() {
       }
       setIsGenerating(false);
     }
-  }, [getTargetNodes, activeTab, variables, selectionKey, model, provider]);
+  }, [getTargetNodes, activeTab, variables, selectionKey, model, provider, designMotion]);
 
   const handleCancel = useCallback(() => {
     abortRef.current?.abort();
@@ -360,19 +362,18 @@ function CodePanelInner() {
   const progressPct = totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
 
   return (
-    <div className="flex flex-1 min-h-0 flex-col">
-      {/* Tab Bar */}
-      <div className="flex items-center border-b border-border px-1.5 shrink-0">
+    <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+      <div className="flex shrink-0 items-center border-b border-border px-1.5">
         <div className="flex gap-0.5 overflow-x-auto py-1 scrollbar-none">
           {FRAMEWORKS.map((fw) => (
             <button
               key={fw}
               type="button"
               className={cn(
-                'whitespace-nowrap rounded px-2 py-1 text-[11px] font-medium transition-all duration-150 shrink-0',
+                'shrink-0 whitespace-nowrap rounded px-2 py-1 text-[11px] font-medium transition-all duration-150',
                 activeTab === fw
                   ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60',
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground',
               )}
               onClick={() => handleTabChange(fw)}
             >
@@ -382,8 +383,7 @@ function CodePanelInner() {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 min-h-0 flex flex-col">
+      <div className="flex min-h-0 flex-1 flex-col">
         {/* Empty State */}
         {panelState === 'empty' && (
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center">
@@ -542,17 +542,17 @@ function CodePanelInner() {
                 </div>
               </div>
             )}
-            <div className="flex-1 min-h-0 overflow-auto p-2">
-              <pre className="text-[10px] leading-relaxed font-mono text-foreground/80 whitespace-pre-wrap break-all">
+            <div className="min-h-0 flex-1 overflow-auto p-2">
+              <pre className="m-0 whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-foreground/80 [&_code]:font-mono">
                 <code dangerouslySetInnerHTML={{ __html: highlightedHTML }} />
               </pre>
             </div>
-            <div className="flex items-center gap-px border-t border-border px-1 py-1 shrink-0 bg-card">
+            <div className="flex shrink-0 items-center gap-px border-t border-border bg-card px-1 py-1">
               <Button
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  'h-7 flex-1 px-1 text-[11px] transition-colors',
+                  'h-7 min-w-0 flex-1 px-1 text-[11px] transition-colors',
                   copied ? 'text-green-500' : 'text-muted-foreground hover:text-foreground',
                 )}
                 onClick={handleCopy}
@@ -564,31 +564,31 @@ function CodePanelInner() {
                 )}
                 <span className="truncate">{copied ? 'Copied' : 'Copy'}</span>
               </Button>
-              <div className="w-px h-4 bg-border/50" />
+              <div className="h-4 w-px shrink-0 bg-border/50" />
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
+                className="h-7 min-w-0 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
                 onClick={handleDownload}
               >
                 <Download className="mr-1 h-3 w-3 shrink-0" />
                 <span className="truncate">{hasExportedAssets ? 'Download ZIP' : 'Download'}</span>
               </Button>
-              <div className="w-px h-4 bg-border/50" />
+              <div className="h-4 w-px shrink-0 bg-border/50" />
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
+                className="h-7 min-w-0 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
                 onClick={() => void handleDownloadStructureBundle()}
               >
                 <FileJson className="mr-1 h-3 w-3 shrink-0" />
                 <span className="truncate">AI Bundle</span>
               </Button>
-              <div className="w-px h-4 bg-border/50" />
+              <div className="h-4 w-px shrink-0 bg-border/50" />
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
+                className="h-7 min-w-0 flex-1 px-1 text-[11px] text-muted-foreground hover:text-foreground"
                 onClick={handleGenerate}
               >
                 <RefreshCw className="mr-1 h-3 w-3 shrink-0" />

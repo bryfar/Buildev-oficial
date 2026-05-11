@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { PenPage } from '@zseven-w/pen-types';
+import type { PenPage } from '@buildev/pen-types';
 import { useDesignEngine } from './use-design-engine.js';
 import { useEngineSubscribe } from '../utils/use-engine-subscribe.js';
 import { useDocument } from './use-document.js';

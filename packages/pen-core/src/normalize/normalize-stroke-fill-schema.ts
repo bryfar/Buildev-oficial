@@ -1,4 +1,4 @@
-import type { PenNode, PenFill, PenStroke, SolidFill } from '@zseven-w/pen-types';
+import type { PenNode, PenFill, PenStroke, SolidFill } from '@buildev/pen-types';
 
 /**
  * Normalize stroke/fill schema violations commonly emitted by AI sub-agents

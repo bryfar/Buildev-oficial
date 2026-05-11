@@ -1,6 +1,6 @@
-import type { PenDocument } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
-import { getDefaultTheme, resolveVariableRef, replaceVariableRefsInTree } from '@zseven-w/pen-core';
+import type { PenDocument } from '@buildev/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
+import { getDefaultTheme, resolveVariableRef, replaceVariableRefsInTree } from '@buildev/pen-core';
 
 export interface VariableManagerOptions {
   getDocument: () => PenDocument;

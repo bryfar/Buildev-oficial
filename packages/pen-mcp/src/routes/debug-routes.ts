@@ -54,7 +54,7 @@ export const DEBUG_TOOL_DEFINITIONS = [
   {
     name: 'debug_logs_tail',
     description:
-      'Read the tail of the Nitro server log (~/.openpencil/logs/server-YYYY-MM-DD.log) ' +
+      'Read the tail of the Nitro server log (~/.buildev/logs/server-YYYY-MM-DD.log) ' +
       'with API keys and Authorization headers redacted. ' +
       'Requires --debug mode.',
     inputSchema: {

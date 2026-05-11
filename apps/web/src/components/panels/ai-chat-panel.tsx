@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { useAIStore } from '@/stores/ai-store';
+import { useCanvasStore } from '@/stores/canvas-store';
 import type { PanelCorner } from '@/stores/ai-store';
 import { useAgentSettingsStore } from '@/stores/agent-settings-store';
 import type { AIProviderType, ModelGroup } from '@/types/agent-settings';
@@ -49,10 +50,11 @@ const CORNER_CLASSES: Record<PanelCorner, string> = {
  * Parent is responsible for placing it in the layout.
  */
 export function AIChatMinimizedBar() {
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const isMinimized = useAIStore((s) => s.isMinimized);
   const toggleMinimize = useAIStore((s) => s.toggleMinimize);
 
-  if (!isMinimized) return null;
+  if (ideModeOpen || !isMinimized) return null;
 
   return (
     <button
@@ -110,6 +112,7 @@ export default function AIChatPanel() {
   const providersHydrated = useAgentSettingsStore((s) => s.isHydrated);
   const acpAgents = useAgentSettingsStore((s) => s.acpAgents);
   const acpConnectionStatus = useAgentSettingsStore((s) => s.acpConnectionStatus);
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
 
   const { input, setInput, handleSend } = useChatHandlers();
   const canUseModel = !isLoadingModels && availableModels.length > 0;
@@ -383,6 +386,8 @@ export default function AIChatPanel() {
     },
     [toggleMaximize],
   );
+
+  if (ideModeOpen) return null;
 
   // Don't render when minimized — the minimized bar is rendered by parent
   if (isMinimized) return null;

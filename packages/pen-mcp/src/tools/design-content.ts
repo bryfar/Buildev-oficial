@@ -9,7 +9,7 @@ import {
 import { generateId } from '../utils/id';
 import { sanitizeObject } from '../utils/sanitize';
 import { getMcpHooks } from '../hooks';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -125,7 +125,7 @@ function assignIds(data: Record<string, unknown>, warnings: string[]): PenNode {
 
   // Check for common issues
   if (node.type === 'text') {
-    const tNode = node as import('@zseven-w/pen-types').TextNode;
+    const tNode = node as import('@buildev/pen-types').TextNode;
     const content = typeof tNode.content === 'string' ? tNode.content : '';
     if (content.length > 15 && !tNode.textGrowth) {
       warnings.push(
@@ -140,7 +140,7 @@ function assignIds(data: Record<string, unknown>, warnings: string[]): PenNode {
   }
 
   if (node.type === 'frame') {
-    const fNode = node as import('@zseven-w/pen-types').FrameNode;
+    const fNode = node as import('@buildev/pen-types').FrameNode;
     if (typeof fNode.cornerRadius === 'number' && fNode.cornerRadius > 0) {
       const hasImageChild =
         Array.isArray(fNode.children) && fNode.children.some((c) => c.type === 'image');
@@ -154,7 +154,7 @@ function assignIds(data: Record<string, unknown>, warnings: string[]): PenNode {
 
   // Recurse into children
   if ('children' in node && Array.isArray(node.children)) {
-    const container = node as PenNode & import('@zseven-w/pen-types').ContainerProps;
+    const container = node as PenNode & import('@buildev/pen-types').ContainerProps;
     container.children = container.children!.map((child) =>
       assignIds(child as unknown as Record<string, unknown>, warnings),
     );

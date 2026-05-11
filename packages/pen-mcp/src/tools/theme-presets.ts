@@ -1,8 +1,8 @@
 import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { resolve, join, extname, basename } from 'node:path';
 import { openDocument, saveDocument, resolveDocPath } from '../document-manager';
-import type { ThemePresetFile } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { ThemePresetFile } from '@buildev/pen-types';
+import type { VariableDefinition } from '@buildev/pen-types';
 
 // ---------------------------------------------------------------------------
 // save_theme_preset
@@ -22,7 +22,7 @@ export async function handleSaveThemePreset(
   const presetPath = resolve(params.presetPath);
 
   const preset: ThemePresetFile = {
-    type: 'openpencil-theme-preset',
+    type: 'buildev-theme-preset',
     version: '1.0.0',
     name: params.name ?? basename(presetPath, extname(presetPath)),
     themes: doc.themes ?? {},
@@ -52,7 +52,7 @@ export async function handleLoadThemePreset(
   const raw = await readFile(presetPath, 'utf-8');
   const data = JSON.parse(raw) as ThemePresetFile;
 
-  if (data.type !== 'openpencil-theme-preset') {
+  if (data.type !== 'buildev-theme-preset' && data.type !== 'openpencil-theme-preset') {
     throw new Error('Invalid theme preset file');
   }
 
@@ -90,7 +90,7 @@ export async function handleListThemePresets(
     try {
       const raw = await readFile(fullPath, 'utf-8');
       const data = JSON.parse(raw) as ThemePresetFile;
-      if (data.type === 'openpencil-theme-preset') {
+      if (data.type === 'buildev-theme-preset' || data.type === 'openpencil-theme-preset') {
         presets.push({ name: data.name ?? basename(entry, '.optheme'), path: fullPath });
       }
     } catch {

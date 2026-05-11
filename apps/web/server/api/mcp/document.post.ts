@@ -85,13 +85,13 @@ function isConnectionClosedError(error: unknown): boolean {
 export default defineEventHandler(async (event) => {
   const startedAt = Date.now();
   const contentLengthHeader = getRequestHeader(event, 'content-length');
-  const bodyBytesHeader = getRequestHeader(event, 'x-openpencil-body-bytes');
+  const bodyBytesHeader = getRequestHeader(event, 'x-buildev-body-bytes');
   const contentLength = contentLengthHeader
     ? Number.parseInt(contentLengthHeader, 10)
     : bodyBytesHeader
       ? Number.parseInt(bodyBytesHeader, 10)
       : null;
-  const sourceClientIdHeader = getRequestHeader(event, 'x-openpencil-client-id') ?? 'unknown';
+  const sourceClientIdHeader = getRequestHeader(event, 'x-buildev-client-id') ?? 'unknown';
   let phase = 'readBody';
 
   try {

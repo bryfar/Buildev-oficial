@@ -1,6 +1,6 @@
 // packages/pen-mcp/src/tools/codegen-plan.ts
 
-import type { CodePlanFromAI } from '@zseven-w/pen-types';
+import type { CodePlanFromAI } from '@buildev/pen-types';
 import { getSyncUrl } from '../document-manager';
 
 export interface CodegenPlanParams {

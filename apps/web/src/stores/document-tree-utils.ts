@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-core — the canonical source
+// Re-export from @buildev/pen-core — the canonical source
 export {
   DEFAULT_FRAME_ID,
   DEFAULT_PAGE_ID,
@@ -23,4 +23,4 @@ export {
   deepCloneNode,
   cloneNodeWithNewIds,
   cloneNodesWithNewIds,
-} from '@zseven-w/pen-core';
+} from '@buildev/pen-core';

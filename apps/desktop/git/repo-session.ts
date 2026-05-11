@@ -19,7 +19,7 @@ export interface CandidateFileInfo {
   relativePath: string;
   /** # of commits on refs/heads/<currentBranch> that include this file */
   milestoneCount: number;
-  /** # of commits on refs/openpencil/autosaves/<currentBranch> for this file */
+  /** # of commits on refs/buildev/autosaves/<currentBranch> for this file */
   autosaveCount: number;
   /** timestamp (seconds) of the most recent touching commit, null if never */
   lastCommitAt: number | null;

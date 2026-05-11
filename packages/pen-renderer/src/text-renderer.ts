@@ -1,7 +1,7 @@
 import type { CanvasKit, Canvas, Image as SkImage, Paragraph } from 'canvaskit-wasm';
-import type { PenNode, TextNode } from '@zseven-w/pen-types';
-import type { PenEffect, ShadowEffect } from '@zseven-w/pen-types';
-import { defaultLineHeight, cssFontFamily } from '@zseven-w/pen-core';
+import type { PenNode, TextNode } from '@buildev/pen-types';
+import type { PenEffect, ShadowEffect } from '@buildev/pen-types';
+import { defaultLineHeight, cssFontFamily } from '@buildev/pen-core';
 import { parseColor, resolveFillColor, wrapLine } from './paint-utils.js';
 import { SkiaFontManager, type FontManagerOptions } from './font-manager.js';
 

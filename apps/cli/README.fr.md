@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [**Français**](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-CLI pour [OpenPencil](https://github.com/ZSeven-W/openpencil) — controlez l'outil de design depuis votre terminal.
+CLI pour [Buildev](https://github.com/bryfar/Buildev-oficial) — controlez l'outil de design depuis votre terminal.
 
 ## Installation
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Plateformes supportees
 
-Le CLI detecte et lance automatiquement l'application de bureau OpenPencil sur toutes les plateformes :
+Le CLI detecte et lance automatiquement l'application de bureau Buildev sur toutes les plateformes :
 
 | Plateforme  | Chemins d'installation detectes                                                                         |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS par utilisateur (`%LOCALAPPDATA%`), par machine (`%PROGRAMFILES%`), portable                       |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Lecture depuis stdin (pipe)
 ### Controle de l'application
 
 ```bash
-op start [--desktop|--web]   # Lancer OpenPencil (bureau par defaut)
+op start [--desktop|--web]   # Lancer Buildev (bureau par defaut)
 op stop                      # Arreter l'instance en cours
 op status                    # Verifier si l'application est en cours d'execution
 ```

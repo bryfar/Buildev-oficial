@@ -43,7 +43,7 @@ TanStack Start full-stack React app (Vite + Nitro). Routes in `src/routes/`, aut
 - `canvas-sync-utils.ts` — `forcePageResync()` utility
 - `canvas-constants.ts` — Default colors, zoom limits, stroke widths
 - `canvas-node-creator.ts` — `createNodeForTool`, `isDrawingTool`
-- `canvas-layout-engine.ts` — Auto-layout (delegates to `@zseven-w/pen-core`)
+- `canvas-layout-engine.ts` — Auto-layout (delegates to `@buildev/pen-core`)
 - `canvas-text-measure.ts` — Text width/height estimation, CJK detection
 - `font-utils.ts`, `node-helpers.ts` — Re-exports from pen-core
 - `insertion-indicator.ts`, `selection-context.ts`, `agent-indicator.ts`, `use-layout-indicator.ts`, `skia-engine-ref.ts`
@@ -53,7 +53,7 @@ TanStack Start full-stack React app (Vite + Nitro). Routes in `src/routes/`, aut
 - `canvas-store.ts` — UI/tool/selection/viewport/clipboard/interaction state, `activePageId`
 - `document-store.ts` — PenDocument tree CRUD, variable CRUD, component management (all with history)
 - `document-store-pages.ts` — Page actions: add, remove, rename, reorder, duplicate
-- `document-tree-utils.ts` — Re-exports tree helpers and clone utilities from `@zseven-w/pen-core`
+- `document-tree-utils.ts` — Re-exports tree helpers and clone utilities from `@buildev/pen-core`
 - `history-store.ts` — Undo/redo (max 300 states), batch mode
 - `ai-store.ts` — Chat messages, streaming state, model selection
 - `agent-settings-store.ts` — AI provider config, MCP CLI integrations, localStorage persistence
@@ -118,7 +118,7 @@ Prompts for AI design generation live in `packages/pen-ai-skills/skills/` as Mar
 
 **Adding a new skill:** Create a `.md` file in the appropriate `skills/` subdirectory with frontmatter (name, phase, trigger, priority, budget, category). The Vite plugin auto-compiles on save.
 
-**Usage:** `import { resolveSkills } from '@zseven-w/pen-ai-skills'` → `resolveSkills('generation', userMessage, { flags, dynamicContent })`
+**Usage:** `import { resolveSkills } from '@buildev/pen-ai-skills'` → `resolveSkills('generation', userMessage, { flags, dynamicContent })`
 
 ## Server API (`server/`)
 

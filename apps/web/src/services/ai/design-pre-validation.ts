@@ -1,7 +1,7 @@
 /**
  * Pre-validation: pure code checks that don't require LLM.
  *
- * This file is now a thin wrapper around `@zseven-w/pen-ai-skills` diagnostics.
+ * This file is now a thin wrapper around `@buildev/pen-ai-skills` diagnostics.
  * All detect logic lives in `packages/pen-ai-skills/src/diagnostics/detectors.ts`
  * as pure functions so debug tools can reuse them without side effects.
  *
@@ -10,7 +10,7 @@
  *   - docs/superpowers/specs/2026-04-06-mcp-debug-tools-design.md (Phase 1.A)
  */
 
-import { detectAllIssues, type Issue } from '@zseven-w/pen-ai-skills';
+import { detectAllIssues, type Issue } from '@buildev/pen-ai-skills';
 import { DEFAULT_FRAME_ID, useDocumentStore } from '@/stores/document-store';
 import type { PenNode } from '@/types/pen';
 

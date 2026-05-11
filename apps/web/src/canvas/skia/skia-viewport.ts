@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-renderer
+// Re-export from @buildev/pen-renderer
 export {
   viewportMatrix,
   screenToScene,
@@ -6,5 +6,5 @@ export {
   zoomToPoint,
   getViewportBounds,
   isRectInViewport,
-} from '@zseven-w/pen-renderer';
-export type { ViewportState } from '@zseven-w/pen-renderer';
+} from '@buildev/pen-renderer';
+export type { ViewportState } from '@buildev/pen-renderer';

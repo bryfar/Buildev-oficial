@@ -59,7 +59,7 @@ export function resolveClaudeCli(): string | undefined {
   // 2. On macOS/Linux, ask the user's login shell — Electron does not
   //    inherit the user's shell config, so nvm/pnpm/bun/mise/asdf shims are
   //    invisible to a bare `which`. This is the single most common cause of
-  //    "CLI installed but OpenPencil can't find it" reports on Mac.
+  //    "CLI installed but Buildev can't find it" reports on Mac.
   if (!isWindows) {
     const viaShell = probeViaLoginShell('claude', 'resolve-claude-cli');
     if (viaShell) return viaShell;

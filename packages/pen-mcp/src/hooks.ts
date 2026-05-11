@@ -1,4 +1,4 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 /**
  * Hooks for AI-powered features (role resolution, icon resolution, node sanitization).

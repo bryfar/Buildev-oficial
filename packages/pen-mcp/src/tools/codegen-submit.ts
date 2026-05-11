@@ -1,6 +1,6 @@
 // packages/pen-mcp/src/tools/codegen-submit.ts
 
-import type { ChunkResult } from '@zseven-w/pen-types';
+import type { ChunkResult } from '@buildev/pen-types';
 import { getSyncUrl } from '../document-manager';
 
 export interface CodegenSubmitParams {

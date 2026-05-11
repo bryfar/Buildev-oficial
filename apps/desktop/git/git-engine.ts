@@ -82,8 +82,8 @@ import {
 } from './repo-session';
 import type { AuthCreds, AuthStore } from './auth-store';
 import type { SshKeyManager } from './ssh-keys';
-import { diffDocuments, mergeDocuments, type NodePatch } from '@zseven-w/pen-core';
-import type { PenDocument } from '@zseven-w/pen-types';
+import { diffDocuments, mergeDocuments, type NodePatch } from '@buildev/pen-core';
+import type { PenDocument } from '@buildev/pen-types';
 import { runMerge, applyResolutions } from './merge-orchestrator';
 import { buildConflictBag, type ConflictBag, type ConflictResolution } from './merge-session';
 
@@ -172,7 +172,7 @@ function requireSession(repoId: string): RepoSession {
 /**
  * Resolve an alias ref name to a fully-qualified ref:
  *   'main'      → 'refs/heads/<currentBranch>'
- *   'autosaves' → 'refs/openpencil/autosaves/<currentBranch>'
+ *   'autosaves' → 'refs/buildev/autosaves/<currentBranch>'
  *   <name>      → 'refs/heads/<name>'
  *
  * In Phase 2a there's no detached HEAD handling — if currentBranch is null
@@ -187,7 +187,7 @@ async function getRefAlias(
     if (!branch) {
       throw new GitError('engine-crash', 'No current branch (HEAD detached?)');
     }
-    return alias === 'main' ? `refs/heads/${branch}` : `refs/openpencil/autosaves/${branch}`;
+    return alias === 'main' ? `refs/heads/${branch}` : `refs/buildev/autosaves/${branch}`;
   }
   return `refs/heads/${alias}`;
 }
@@ -427,7 +427,7 @@ async function computeCandidateMeta(
   }
 
   const headsRef = `refs/heads/${branch}`;
-  const autoRef = `refs/openpencil/autosaves/${branch}`;
+  const autoRef = `refs/buildev/autosaves/${branch}`;
   const headsLog = await logForRef({ handle, ref: headsRef, depth: 10000 });
   const autoLog = await logForRef({ handle, ref: autoRef, depth: 10000 });
 
@@ -618,7 +618,7 @@ export async function engineBindTrackedFile(
 /**
  * Re-walk the worktree and refresh the cached candidate list. Returns the
  * fresh list. Used by the picker UI when the user adds files outside
- * OpenPencil and wants to refresh.
+ * Buildev and wants to refresh.
  */
 export async function engineListCandidates(repoId: string): Promise<CandidateFileInfo[]> {
   const session = requireSession(repoId);
@@ -650,7 +650,7 @@ function isInside(root: string, child: string): boolean {
 /**
  * Snapshot of the repo's working state. workingDirty is computed by hashing
  * the tracked file's on-disk content and comparing it to the blob OID stored
- * at the tip of refs/openpencil/autosaves/<branch> (falling back to
+ * at the tip of refs/buildev/autosaves/<branch> (falling back to
  * refs/heads/<branch> if the autosave ref doesn't exist yet).
  *
  * Phase 2a constants (filled in by 2b/2c):
@@ -803,7 +803,7 @@ async function isWorkingDirty(
   const rel = toPosixPath(relative(handle.dir, trackedFilePath));
   let refOid = await readBlobOidAt({
     handle,
-    ref: `refs/openpencil/autosaves/${branch}`,
+    ref: `refs/buildev/autosaves/${branch}`,
     filepath: rel,
   });
   if (refOid === null) {
@@ -967,7 +967,7 @@ function toPosixPath(p: string): string {
 /**
  * Walk commits from the given ref. The ref alias is resolved by getRefAlias:
  *   'main'      → refs/heads/<currentBranch>
- *   'autosaves' → refs/openpencil/autosaves/<currentBranch>
+ *   'autosaves' → refs/buildev/autosaves/<currentBranch>
  *   <name>      → refs/heads/<name>
  *
  * Each commit is decorated with `kind`: 'milestone' if its hash is reachable
@@ -1007,10 +1007,10 @@ export async function engineLog(
  * Create a commit on the tracked file. Two kinds:
  *
  *   'milestone': writes the commit to refs/heads/<branch> (parent = heads
- *     tip), then force-jumps refs/openpencil/autosaves/<branch> to the new
+ *     tip), then force-jumps refs/buildev/autosaves/<branch> to the new
  *     hash. Abandons any intermediate autosaves.
  *
- *   'autosave': writes the commit to refs/openpencil/autosaves/<branch>
+ *   'autosave': writes the commit to refs/buildev/autosaves/<branch>
  *     (parent = autosaves tip, which may be a milestone if no autosaves
  *     since). heads ref is untouched.
  *
@@ -1036,7 +1036,7 @@ export async function engineCommit(
     throw new GitError('engine-crash', 'HEAD is detached; Phase 2a does not support this');
   }
   const headsRef = `refs/heads/${branch}`;
-  const autoRef = `refs/openpencil/autosaves/${branch}`;
+  const autoRef = `refs/buildev/autosaves/${branch}`;
 
   const rel = toPosixPath(relative(session.handle.dir, session.trackedFilePath));
 
@@ -1600,13 +1600,13 @@ async function engineBranchMergeFolderMode(
     const hash = await sysFinalizeMerge({
       cwd: session.handle.dir,
       message: `Merge ${fromBranch} into ${branch}`,
-      author: { name: 'OpenPencil', email: 'noreply@openpencil' },
+      author: { name: 'Buildev', email: 'noreply@buildev' },
     });
     // Sync the isomorphic-git refs to the new HEAD so the engine stays consistent.
     await setRef({ handle: session.handle, ref: oursRef, value: hash });
     await setRef({
       handle: session.handle,
-      ref: `refs/openpencil/autosaves/${branch}`,
+      ref: `refs/buildev/autosaves/${branch}`,
       value: hash,
     });
     return { result: 'merge' };
@@ -1755,7 +1755,7 @@ export async function engineBranchMerge(
     await setRef({ handle: session.handle, ref: oursRef, value: theirsCommit });
     await setRef({
       handle: session.handle,
-      ref: `refs/openpencil/autosaves/${branch}`,
+      ref: `refs/buildev/autosaves/${branch}`,
       value: theirsCommit,
     });
     try {
@@ -1800,12 +1800,12 @@ export async function engineBranchMerge(
       filepath: rel,
       ref: oursRef,
       message: `Merge ${fromBranch} into ${branch}`,
-      author: { name: 'OpenPencil', email: 'noreply@openpencil' },
+      author: { name: 'Buildev', email: 'noreply@buildev' },
       parents: [oursCommit, theirsCommit],
     });
     await setRef({
       handle: session.handle,
-      ref: `refs/openpencil/autosaves/${branch}`,
+      ref: `refs/buildev/autosaves/${branch}`,
       value: hash,
     });
     return { result: 'merge' };
@@ -1951,14 +1951,14 @@ export async function engineApplyMerge(repoId: string): Promise<{ hash: string; 
     hash = await sysFinalizeMerge({
       cwd: session.handle.dir,
       message: session.inflightMerge.defaultMessage,
-      author: { name: 'OpenPencil', email: 'noreply@openpencil' },
+      author: { name: 'Buildev', email: 'noreply@buildev' },
     });
     // Sync isomorphic-git refs to the new HEAD.
     const oursRef = `refs/heads/${branch}`;
     await setRef({ handle: session.handle, ref: oursRef, value: hash });
     await setRef({
       handle: session.handle,
-      ref: `refs/openpencil/autosaves/${branch}`,
+      ref: `refs/buildev/autosaves/${branch}`,
       value: hash,
     });
   } else {
@@ -1970,13 +1970,13 @@ export async function engineApplyMerge(repoId: string): Promise<{ hash: string; 
       filepath: rel,
       ref: oursRef,
       message: session.inflightMerge.defaultMessage,
-      author: { name: 'OpenPencil', email: 'noreply@openpencil' },
+      author: { name: 'Buildev', email: 'noreply@buildev' },
       parents: [oursCommit, theirsCommit],
     });
     hash = commitResult.hash;
     await setRef({
       handle: session.handle,
-      ref: `refs/openpencil/autosaves/${branch}`,
+      ref: `refs/buildev/autosaves/${branch}`,
       value: hash,
     });
   }

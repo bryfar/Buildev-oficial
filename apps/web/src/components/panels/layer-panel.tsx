@@ -10,6 +10,7 @@ import type { DropPosition } from './layer-item';
 import LayerContextMenu from './layer-context-menu';
 import PageTabs from '@/components/editor/page-tabs';
 import { resolveLayerDropMove } from './layer-dnd-utils';
+import { cn } from '@/lib/utils';
 
 const CONTAINER_TYPES = new Set(['frame', 'group', 'rectangle', 'ref']);
 
@@ -119,7 +120,12 @@ function collectCollapsibleNodeIds(
   return result;
 }
 
-function LayerPanelInner() {
+type LayerPanelInnerProps = {
+  /** VS Code–style primary sidebar: show an Explorer section strip above pages/layers. */
+  ideExplorerChrome?: boolean;
+};
+
+function LayerPanelInner({ ideExplorerChrome = false }: LayerPanelInnerProps) {
   const { t } = useTranslation();
   const [panelWidth, setPanelWidth] = useState(LAYER_DEFAULT_WIDTH);
   const isDraggingResize = useRef(false);
@@ -444,10 +450,27 @@ function LayerPanelInner() {
         className="absolute right-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-primary/30 active:bg-primary/50 z-10"
         onMouseDown={handleResizeMouseDown}
       />
-      <PageTabs />
-      <div className="h-8 flex items-center px-3 border-b border-border">
-        <span className="text-xs font-medium text-muted-foreground tracking-wider">
-          {t('layers.title')}
+      {ideExplorerChrome ? (
+        <div className="flex h-9 shrink-0 items-center border-b border-border bg-muted/50 px-3">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+            {t('topbar.ideExplorerSection')}
+          </span>
+        </div>
+      ) : null}
+      {!ideExplorerChrome ? <PageTabs /> : null}
+      <div
+        className={cn(
+          'flex h-8 items-center border-b border-border px-3',
+          ideExplorerChrome && 'bg-muted/30',
+        )}
+      >
+        <span
+          className={cn(
+            'text-xs font-medium tracking-wider text-muted-foreground',
+            ideExplorerChrome && 'font-mono text-[11px] uppercase tracking-wide',
+          )}
+        >
+          {ideExplorerChrome ? t('topbar.ideOutlineLayers') : t('layers.title')}
         </span>
       </div>
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto py-1 px-1">

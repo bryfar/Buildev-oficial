@@ -1,4 +1,4 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import { parseFigFile } from './fig-parser';
 import { figmaNodeChangesToPenNodes } from './figma-node-mapper';
 import { resolveImageBlobs } from './figma-image-resolver';

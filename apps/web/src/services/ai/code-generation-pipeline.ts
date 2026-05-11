@@ -1,6 +1,6 @@
 // apps/web/src/services/ai/code-generation-pipeline.ts
 
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 import type {
   Framework,
   CodePlanFromAI,
@@ -12,8 +12,9 @@ import type {
   ChunkStatus,
   CodeGenProgress,
   ContractValidationResult,
-} from '@zseven-w/pen-types';
-import { sanitizeName } from '@zseven-w/pen-core';
+  PenDesignMotionConfig,
+} from '@buildev/pen-types';
+import { sanitizeName } from '@buildev/pen-core';
 import { buildPlanningPrompt, buildChunkPrompt, buildAssemblyPrompt } from './codegen-prompts';
 import { streamChat } from './ai-service';
 import {
@@ -22,8 +23,9 @@ import {
   type CodegenAssetFile,
   type CodegenAssetHint,
 } from './codegen-assets';
+import { formatDesignMotionForPrompt } from '@/utils/format-design-motion-for-prompt';
 
-// Inlined to avoid importing from @zseven-w/pen-mcp, which transitively pulls
+// Inlined to avoid importing from @buildev/pen-mcp, which transitively pulls
 // node:fs/promises via document-manager and breaks Vite browser builds.
 function validateContract(result: ChunkResult): ContractValidationResult {
   const issues: string[] = [];
@@ -229,6 +231,7 @@ export async function generateCode(
   model: string,
   provider: string | undefined,
   abortSignal?: AbortSignal,
+  designMotion?: PenDesignMotionConfig,
 ): Promise<{ code: string; degraded: boolean; assets: CodegenAssetFile[] }> {
   const { nodes: sanitizedNodes, assets } = extractCodegenAssets(nodes);
   // ── Step 1: Planning ──
@@ -236,13 +239,29 @@ export async function generateCode(
 
   let planFromAI: CodePlanFromAI;
   try {
-    planFromAI = await runPlanning(sanitizedNodes, framework, model, provider, abortSignal);
+    planFromAI = await runPlanning(
+      sanitizedNodes,
+      framework,
+      model,
+      provider,
+      abortSignal,
+      false,
+      designMotion,
+    );
     onProgress({ step: 'planning', status: 'done', plan: planFromAI });
   } catch (err) {
     if (abortSignal?.aborted) throw err;
     // Retry once with stricter prompt
     try {
-      planFromAI = await runPlanning(sanitizedNodes, framework, model, provider, abortSignal, true);
+      planFromAI = await runPlanning(
+        sanitizedNodes,
+        framework,
+        model,
+        provider,
+        abortSignal,
+        true,
+        designMotion,
+      );
       onProgress({ step: 'planning', status: 'done', plan: planFromAI });
     } catch (retryErr) {
       const msg = retryErr instanceof Error ? retryErr.message : 'Planning failed';
@@ -504,8 +523,10 @@ async function runPlanning(
   provider: string | undefined,
   abortSignal?: AbortSignal,
   strict?: boolean,
+  designMotion?: PenDesignMotionConfig,
 ): Promise<CodePlanFromAI> {
-  const { system, user } = buildPlanningPrompt(nodes, framework);
+  const motionHint = formatDesignMotionForPrompt(designMotion);
+  const { system, user } = buildPlanningPrompt(nodes, framework, motionHint || undefined);
   const systemPrompt = strict
     ? system + '\n\nCRITICAL: Respond with ONLY valid JSON. No markdown, no explanation.'
     : system;

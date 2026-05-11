@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { DesignEngine } from '@zseven-w/pen-engine';
-import type { DesignEngineOptions } from '@zseven-w/pen-types';
-import type { PenDocument } from '@zseven-w/pen-types';
+import { DesignEngine } from '@buildev/pen-engine';
+import type { DesignEngineOptions } from '@buildev/pen-types';
+import type { PenDocument } from '@buildev/pen-types';
 import { DesignEngineContext } from './context.js';
 
 export interface DesignProviderProps {

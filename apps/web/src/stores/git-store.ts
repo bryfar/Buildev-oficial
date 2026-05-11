@@ -124,7 +124,7 @@ export const useGitStore = create<GitStore>((set, get) => {
     },
 
     setAuthorIdentity: async (name, email) => {
-      // Persist to OpenPencil prefs first so a panel reopen rehydrates from
+      // Persist to Buildev prefs first so a panel reopen rehydrates from
       // them in step 1 of the chain. If preference IPC fails (e.g. browser
       // mode), still update the in-memory cache so the current session
       // works. SSR guard: skip the IPC entirely (bare `window` would
@@ -187,7 +187,7 @@ export const useGitStore = create<GitStore>((set, get) => {
     },
 
     clearAuthorIdentity: async () => {
-      // Remove the OpenPencil prefs first so a reload doesn't rehydrate.
+      // Remove the Buildev prefs first so a reload doesn't rehydrate.
       // We must REMOVE the keys (not `setPreference(..., '')`), otherwise
       // the lookup chain in resolveAuthorIdentity will see empty-string
       // sentinels on disk and treat them as set-but-blank instead of

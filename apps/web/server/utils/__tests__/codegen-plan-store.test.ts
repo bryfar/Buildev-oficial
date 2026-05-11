@@ -6,7 +6,7 @@ import {
   assemblePlan,
   cleanPlan,
 } from '../codegen-plan-store';
-import type { CodePlanFromAI, ChunkResult, PenNode } from '@zseven-w/pen-types';
+import type { CodePlanFromAI, ChunkResult, PenNode } from '@buildev/pen-types';
 
 const mockNodes: PenNode[] = [
   { id: 'n1', type: 'frame', name: 'Hero', x: 0, y: 0, width: 800, height: 600 } as PenNode,

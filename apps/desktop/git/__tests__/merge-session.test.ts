@@ -6,7 +6,7 @@ import {
   parseConflictId,
   buildConflictBag,
 } from '../merge-session';
-import type { NodeConflict, DocFieldConflict, MergeResult } from '@zseven-w/pen-core';
+import type { NodeConflict, DocFieldConflict, MergeResult } from '@buildev/pen-core';
 
 describe('conflict id codec', () => {
   it('encodes node conflicts with the page-id placeholder for legacy single-page docs', () => {

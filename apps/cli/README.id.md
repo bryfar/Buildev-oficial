@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [**Bahasa Indonesia**](./README.id.md)
 
-CLI untuk [OpenPencil](https://github.com/ZSeven-W/openpencil) — kendalikan alat desain dari terminal Anda.
+CLI untuk [Buildev](https://github.com/bryfar/Buildev-oficial) — kendalikan alat desain dari terminal Anda.
 
 ## Instalasi
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Dukungan Platform
 
-CLI secara otomatis mendeteksi dan meluncurkan aplikasi desktop OpenPencil di semua platform:
+CLI secara otomatis mendeteksi dan meluncurkan aplikasi desktop Buildev di semua platform:
 
 | Platform    | Jalur instalasi yang terdeteksi                                                                         |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS per-pengguna (`%LOCALAPPDATA%`), per-mesin (`%PROGRAMFILES%`), portabel                            |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Baca dari stdin (piping)
 ### Kontrol Aplikasi
 
 ```bash
-op start [--desktop|--web]   # Jalankan OpenPencil (desktop secara default)
+op start [--desktop|--web]   # Jalankan Buildev (desktop secara default)
 op stop                      # Hentikan instance yang berjalan
 op status                    # Periksa apakah sedang berjalan
 ```

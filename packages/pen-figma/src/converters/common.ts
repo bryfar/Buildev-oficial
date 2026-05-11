@@ -6,7 +6,7 @@ import type {
   FigmaDerivedSymbolDataEntry,
   FigmaGUID,
 } from '../figma-types.js';
-import type { PenNode, SizingBehavior } from '@zseven-w/pen-types';
+import type { PenNode, SizingBehavior } from '@buildev/pen-types';
 import { mapWidthSizing, mapHeightSizing } from '../figma-layout-mapper.js';
 import type { TreeNode } from '../figma-tree-builder.js';
 
@@ -84,7 +84,7 @@ export function extractPosition(figma: FigmaNodeChange): { x: number; y: number 
   if ((hasRotation || hasFlip) && figma.size) {
     // Figma's m02/m12 gives where local origin (0,0) maps in parent space.
     // For rotated/flipped nodes this differs from the pre-transform top-left
-    // that OpenPencil needs.  Compute the object center (invariant under
+    // that Buildev needs.  Compute the object center (invariant under
     // rotation/flip) and derive the pre-transform top-left from it.
     const w = figma.size.x;
     const h = figma.size.y;

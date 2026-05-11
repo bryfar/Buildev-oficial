@@ -1,6 +1,6 @@
 # pen-ai-skills
 
-AI prompt skill engine for OpenPencil design generation.
+AI prompt skill engine for Buildev design generation.
 
 ## Structure
 

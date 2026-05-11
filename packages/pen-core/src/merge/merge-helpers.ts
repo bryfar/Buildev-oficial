@@ -3,7 +3,7 @@
 // Pure indexing and walking utilities shared by node-diff.ts and node-merge.ts.
 // Not exported from the module's public surface — these are internal helpers.
 
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@buildev/pen-types';
 
 /**
  * Information stored per indexed node, capturing both the node itself and

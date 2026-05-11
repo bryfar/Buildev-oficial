@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { sanitizeName, nodeTreeToSummary } from '../index';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 describe('sanitizeName', () => {
   it('converts kebab-case to PascalCase', () => {

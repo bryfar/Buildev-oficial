@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="OpenPencil" width="120" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
-<h1 align="center">OpenPencil</h1>
+<h1 align="center">Buildev</h1>
 
 <p align="center">
   <strong>Dünyanın ilk açık kaynaklı AI-yerel vektör tasarım aracı.</strong><br />
@@ -14,26 +14,26 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ZSeven-W/openpencil/stargazers"><img src="https://img.shields.io/github/stars/ZSeven-W/openpencil?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ZSeven-W/openpencil?color=64748b" alt="License" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ZSeven-W/openpencil/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
 <br />
 
 <p align="center">
-  <a href="https://oss.ioa.tech/zseven/openpencil/a46e24733239ce24de36702342201033.mp4">
-    <img src="./screenshot/op-cover.png" alt="OpenPencil — demo videosunu izlemek için tıklayın" width="100%" />
+  <a href="https://oss.ioa.tech/zseven/buildev/a46e24733239ce24de36702342201033.mp4">
+    <img src="./screenshot/op-cover.png" alt="Buildev — demo videosunu izlemek için tıklayın" width="100%" />
   </a>
 </p>
 <p align="center"><sub>Demo videosunu izlemek için görsele tıklayın</sub></p>
 
 <br />
 
-> **Not:** Aynı ada sahip başka bir açık kaynak proje bulunmaktadır — [OpenPencil](https://github.com/open-pencil/open-pencil), Figma uyumlu görsel tasarım ve gerçek zamanlı iş birliğine odaklanmaktadır. Bu proje, AI-native tasarımdan koda iş akışlarına odaklanmaktadır.
+> **Not:** Aynı ada sahip başka bir açık kaynak proje bulunmaktadır — [Buildev](https://github.com/open-pencil/open-pencil), Figma uyumlu görsel tasarım ve gerçek zamanlı iş birliğine odaklanmaktadır. Bu proje, AI-native tasarımdan koda iş akışlarına odaklanmaktadır.
 
-## Neden OpenPencil
+## Neden Buildev
 
 <table>
 <tr>
@@ -126,18 +126,18 @@ Birden fazla görüntü varyantı mevcuttur — ihtiyaçlarınıza uygun olanı 
 
 | Görüntü                      | Boyut   | İçerik                  |
 | ---------------------------- | ------- | ----------------------- |
-| `openpencil:latest`          | ~226 MB | Yalnızca web uygulaması |
-| `openpencil-claude:latest`   | —       | + Claude Code CLI       |
-| `openpencil-codex:latest`    | —       | + Codex CLI             |
-| `openpencil-opencode:latest` | —       | + OpenCode CLI          |
-| `openpencil-copilot:latest`  | —       | + GitHub Copilot CLI    |
-| `openpencil-gemini:latest`   | —       | + Gemini CLI            |
-| `openpencil-full:latest`     | ~1 GB   | Tüm CLI araçları        |
+| `buildev:latest`          | ~226 MB | Yalnızca web uygulaması |
+| `buildev-claude:latest`   | —       | + Claude Code CLI       |
+| `buildev-codex:latest`    | —       | + Codex CLI             |
+| `buildev-opencode:latest` | —       | + OpenCode CLI          |
+| `buildev-copilot:latest`  | —       | + GitHub Copilot CLI    |
+| `buildev-gemini:latest`   | —       | + Gemini CLI            |
+| `buildev-full:latest`     | ~1 GB   | Tüm CLI araçları        |
 
 **Çalıştır (yalnızca web):**
 
 ```bash
-docker run -d -p 3000:3000 ghcr.io/zseven-w/openpencil:latest
+docker run -d -p 3000:3000 ghcr.io/bryfar/buildev:latest
 ```
 
 **AI CLI ile çalıştır (ör. Claude Code):**
@@ -146,28 +146,28 @@ AI sohbeti Claude CLI OAuth girişine bağlıdır. Giriş oturumunu kalıcı hal
 
 ```bash
 # Adım 1 — Giriş (tek seferlik)
-docker volume create openpencil-claude-auth
+docker volume create buildev-claude-auth
 docker run -it --rm \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest claude login
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest claude login
 
 # Adım 2 — Başlat
 docker run -d -p 3000:3000 \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest
+  -v buildev-claude-auth:/root/.claude \
+  ghcr.io/bryfar/buildev-claude:latest
 ```
 
 **Yerel olarak derle:**
 
 ```bash
 # Temel (yalnızca web)
-docker build --target base -t openpencil .
+docker build --target base -t buildev .
 
 # Belirli bir CLI ile
-docker build --target with-claude -t openpencil-claude .
+docker build --target with-claude -t buildev-claude .
 
 # Tam (tüm CLI'lar)
-docker build --target full -t openpencil-full .
+docker build --target full -t buildev-full .
 ```
 
 ## AI Destekli Tasarım
@@ -213,7 +213,7 @@ docker build --target full -t openpencil-full .
 Global olarak yükleyin ve tasarım aracını terminalinizden kontrol edin:
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ```bash
@@ -226,7 +226,7 @@ cat design.dsl | op design - # stdin'den pipe ile besle
 
 Üç giriş yöntemini destekler: satır içi metin, `@filepath` (dosyadan oku) veya `-` (stdin'den oku). Masaüstü uygulama veya web geliştirme sunucusuyla çalışır. Tam komut referansı için [CLI README](./apps/cli/README.md) dosyasına bakın.
 
-**LLM Becerisi** — [OpenPencil Skill](https://github.com/ZSeven-W/openpencil-skill) eklentisini kurarak AI ajanlarına (Claude Code, Cursor, Codex, Gemini CLI vb.) `op` ile tasarım yapmayı öğretin.
+**LLM Becerisi** — [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) eklentisini kurarak AI ajanlarına (Claude Code, Cursor, Codex, Gemini CLI vb.) `op` ile tasarım yapmayı öğretin.
 
 ## Özellikler
 
@@ -301,7 +301,7 @@ cat design.dsl | op design - # stdin'den pipe ile besle
 ## Proje Yapısı
 
 ```text
-openpencil/
+buildev/
 ├── apps/
 │   ├── web/                 TanStack Start web uygulaması
 │   │   ├── src/
@@ -399,19 +399,19 @@ Katkılarınızı bekliyoruz! Mimari ayrıntılar ve kod stili için [CLAUDE.md]
 
 ## Katkıda Bulunanlar
 
-<a href="https://github.com/ZSeven-W/openpencil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZSeven-W/openpencil" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
 </a>
 
 ## Sponsorlar
 
-OpenPencil ücretsiz ve açık kaynaklıdır. Geliştirme, onu faydalı bulanlar tarafından finanse ediliyor — tuvali açık tuttuğunuz için teşekkürler.
+Buildev ücretsiz ve açık kaynaklıdır. Geliştirme, onu faydalı bulanlar tarafından finanse ediliyor — tuvali açık tuttuğunuz için teşekkürler.
 
 <a href="https://github.com/mrqyun" title="MrQyun">
   <img src="https://wsrv.nl/?url=github.com/mrqyun.png&w=128&h=128&mask=circle&maxage=7d" width="64" height="64" alt="MrQyun" />
 </a>
 
-**[MrQyun](https://github.com/mrqyun)**'a teşekkürler — isminizi burada görmek ister misiniz? **[Sponsor ol →](https://github.com/sponsors/ZSeven-W)**
+**[MrQyun](https://github.com/mrqyun)**'a teşekkürler — isminizi burada görmek ister misiniz? **[Sponsor ol →](https://github.com/sponsors/bryfar)**
 
 ## Topluluk
 
@@ -423,17 +423,17 @@ OpenPencil ücretsiz ve açık kaynaklıdır. Geliştirme, onu faydalı bulanlar
 
 ## Star History
 
-<a href="https://star-history.com/#ZSeven-W/openpencil&Date">
+<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
  </picture>
 </a>
 
 ## Değerlendirmeler
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/zseven-w-openpencil-badge.png)](https://mseep.ai/app/zseven-w-openpencil)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## Lisans
 

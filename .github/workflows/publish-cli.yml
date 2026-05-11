@@ -63,19 +63,19 @@ jobs:
             fi
           done
 
-      - name: Checkout openpencil-skill
+      - name: Checkout buildev-skill
         uses: actions/checkout@v4
         with:
-          repository: zseven-w/openpencil-skill
-          path: external/openpencil-skill
+          repository: zseven-w/buildev-skill
+          path: external/buildev-skill
 
       - name: Compile CLI
         env:
-          SKILL_ROOT: ${{ github.workspace }}/external/openpencil-skill
+          SKILL_ROOT: ${{ github.workspace }}/external/buildev-skill
         run: bun run cli:compile
 
       - name: Verify CLI build
-        run: node apps/cli/dist/openpencil-cli.cjs --version
+        run: node apps/cli/dist/buildev-cli.cjs --version
 
       # Publish in topological order. For each package:
       #   1. Resolve the real name from its package.json (no hand-written

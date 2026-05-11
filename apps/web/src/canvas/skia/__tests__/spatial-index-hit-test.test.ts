@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { SpatialIndex } from '@zseven-w/pen-renderer';
+import { SpatialIndex } from '@buildev/pen-renderer';
 import type { PenNode } from '@/types/pen';
-import type { RenderNode } from '@zseven-w/pen-renderer';
+import type { RenderNode } from '@buildev/pen-renderer';
 
 function renderNode(node: PenNode): RenderNode {
   return {

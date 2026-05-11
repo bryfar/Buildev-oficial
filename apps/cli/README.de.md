@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [**Deutsch**](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [Tiếng Việt](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-CLI fuer [OpenPencil](https://github.com/ZSeven-W/openpencil) — steuere das Design-Tool von deinem Terminal aus.
+CLI fuer [Buildev](https://github.com/bryfar/Buildev-oficial) — steuere das Design-Tool von deinem Terminal aus.
 
 ## Installation
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Plattformunterstuetzung
 
-Das CLI erkennt und startet die OpenPencil-Desktop-App automatisch auf allen Plattformen:
+Das CLI erkennt und startet die Buildev-Desktop-App automatisch auf allen Plattformen:
 
 | Plattform   | Erkannte Installationspfade                                                                             |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS pro Benutzer (`%LOCALAPPDATA%`), systemweit (`%PROGRAMFILES%`), portabel                           |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Von stdin lesen (Piping)
 ### App-Steuerung
 
 ```bash
-op start [--desktop|--web]   # OpenPencil starten (standardmaessig Desktop)
+op start [--desktop|--web]   # Buildev starten (standardmaessig Desktop)
 op stop                      # Laufende Instanz beenden
 op status                    # Pruefen, ob die App laeuft
 ```

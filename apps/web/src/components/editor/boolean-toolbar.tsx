@@ -31,6 +31,7 @@ const OPS = [
 
 export default function BooleanToolbar() {
   const { t } = useTranslation();
+  const ideModeOpen = useCanvasStore((s) => s.ideModeOpen);
   const selectedIds = useCanvasStore((s) => s.selection.selectedIds);
 
   const nodes = selectedIds
@@ -57,6 +58,7 @@ export default function BooleanToolbar() {
     useCanvasStore.getState().setSelection([result.id], result.id);
   }, []);
 
+  if (ideModeOpen) return null;
   if (!show) return null;
 
   return (

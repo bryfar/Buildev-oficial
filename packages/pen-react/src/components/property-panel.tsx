@@ -14,7 +14,7 @@ import { EffectsSection } from './sections/effects-section.js';
 import { ExportSection } from './sections/export-section.js';
 import { IconSection } from './sections/icon-section.js';
 import { ImageSection } from './sections/image-section.js';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
 
 /** Properties stored directly on the RefNode (instance-level), not as overrides. */
 const INSTANCE_DIRECT_PROPS = new Set([

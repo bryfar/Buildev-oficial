@@ -2,8 +2,8 @@ import { ColorPicker } from '../color-picker.js';
 import { NumberInput } from '../number-input.js';
 import { SectionHeader } from '../section-header.js';
 import { Plus, Minus } from 'lucide-react';
-import type { PenNode } from '@zseven-w/pen-types';
-import type { PenEffect, ShadowEffect } from '@zseven-w/pen-types';
+import type { PenNode } from '@buildev/pen-types';
+import type { PenEffect, ShadowEffect } from '@buildev/pen-types';
 
 interface EffectsSectionProps {
   effects?: PenEffect[];

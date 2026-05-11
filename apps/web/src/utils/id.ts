@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-core — the canonical source
-export { generateId } from '@zseven-w/pen-core';
+// Re-export from @buildev/pen-core — the canonical source
+export { generateId } from '@buildev/pen-core';

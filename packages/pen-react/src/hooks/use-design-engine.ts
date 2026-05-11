@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import type { DesignEngine } from '@zseven-w/pen-engine';
+import type { DesignEngine } from '@buildev/pen-engine';
 import { DesignEngineContext } from '../context.js';
 
 /**

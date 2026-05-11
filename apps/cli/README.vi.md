@@ -1,22 +1,22 @@
-# @zseven-w/openpencil
+# @bryfar/buildev
 
 [English](./README.md) · [简体中文](./README.zh.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Français](./README.fr.md) · [Español](./README.es.md) · [Deutsch](./README.de.md) · [Português](./README.pt.md) · [Русский](./README.ru.md) · [हिन्दी](./README.hi.md) · [Türkçe](./README.tr.md) · [ไทย](./README.th.md) · [**Tiếng Việt**](./README.vi.md) · [Bahasa Indonesia](./README.id.md)
 
-CLI cho [OpenPencil](https://github.com/ZSeven-W/openpencil) — điều khiển công cụ thiết kế từ terminal của bạn.
+CLI cho [Buildev](https://github.com/bryfar/Buildev-oficial) — điều khiển công cụ thiết kế từ terminal của bạn.
 
 ## Cài đặt
 
 ```bash
-npm install -g @zseven-w/openpencil
+npm install -g @bryfar/buildev
 ```
 
 ## Hỗ trợ nền tảng
 
-CLI tự động phát hiện và khởi chạy ứng dụng desktop OpenPencil trên tất cả các nền tảng:
+CLI tự động phát hiện và khởi chạy ứng dụng desktop Buildev trên tất cả các nền tảng:
 
 | Nền tảng    | Đường dẫn cài đặt được phát hiện                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
-| **macOS**   | `/Applications/OpenPencil.app`, `~/Applications/OpenPencil.app`                                         |
+| **macOS**   | `/Applications/Buildev.app`, `~/Applications/Buildev.app`                                         |
 | **Windows** | NSIS theo người dùng (`%LOCALAPPDATA%`), theo máy (`%PROGRAMFILES%`), di động                           |
 | **Linux**   | `/usr/bin`, `/usr/local/bin`, `~/.local/bin`, AppImage (`~/Applications`, `~/Downloads`), Snap, Flatpak |
 
@@ -39,7 +39,7 @@ cat design.txt | op design - # Đọc từ stdin (đường ống)
 ### Điều khiển ứng dụng
 
 ```bash
-op start [--desktop|--web]   # Khởi chạy OpenPencil (mặc định: desktop)
+op start [--desktop|--web]   # Khởi chạy Buildev (mặc định: desktop)
 op stop                      # Dừng phiên bản đang chạy
 op status                    # Kiểm tra trạng thái hoạt động
 ```

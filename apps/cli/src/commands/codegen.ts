@@ -1,6 +1,6 @@
 // apps/cli/src/commands/codegen.ts
 
-import { resolveDocPath, getSyncUrl } from '@zseven-w/pen-mcp';
+import { resolveDocPath, getSyncUrl } from '@buildev/pen-mcp';
 import { outputError, resolveArg, parseJsonArg } from '../output';
 
 interface GlobalFlags {
@@ -11,7 +11,7 @@ interface GlobalFlags {
 async function requireSyncUrl(): Promise<string | null> {
   const syncUrl = await getSyncUrl();
   if (!syncUrl) {
-    outputError('No running OpenPencil instance found. Start the app first with: op start');
+    outputError('No running Buildev instance found. Start the app first with: op start');
   }
   return syncUrl;
 }

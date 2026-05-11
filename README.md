@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="OpenPencil" width="120" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
-<h1 align="center">OpenPencil</h1>
+<h1 align="center">Buildev</h1>
 
 <p align="center">
   <strong>The world's first open-source AI-native vector design tool.</strong><br />
@@ -10,268 +10,373 @@
 </p>
 
 <p align="center">
-  <a href="./README.md"><b>English</b></a> · <a href="./README.zh.md">简体中文</a> · <a href="./README.zh-TW.md">繁體中文</a> · <a href="./README.ja.md">日本語</a> · <a href="./README.ko.md">한국어</a> · <a href="./README.fr.md">Français</a> · <a href="./README.es.md">Español</a> · <a href="./README.de.md">Deutsch</a> · <a href="./README.pt.md">Português</a> · <a href="./README.ru.md">Русский</a> · <a href="./README.hi.md">हिन्दी</a> · <a href="./README.tr.md">Türkçe</a> · <a href="./README.th.md">ไทย</a> · <a href="./README.vi.md">Tiếng Việt</a> · <a href="./README.id.md">Bahasa Indonesia</a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/ZSeven-W/openpencil/stargazers"><img src="https://img.shields.io/github/stars/ZSeven-W/openpencil?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ZSeven-W/openpencil?color=64748b" alt="License" /></a>
-  <a href="https://github.com/ZSeven-W/openpencil/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ZSeven-W/openpencil/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
 <br />
 
-<p align="center">
-  <a href="https://oss.ioa.tech/zseven/openpencil/a46e24733239ce24de36702342201033.mp4">
-    <img src="./screenshot/op-cover.png" alt="OpenPencil — click to watch demo" width="100%" />
-  </a>
-</p>
-<p align="center"><sub>Click the image to watch the demo video</sub></p>
+---
 
-<br />
+## Architecture Overview
 
-> **Note:** There is another open-source project with the same name — [OpenPencil](https://github.com/open-pencil/open-pencil), focused on Figma-compatible visual design with real-time collaboration. This project focuses on AI-native design-to-code workflows.
+Buildev is a **Design-as-Code** platform. Unlike traditional design tools that export static images, every design is a living `.op` JSON document that can be version-controlled, AI-generated, and exported to production code.
 
-## Why OpenPencil
+```mermaid
+flowchart TB
+    subgraph Frontend["Frontend (React 19 + TanStack Start)"]
+        UI[Editor UI<br/>Toolbar, Panels, Canvas]
+        Stores[Zustand Stores<br/>canvas, document, ai, git]
+        Canvas[CanvasKit/Skia Engine<br/>GPU-Accelerated WASM]
+        Preview[Preview Mode<br/>Device Simulation]
+        CodeSync[Code Sync<br/>Bidirectional]
+    end
 
-<table>
-<tr>
-<td width="50%">
+    subgraph AI["AI Layer"]
+        Orchestrator[Orchestrator<br/>Spatial Decomposition]
+        AgentTeams[Agent Teams<br/>Concurrent Generation]
+        VisionScanner[Vision Scanner<br/>Image to Design]
+        MCP[MCP Server<br/>External Agent Interface]
+        Plugins[Plugin System<br/>Extensible Hooks]
+    end
+
+    subgraph Backend["Backend (Nitro Server)"]
+        API[AI API<br/>Streaming Chat]
+        Codegen[Code Generators<br/>8 Frameworks]
+        Git[Git Integration<br/>Clone, Branch, Merge]
+        Auth[Auth System<br/>OAuth + JWT]
+    end
+
+    subgraph Outputs["Outputs"]
+        React[React + Tailwind]
+        Vue[Vue 3]
+        HTML[HTML + CSS]
+        Flutter[Flutter]
+        Mobile[SwiftUI / Compose / RN]
+    end
+
+    UI --> Stores
+    Stores --> Canvas
+    UI --> Preview
+    UI --> CodeSync
+    CodeSync <--> Canvas
+    Canvas --> Orchestrator
+    Orchestrator --> AgentTeams
+    VisionScanner --> AI
+    AI --> API
+    API --> Codegen
+    Codegen --> Outputs
+    MCP --> API
+    Plugins -.-> AI
+    Plugins -.-> Codegen
+    Git --> Backend
+```
+
+---
+
+## How the IDE Works
+
+```mermaid
+flowchart LR
+    subgraph Inputs["Input Methods"]
+        Prompt[Text Prompt]
+        Image[Screenshot<br/>Upload]
+        Code[Code Editor]
+        Voice[Voice Command]
+    end
+
+    subgraph Processing["Processing"]
+        Vision[Vision Scanner]
+        AI[AI Engine]
+    end
+
+    subgraph CanvasArea["Canvas Engine"]
+        Document[PenDocument<br/>.op JSON]
+        Render[CanvasKit<br/>Renderer]
+        Layout[Auto Layout<br/>Engine]
+    end
+
+    subgraph Output["Output"]
+        Export[Export Code<br/>8 Frameworks]
+        PreviewModal[Preview Mode]
+        Deploy[Git Deploy]
+        Save[Save .op File]
+    end
+
+    Prompt --> AI
+    Image --> Vision --> AI
+    Code --> AI
+    Voice --> AI
+    AI --> Document
+    Document --> Render
+    Document --> Layout
+    Layout --> Render
+    Document --> Export
+    Document --> PreviewModal
+    Document --> Deploy
+    Document --> Save
+```
+
+The IDE has three main panels:
+
+```mermaid
+flowchart TB
+    subgraph EditorLayout["Editor Layout"]
+        TopBar[Top Bar<br/>File, AI, Viewport Controls]
+        
+        subgraph LeftPanel["Left Panel"]
+            Layers[Layer Panel<br/>Node Tree]
+            Components[Component Browser<br/>UIKit]
+        end
+
+        subgraph Center["Center"]
+            CanvasArea[Infinite Canvas<br/>CanvasKit/Skia WASM]
+            TabBar[Page Tabs<br/>Multi-Page Navigation]
+        end
+
+        subgraph RightPanel["Right Panel"]
+            Properties[Properties<br/>Position, Size, Style]
+            AI[AI Chat<br/>Generate & Modify]
+            Code[Code Panel<br/>Live Preview & Export]
+            Variables[Variables<br/>Design Tokens]
+        end
+
+        StatusBar[Status Bar<br/>Zoom, Selection Info]
+    end
+
+    TopBar --> LeftPanel
+    TopBar --> Center
+    TopBar --> RightPanel
+    CanvasArea --> StatusBar
+```
+
+---
+
+## Features
 
 ### 🎨 Prompt → Canvas
 
 Describe any UI in natural language. Watch it appear on the infinite canvas in real-time with streaming animation. Modify existing designs by selecting elements and chatting.
 
-</td>
-<td width="50%">
+<img src="./screenshot/op-cover.png" alt="Prompt to Canvas Demo" width="100%" />
 
 ### 🤖 Concurrent Agent Teams
 
 The orchestrator decomposes complex pages into spatial sub-tasks. Multiple AI agents work on different sections simultaneously — hero, features, footer — all streaming in parallel with per-member canvas indicators.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+```mermaid
+flowchart LR
+    User[User Prompt<br/>"Landing page for SaaS"]
+    Orchestrator[Orchestrator<br/>Spatial Decomposition]
+    
+    subgraph Agents["Agent Teams"]
+        A1[Agent 1<br/>Hero Section]
+        A2[Agent 2<br/>Features Grid]
+        A3[Agent 3<br/>Footer]
+        A4[Agent N<br/>...]
+    end
+    
+    Canvas[Canvas<br/>Real-time Streaming]
+
+    User --> Orchestrator
+    Orchestrator --> A1
+    Orchestrator --> A2
+    Orchestrator --> A3
+    Orchestrator --> A4
+    A1 --> Canvas
+    A2 --> Canvas
+    A3 --> Canvas
+    A4 --> Canvas
+```
+
+### ✨ AI Vision Scanner
+
+Drop a screenshot or mockup and convert it into editable PenNode AST nodes instantly.
+
+```mermaid
+flowchart LR
+    Upload[Upload<br/>Screenshot/PNG/JPG]
+    AI[Vision AI<br/>Claude/GPT-4o]
+    Parser[JSON Parser<br/>→ PenNode AST]
+    Canvas[Canvas<br/>Editable Design]
+
+    Upload -->|base64 image| AI
+    AI -->|structured JSON| Parser
+    Parser -->|PenNode[]| Canvas
+```
+
+- **File:** `apps/web/src/services/ai/vision-scanner.ts`
+- Accepts image data via AI chat attachments
+- Returns structured `PenNode[]` with positions, sizes, colors, and text
+- Supports context hints for better accuracy
 
 ### 🧠 Multi-Model Intelligence
 
 Automatically adapts to each model's capabilities. Claude gets full prompts with thinking; GPT-4o/Gemini disable thinking; smaller models (MiniMax, Qwen, Llama) get simplified prompts for reliable output.
 
-</td>
-<td width="50%">
+| Agent | Setup |
+|-------|-------|
+| **Built-in (9+ providers)** | Select from provider presets with region switcher |
+| **Claude Code** | No config — uses Claude Agent SDK with local OAuth |
+| **Codex CLI** | Connect in Agent Settings (`Cmd+,`) |
+| **OpenCode** | Connect in Agent Settings (`Cmd+,`) |
+| **GitHub Copilot** | `copilot login` then connect in Agent Settings |
+| **Gemini CLI** | Connect in Agent Settings (`Cmd+,`) |
 
 ### 🔌 MCP Server
 
-One-click install into Claude Code, Codex, Gemini, OpenCode, Kiro, or Copilot CLIs. Design from your terminal — read, create, and modify `.op` files through any MCP-compatible agent.
+One-click install into Claude Code, Codex, Gemini, OpenCode, Kiro, or Copilot CLIs. Design from your terminal.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+```mermaid
+flowchart LR
+    subgraph CLIs["External CLIs"]
+        Claude[Claude Code]
+        Codex[Codex CLI]
+        Gemini[Gemini CLI]
+        OpenCode[OpenCode]
+        Copilot[GitHub Copilot]
+    end
+
+    subgraph MCP["Buildev MCP Server"]
+        Tools[Tools<br/>design, insert, update]
+        Docs[Document Manager<br/>.op files]
+        Design[Design Engine<br/>Layered Workflow]
+    end
+
+    subgraph Canvas["Buildev App"]
+        Live[Live Canvas]
+        API[Nitro API]
+    end
+
+    CLIs -->|MCP Protocol| Tools
+    Tools --> Docs
+    Tools --> Design
+    Tools -->|HTTP| API
+    API --> Live
+```
+
+### 🔁 Code Mode Autosync
+
+Edit generated code and sync changes back to the visual canvas bidirectionally.
+
+```mermaid
+flowchart LR
+    subgraph CanvasSide["Canvas"]
+        Doc[PenDocument<br/>.op JSON]
+        Renderer[CanvasKit<br/>Renderer]
+    end
+
+    subgraph CodeSide["Code Editor"]
+        React[React Code<br/>src/App.tsx]
+        Vue[Vue Code<br/>App.vue]
+        HTML[HTML + CSS]
+    end
+
+    subgraph SyncEngine["Sync Engine"]
+        Forward[Forward Sync<br/>Design → Code]
+        Backward[Reverse Sync<br/>Code → Design]
+    end
+
+    Doc --> Forward --> React
+    Doc --> Forward --> Vue
+    Doc --> Forward --> HTML
+    React --> Backward --> Doc
+    Vue --> Backward --> Doc
+    HTML --> Backward --> Doc
+    Doc --> Renderer
+    Backward -.->|Updates Canvas| Renderer
+```
+
+- **Reverse parsers:** React, Vue 3, HTML, generic
+- **Sync state:** dirty/clean tracking per file
+- **Conflict detection:** warns on simultaneous edits
 
 ### 🎨 Style Guides
 
-Built-in style guide library with tag-based fuzzy matching. Apply visual styles (glassmorphism, brutalist, retro, etc.) to AI-generated designs. MCP tools for external agent access.
-
-</td>
-<td width="50%">
+Built-in style guide library with tag-based fuzzy matching. Apply visual styles (glassmorphism, brutalist, retro, etc.) to AI-generated designs.
 
 ### 📦 Design-as-Code
 
-`.op` files are JSON — human-readable, Git-friendly, diffable. Design variables generate CSS custom properties. Code export to React + Tailwind or HTML + CSS.
+`.op` files are JSON — human-readable, Git-friendly, diffable. Design variables generate CSS custom properties.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+### 🧩 Plugin System
+
+Extensible plugin architecture built on top of the AI Skills engine.
+
+```mermaid
+flowchart TB
+    subgraph Core["Plugin Manager"]
+        Registry[Plugin Registry]
+        Lifecycle[Plugin Lifecycle<br/>Init → Activate → Deactivate]
+    end
+
+    subgraph Hooks["Plugin Hooks"]
+        Gen[beforeGenerate<br/>afterGenerate]
+        Export[beforeExport<br/>afterExport]
+        Import[beforeImport<br/>afterImport]
+    end
+
+    subgraph BuiltIn["Built-in Plugins"]
+        DS[Design System]
+        CG[Code Generator]
+        AI[AI Skills]
+        UK[UIKit]
+        VS[Vision Scanner]
+        CS[Code Sync]
+        PV[Preview Mode]
+        GT[Git Integration]
+        MCP[MCP Server]
+    end
+
+    subgraph Custom["Custom Plugins"]
+        P1[Marketing Plugin]
+        P2[CRM Plugin]
+        P3[SEO Analyzer]
+        PN[...]
+    end
+
+    Registry --> Hooks
+    Registry --> BuiltIn
+    Registry -->|Developer API| Custom
+    Hooks --> Lifecycle
+```
+
+- **9 built-in plugins** pre-installed
+- **Phase hooks:** before/after generate, export, import
+- **Capability system:** plugins advertise what they offer
+- **Store:** `apps/web/src/stores/plugin-store.ts`
+- **Engine:** `packages/pen-ai-skills/src/plugin-system.ts`
+
+### 🖥️ Preview Mode
+
+Dedicated device preview for responsive testing.
+
+```mermaid
+flowchart LR
+    Doc[PenDocument]
+    HTMLGen[HTML Generator<br/>Node → HTML]
+    Iframe[Preview Iframe]
+    Devices[Device Simulation<br/>Mobile / Tablet / Desktop]
+
+    Doc --> HTMLGen --> Iframe
+    Devices --> Iframe
+```
+
+- **Devices:** Mobile (375px), Tablet (768px), Desktop (1280px)
+- **Features:** Fullscreen, Auto-scale, Refresh
+- **File:** `apps/web/src/components/editor/preview-mode.tsx`
 
 ### 🖥️ Runs Everywhere
 
-Web app + native desktop on macOS, Windows, and Linux via Electron. Auto-updates from GitHub Releases. `.op` file association — double-click to open.
-
-</td>
-<td width="50%">
+Web app + native desktop on macOS, Windows, and Linux via Electron. Auto-updates from GitHub Releases.
 
 ### ⌨️ CLI — `op`
 
-Control the design tool from your terminal. `op design`, `op insert` — batch design DSL, node manipulation. Pipe in from files or stdin. Works with desktop app or web server.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🎯 Multi-Platform Code Export
-
-Export to React + Tailwind, HTML + CSS, Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, React Native — all from one `.op` file. Design variables become CSS custom properties.
-
-</td>
-<td width="50%">
-
-### 🧩 Embeddable SDK
-
-`pen-engine` (headless) + `pen-react` (React UI SDK) — embed the design engine in your own app. DesignProvider, DesignCanvas, hooks, panels, and toolbar components out of the box.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🛡️ Design System Kit
-
-Manage reusable UIKits with style switching and component composition. Import/export kits from `.pen` files. Built-in registry with MCP tools for external access.
-
-</td>
-<td width="50%">
-</td>
-</tr>
-</table>
-
-## Install
-
-**macOS (Homebrew):**
-
 ```bash
-brew tap zseven-w/openpencil
-brew install --cask openpencil
-```
+npm install -g @bryfar/buildev
 
-**Windows (Scoop):**
-
-```powershell
-scoop bucket add openpencil https://github.com/zseven-w/scoop-openpencil
-scoop install openpencil
-```
-
-**Linux / Windows direct download:** [GitHub Releases](https://github.com/ZSeven-W/openpencil/releases) — `.exe` (Windows), `.AppImage` / `.deb` (Linux)
-
-**CLI (`op`):**
-
-```bash
-npm install -g @zseven-w/openpencil
-```
-
-## Quick Start (Development)
-
-```bash
-# Install dependencies
-bun install
-
-# Start dev server at http://localhost:3000
-bun --bun run dev
-```
-
-Or run as a desktop app:
-
-```bash
-bun run electron:dev
-```
-
-> **Prerequisites:** [Bun](https://bun.sh/) >= 1.0 and [Node.js](https://nodejs.org/) >= 18. Optional: [Zig](https://ziglang.org/) >= 0.14 for building `agent-native` from source (a prebuilt binary will be downloaded automatically if Zig is not installed).
-
-### Docker
-
-Multiple image variants are available — pick the one that fits your needs:
-
-| Image                        | Size    | Includes             |
-| ---------------------------- | ------- | -------------------- |
-| `openpencil:latest`          | ~226 MB | Web app only         |
-| `openpencil-claude:latest`   | —       | + Claude Code CLI    |
-| `openpencil-codex:latest`    | —       | + Codex CLI          |
-| `openpencil-opencode:latest` | —       | + OpenCode CLI       |
-| `openpencil-copilot:latest`  | —       | + GitHub Copilot CLI |
-| `openpencil-gemini:latest`   | —       | + Gemini CLI         |
-| `openpencil-full:latest`     | ~1 GB   | All CLI tools        |
-
-**Run (web only):**
-
-```bash
-docker run -d -p 3000:3000 ghcr.io/zseven-w/openpencil:latest
-```
-
-**Run with AI CLI (e.g. Claude Code):**
-
-The AI chat relies on Claude CLI OAuth login. Use a Docker volume to persist the login session:
-
-```bash
-# Step 1 — Login (one-time)
-docker volume create openpencil-claude-auth
-docker run -it --rm \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest claude login
-
-# Step 2 — Start
-docker run -d -p 3000:3000 \
-  -v openpencil-claude-auth:/root/.claude \
-  ghcr.io/zseven-w/openpencil-claude:latest
-```
-
-**Build locally:**
-
-```bash
-# Base (web only)
-docker build --target base -t openpencil .
-
-# With a specific CLI
-docker build --target with-claude -t openpencil-claude .
-
-# Full (all CLIs)
-docker build --target full -t openpencil-full .
-```
-
-## AI-Native Design
-
-**Prompt to UI**
-
-- **Text-to-design** — describe a page, get it generated on canvas in real-time with SSE streaming animation
-- **Orchestrator** — decomposes complex pages into spatial sub-tasks for parallel generation
-- **Agent Teams** — concurrent team members with delegate tool, per-member canvas indicators, and fallback strategies
-- **Design modification** — select elements, then describe changes in natural language
-- **Vision input** — attach screenshots or mockups for reference-based design
-- **Style Guides** — apply visual styles (glassmorphism, brutalist, retro, etc.) via tag-based fuzzy matching
-- **Anti-slop** — cross-generation diversity tracking to avoid repetitive AI output
-
-**Multi-Agent Support**
-
-| Agent                       | Setup                                                                                             |
-| --------------------------- | ------------------------------------------------------------------------------------------------- |
-| **Built-in (9+ providers)** | Select from provider presets with region switcher — Anthropic, OpenAI, Google, DeepSeek, and more |
-| **Claude Code**             | No config — uses Claude Agent SDK with local OAuth                                                |
-| **Codex CLI**               | Connect in Agent Settings (`Cmd+,`)                                                               |
-| **OpenCode**                | Connect in Agent Settings (`Cmd+,`)                                                               |
-| **GitHub Copilot**          | `copilot login` then connect in Agent Settings (`Cmd+,`)                                          |
-| **Gemini CLI**              | Connect in Agent Settings (`Cmd+,`)                                                               |
-
-**Model Capability Profiles** — automatically adapts prompts, thinking mode, and timeouts per model tier. Full-tier models (Claude) get complete prompts; standard-tier (GPT-4o, Gemini, DeepSeek) disable thinking; basic-tier (MiniMax, Qwen, Llama, Mistral) get simplified nested-JSON prompts for maximum reliability.
-
-**i18n** — Full interface localization in 15 languages: English, 简体中文, 繁體中文, 日本語, 한국어, Français, Español, Deutsch, Português, Русский, हिन्दी, Türkçe, ไทย, Tiếng Việt, Bahasa Indonesia.
-
-**MCP Server**
-
-- Built-in MCP server (`pen-mcp` package) — one-click install into Claude Code / Codex / Gemini / OpenCode / Kiro / Copilot CLIs
-- Auto-detects Node.js — if not installed, falls back to HTTP transport and auto-starts the MCP HTTP server
-- Design automation from terminal: read, create, and modify `.op` files via any MCP-compatible agent
-- **Layered design workflow** — `design_skeleton` → `design_content` → `design_refine` for higher-fidelity multi-section designs
-- **Segmented prompt retrieval** — load only the design knowledge you need (schema, layout, roles, icons, planning, etc.)
-- **Style guide tools** — `get_style_guide_tags` and `get_style_guide` for applying visual styles via MCP
-- Multi-page support — create, rename, reorder, and duplicate pages via MCP tools
-
-**Code Generation**
-
-- React + Tailwind CSS, HTML + CSS, CSS Variables
-- Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, React Native
-
-## CLI — `op`
-
-Install globally and control the design tool from your terminal:
-
-```bash
-npm install -g @zseven-w/openpencil
-```
-
-```bash
 op start                     # Launch desktop app
 op design @landing.txt       # Batch design from file
 op insert '{"type":"RECT"}'  # Insert a node
@@ -279,230 +384,136 @@ op import:figma design.fig   # Import Figma file
 cat design.dsl | op design - # Pipe from stdin
 ```
 
-Supports three input methods: inline string, `@filepath` (read from file), or `-` (read from stdin). Works with desktop app or web dev server. See [CLI README](./apps/cli/README.md) for full command reference.
+### 🎯 Multi-Platform Code Export
 
-**LLM Skill** — install the [OpenPencil Skill](https://github.com/ZSeven-W/openpencil-skill) plugin to teach AI agents (Claude Code, Cursor, Codex, Gemini CLI, etc.) how to design with `op`.
+8 frameworks from one design:
+- React + Tailwind CSS | HTML + CSS | CSS Variables
+- Vue 3 | Svelte | Flutter | SwiftUI | Jetpack Compose | React Native
 
-## Features
+---
 
-**Canvas & Drawing**
+## Quick Start (Development)
 
-- Infinite canvas with pan, zoom, smart alignment guides, and snapping
-- Rectangle, Ellipse, Line, Polygon, Pen (Bezier), Frame, Text
-- Boolean operations — union, subtract, intersect with contextual toolbar
-- Icon picker (Iconify) and image import (PNG/JPEG/SVG/WebP/GIF)
-- Auto-layout — vertical/horizontal with gap, padding, justify, align
-- Multi-page documents with tab navigation
+```bash
+# Prerequisites
+bun install
 
-**Design System**
+# Start dev server at http://localhost:3000
+bun --bun run dev
 
-- Design variables — color, number, string tokens with `$variable` references
-- Multi-theme support — multiple axes, each with variants (Light/Dark, Compact/Comfortable)
-- Component system — reusable components with instances and overrides
-- CSS sync — auto-generated custom properties, `var(--name)` in code output
-- Reusable UIKits — import/export component kits from `.pen` files
+# Or run as desktop app
+bun run electron:dev
+```
 
-**AI & Agents**
+> **Prerequisites:** [Bun](https://bun.sh/) >= 1.0 and [Node.js](https://nodejs.org/) >= 18.
 
-- Prompt-to-canvas with streaming generation and orchestrator-driven spatial decomposition
-- Concurrent Agent Teams — multiple designers work on different sections in parallel with per-member canvas indicators
-- Layered workflow — `design_skeleton` → `design_content` → `design_refine` with focused prompts per phase
-- Style Guides — 50+ built-in styles (glassmorphism, brutalist, retro, etc.) with tag-based fuzzy matching, wired into planning and generation
-- Multi-model capability profiles — auto-adapts thinking mode, effort, and prompt shape per model tier
-- Built-in agent runtime (`agent-native`, Zig NAPI) + Anthropic, Claude Agent SDK, OpenCode, Codex, Copilot, Gemini providers
-- Anthropic-format passthrough for Chinese LLM providers — Kimi, Zhipu, GLM, DouBao, Ark, Bailian/DashScope, ModelScope, Coding Plans
-
-**Git Integration**
-
-- Clone wizard with SSH / HTTPS auth and SSH key management
-- Branch picker — create, switch, delete, merge, all from the git panel
-- Pull / push cascades with auth retry and non-fast-forward handling
-- Folder-mode three-way merge with on-disk `MERGE_HEAD` state tracking
-- Conflict panel with per-node / per-field three-way cards, inline JSON editor, bulk actions, and inline diff block
-- Remote settings and SSH keys UI; 15-locale i18n across the whole Git surface
-
-**Export**
-
-- Canvas export — PNG, JPEG, WEBP, PDF (`Cmd+Shift+P`)
-- Code export — React + Tailwind, HTML + CSS, Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, React Native
-- Incremental MCP codegen pipeline — `codegen_plan`, `codegen_submit_chunk`, `codegen_assemble`, `codegen_clean`
-
-**Figma Import**
-
-- Import `.fig` files with layout, fills, strokes, effects, text, images, and vectors preserved
-
-**Desktop App**
-
-- Native macOS, Windows, and Linux via Electron
-- `.op` file association — double-click to open, single-instance lock
-- Auto-update from GitHub Releases
-- Native application menu with Save As, Open Recent, and an unsaved-changes dialog on close
-- Recent files persistence
-
-## Tech Stack
-
-|                 |                                                                                         |
-| --------------- | --------------------------------------------------------------------------------------- |
-| **Frontend**    | React 19 · TanStack Start · Tailwind CSS v4 · shadcn/ui · i18next                       |
-| **Canvas**      | CanvasKit/Skia (WASM, GPU-accelerated)                                                  |
-| **Engine**      | pen-engine (headless) · pen-react (React UI SDK)                                        |
-| **State**       | Zustand v5                                                                              |
-| **Server**      | Nitro                                                                                   |
-| **Desktop**     | Electron 35                                                                             |
-| **CLI**         | `op` — terminal control, batch design DSL                                               |
-| **AI**          | agent-native (Zig NAPI) · Anthropic SDK · Claude Agent SDK · OpenCode SDK · Copilot SDK |
-| **Runtime**     | Bun · Vite 7                                                                            |
-| **Lint**        | oxlint · oxfmt                                                                          |
-| **File format** | `.op` — JSON-based, human-readable, Git-friendly                                        |
+---
 
 ## Project Structure
 
 ```text
 openpencil/
 ├── apps/
-│   ├── web/                 TanStack Start web app
+│   ├── web/                    TanStack Start web app
 │   │   ├── src/
-│   │   │   ├── canvas/      CanvasKit/Skia engine — drawing, sync, layout
-│   │   │   ├── components/  React UI — editor, panels, shared dialogs, icons
-│   │   │   ├── services/ai/ AI chat, orchestrator, design generation, streaming
-│   │   │   ├── services/codegen/ Code generation service wrappers
-│   │   │   ├── stores/      Zustand — canvas, document, pages, history, AI
-│   │   │   ├── hooks/       Keyboard shortcuts, file drop, Figma paste, MCP sync
-│   │   │   ├── i18n/        Internationalization — 15 locales
-│   │   │   └── uikit/       Reusable component kit system
+│   │   │   ├── canvas/         CanvasKit/Skia engine
+│   │   │   ├── components/     React UI — editor, panels, dialogs
+│   │   │   ├── services/
+│   │   │   │   ├── ai/         AI chat, orchestrator, vision scanner
+│   │   │   │   ├── codegen/    Code generation wrappers
+│   │   │   │   └── code-parsers/  React/Vue/HTML parsers (reverse sync)
+│   │   │   ├── stores/         Zustand — canvas, document, plugin, code-sync
+│   │   │   ├── uikit/          Reusable component kit system
+│   │   │   └── hooks/          Keyboard shortcuts, file drop, MCP sync
 │   │   └── server/
-│   │       ├── api/ai/      Nitro API — streaming chat, agent, generation, image search
-│   │       ├── api/mcp/     MCP HTTP transport endpoints
-│   │       └── utils/       Claude, OpenCode, Codex, Copilot, Gemini CLI wrappers
-│   ├── desktop/             Electron desktop app
-│   │   ├── main.ts          Window, Nitro fork, native menu, auto-updater
-│   │   ├── ipc-handlers.ts  Native file dialogs, theme sync, prefs IPC
-│   │   └── preload.ts       IPC bridge
-│   └── cli/                 CLI tool — `op` command
-│       ├── src/commands/    Design, document, export, import, node, page, variable commands
-│       ├── connection.ts    WebSocket connection to running app
-│       └── launcher.ts      Auto-detect and launch desktop app or web server
+│   │       ├── api/ai/         Nitro API — streaming chat, vision
+│   │       └── api/mcp/        MCP HTTP transport endpoints
+│   ├── desktop/                Electron desktop app
+│   └── cli/                    CLI tool — `op` command
 ├── packages/
-│   ├── pen-types/           Type definitions for PenDocument model
-│   ├── pen-core/            Document tree ops, layout engine, variables
-│   ├── pen-engine/          Headless design engine — document, selection, history, viewport
-│   ├── pen-react/           React UI SDK — provider, canvas, hooks, panels, toolbar
-│   ├── pen-codegen/         Code generators (React, HTML, Vue, Flutter, ...)
-│   ├── pen-figma/           Figma .fig file parser and converter
-│   ├── pen-renderer/        Standalone CanvasKit/Skia renderer
-│   ├── pen-mcp/             MCP server — tools, routes, document manager
-│   ├── pen-sdk/             Umbrella SDK (re-exports all packages)
-│   ├── pen-ai-skills/       AI prompt skill engine (phase-driven prompt loading)
-│   └── agent-native/        Native AI agent runtime (Zig NAPI, multi-provider, teams)
-└── .githooks/               Pre-commit version sync from branch name
+│   ├── pen-types/              Type definitions
+│   ├── pen-core/               Document tree ops, layout engine
+│   ├── pen-engine/             Headless design engine
+│   ├── pen-react/              React UI SDK
+│   ├── pen-codegen/            8 code generators
+│   ├── pen-figma/              Figma .fig parser
+│   ├── pen-renderer/           Standalone CanvasKit/Skia renderer
+│   ├── pen-mcp/                MCP server
+│   ├── pen-sdk/                Umbrella SDK
+│   ├── pen-ai-skills/          AI prompt skill engine + Plugin System
+│   └── agent-native/           Native AI agent runtime (Zig NAPI)
+└── scripts/
 ```
+
+---
 
 ## Keyboard Shortcuts
 
-| Key         | Action            |     | Key           | Action                    |
-| ----------- | ----------------- | --- | ------------- | ------------------------- |
-| `V`         | Select            |     | `Cmd+S`       | Save                      |
-| `R`         | Rectangle         |     | `Cmd+Z`       | Undo                      |
-| `O`         | Ellipse           |     | `Cmd+Shift+Z` | Redo                      |
-| `L`         | Line              |     | `Cmd+C/X/V/D` | Copy/Cut/Paste/Duplicate  |
-| `T`         | Text              |     | `Cmd+G`       | Group                     |
-| `F`         | Frame             |     | `Cmd+Shift+G` | Ungroup                   |
-| `P`         | Pen tool          |     | `Cmd+Shift+P` | Export (PNG/JPG/WEBP/PDF) |
-| `H`         | Hand (pan)        |     | `Cmd+Shift+C` | Code panel                |
-| `Del`       | Delete            |     | `Cmd+Shift+V` | Variables panel           |
-| `[ / ]`     | Reorder           |     | `Cmd+J`       | AI chat                   |
-| Arrows      | Nudge 1px         |     | `Cmd+,`       | Agent settings            |
-| `Cmd+Alt+U` | Boolean union     |     | `Cmd+Alt+S`   | Boolean subtract          |
-| `Cmd+Alt+I` | Boolean intersect |     | `Cmd+Shift+S` | Save As                   |
+| Key | Action | | Key | Action |
+|-----|--------|---|-----|--------|
+| `V` | Select | | `Cmd+S` | Save |
+| `R` | Rectangle | | `Cmd+Z` | Undo |
+| `O` | Ellipse | | `Cmd+Shift+Z` | Redo |
+| `L` | Line | | `Cmd+C/X/V/D` | Copy/Cut/Paste/Duplicate |
+| `T` | Text | | `Cmd+G` | Group |
+| `F` | Frame | | `Cmd+Shift+G` | Ungroup |
+| `P` | Pen tool | | `Cmd+Shift+P` | Export |
+| `H` | Hand (pan) | | `Cmd+Shift+C` | Code panel |
+| `Del` | Delete | | `Cmd+J` | AI chat |
+| `[ / ]` | Reorder | | `Cmd+,` | Agent settings |
+
+---
+
+## Tech Stack
+
+| | |
+|---|---|
+| **Frontend** | React 19 · TanStack Start · Tailwind CSS v4 · shadcn/ui · i18next |
+| **Canvas** | CanvasKit/Skia (WASM, GPU-accelerated) |
+| **Engine** | pen-engine (headless) · pen-react (React UI SDK) |
+| **State** | Zustand v5 |
+| **Server** | Nitro |
+| **Desktop** | Electron 35 |
+| **CLI** | `op` — terminal control |
+| **AI** | agent-native (Zig NAPI) · Anthropic SDK · Claude Agent SDK |
+| **Runtime** | Bun · Vite 7 |
+| **Lint** | oxlint · oxfmt |
+| **File format** | `.op` — JSON-based, Git-friendly |
+
+---
 
 ## Scripts
 
 ```bash
 bun --bun run dev          # Dev server (port 3000)
 bun --bun run build        # Production build
-bun --bun run test         # Run tests (Vitest)
+bun --bun run test         # Tests (Vitest)
 npx tsc --noEmit           # Type check
 bun run lint               # Lint (oxlint)
 bun run format             # Format (oxfmt)
-bun run bump <version>     # Sync version across all package.json
 bun run electron:dev       # Electron dev
-bun run electron:build     # Electron package
-bun run cli:dev            # Run CLI from source
-bun run cli:compile        # Compile CLI to dist
-bun run mcp:dev            # Run MCP server from source
+bun run cli:dev            # CLI from source
+bun run mcp:dev            # MCP server from source
 ```
 
-## Contributing
-
-Contributions are welcome! See [CLAUDE.md](./CLAUDE.md) for architecture details and code style.
-
-1. Fork and clone
-2. Set up version sync: `git config core.hooksPath .githooks`
-3. Create a branch: `git checkout -b feat/my-feature`
-4. Run checks: `npx tsc --noEmit && bun --bun run test`
-5. Commit with [Conventional Commits](https://www.conventionalcommits.org/): `feat(canvas): add rotation snapping`
-6. Open a PR against `main`
+---
 
 ## Roadmap
 
-- [x] Design variables & tokens with CSS sync
-- [x] Component system (instances & overrides)
 - [x] AI design generation with orchestrator
-- [x] MCP server integration with layered design workflow
-- [x] Multi-page support
-- [x] Figma `.fig` import
-- [x] Boolean operations (union, subtract, intersect)
-- [x] Multi-model capability profiles
-- [x] Monorepo restructure with reusable packages
-- [x] CLI tool (`op`) for terminal control
-- [x] Built-in AI agent SDK with multi-provider support
-- [x] i18n — 15 languages
-- [x] Headless design engine (`pen-engine`) + React UI SDK (`pen-react`)
-- [x] Style Guides with tag-based matching and MCP tools
-- [x] Concurrent Agent Teams with delegate tool and canvas indicators
-- [x] Native agent runtime (`agent-native` — Zig NAPI)
-- [x] Git integration — clone, branch, push/pull, folder-mode three-way merge
-- [x] Canvas raster export (PNG / JPEG / WEBP / PDF)
+- [x] MCP server integration
+- [x] Multi-page support & Figma import
+- [x] Boolean operations & multi-model profiles
+- [x] Concurrent Agent Teams & Style Guides
+- [x] Git integration & native agent runtime
+- [x] AI Vision Scanner — image to design
+- [x] Code Mode Autosync — bidirectional
+- [x] Preview Mode — responsive device testing
+- [x] Plugin System — extensible hooks
 - [ ] Collaborative editing
-- [ ] Plugin system
+- [ ] Plugin marketplace
 
-## Contributors
-
-<a href="https://github.com/ZSeven-W/openpencil/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZSeven-W/openpencil" alt="Contributors" />
-</a>
-
-## Sponsors
-
-OpenPencil is free and open-source. Development is funded by people who find it useful — thank you for keeping the canvas open.
-
-<a href="https://github.com/mrqyun" title="MrQyun">
-  <img src="https://wsrv.nl/?url=github.com/mrqyun.png&w=128&h=128&mask=circle&maxage=7d" width="64" height="64" alt="MrQyun" />
-</a>
-
-Thanks to **[MrQyun](https://github.com/mrqyun)** — want your name here too? **[Become a sponsor →](https://github.com/sponsors/ZSeven-W)**
-
-## Community
-
-<a href="https://discord.gg/h9Fmyy6pVh">
-  <img src="./apps/web/public/logo-discord.svg" alt="Discord" width="16" />
-  <strong> Join our Discord</strong>
-</a>
-— Ask questions, share designs, suggest features.
-
-## Star History
-
-<a href="https://star-history.com/#ZSeven-W/openpencil&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ZSeven-W/openpencil&type=Date" width="100%" />
- </picture>
-</a>
-
-## Assessments
-
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/zseven-w-openpencil-badge.png)](https://mseep.ai/app/zseven-w-openpencil)
+---
 
 ## License
 

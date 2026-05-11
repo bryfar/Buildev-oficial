@@ -95,7 +95,7 @@ export default function ImageGeneratePopover({
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent className="w-72" side="left" align="start">
         {!isConfigured ? (
-          <NotConfiguredView onOpenSettings={() => setDialogOpen(true)} />
+          <NotConfiguredView onOpenSettings={() => setDialogOpen(true, { tab: 'images' })} />
         ) : state === 'loading' ? (
           <LoadingView />
         ) : state === 'preview' && previewUrl ? (

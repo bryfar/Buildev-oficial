@@ -1,6 +1,6 @@
 // apps/cli/src/commands/read-nodes.ts
 
-import { resolveDocPath, getSyncUrl } from '@zseven-w/pen-mcp';
+import { resolveDocPath, getSyncUrl } from '@buildev/pen-mcp';
 import { output, outputError } from '../output';
 
 interface Flags {
@@ -21,7 +21,7 @@ export async function cmdReadNodes(args: string[], flags: Flags): Promise<void> 
 
   const syncUrl = await getSyncUrl();
   if (!syncUrl) {
-    outputError('No running OpenPencil instance found. Start the app first with: op start');
+    outputError('No running Buildev instance found. Start the app first with: op start');
   }
 
   try {

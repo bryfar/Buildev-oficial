@@ -46,7 +46,7 @@ import {
   handleDebugToolCall,
 } from './routes/debug-routes';
 
-const pkg = { name: '@zseven-w/pen-mcp', version: '0.6.0' };
+const pkg = { name: '@buildev/pen-mcp', version: '0.6.0' };
 
 const DEBUG_ENABLED =
   process.env.OPENPENCIL_DEBUG_TOOLS === '1' || process.argv.includes('--debug');
@@ -201,7 +201,7 @@ function startHttpServer(port: number): void {
   });
 
   httpServer.listen(port, '0.0.0.0', () => {
-    console.error(`OpenPencil MCP server listening on http://0.0.0.0:${port}/mcp`);
+    console.error(`Buildev MCP server listening on http://0.0.0.0:${port}/mcp`);
   });
 }
 

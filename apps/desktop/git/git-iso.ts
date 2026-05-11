@@ -3,7 +3,7 @@
 // Local git operations using isomorphic-git. This module is namespace-agnostic:
 // callers pass ref names (e.g. 'refs/heads/main') as parameters. The engine
 // in Phase 2 wraps these primitives with the actual ref naming convention
-// for milestones (refs/heads/<branch>) and autosaves (refs/openpencil/autosaves/<branch>).
+// for milestones (refs/heads/<branch>) and autosaves (refs/buildev/autosaves/<branch>).
 
 import * as fs from 'node:fs';
 import { dirname, basename, resolve, join } from 'node:path';
@@ -32,7 +32,7 @@ export interface InitOptions {
   filePath: string;
   /** branch name to initialize HEAD with; default 'main' */
   defaultBranch?: string;
-  /** author for the initial empty commit; defaults to 'OpenPencil <noreply@openpencil>' */
+  /** author for the initial empty commit; defaults to 'Buildev <noreply@buildev>' */
   authorName?: string;
   authorEmail?: string;
 }
@@ -211,7 +211,7 @@ export async function commitFile(opts: {
     // Create the commit. Passing `ref` makes isomorphic-git update that
     // ref instead of HEAD. Passing `parent` overrides the default
     // (which would be HEAD's tip). Together this lets us write to e.g.
-    // refs/openpencil/autosaves/main without touching HEAD or refs/heads/main.
+    // refs/buildev/autosaves/main without touching HEAD or refs/heads/main.
     const ts = Math.floor(Date.now() / 1000);
     const hash = await git.commit({
       fs,
@@ -350,8 +350,8 @@ export async function restoreFileFromCommit(opts: {
 
 /**
  * List branches under a ref prefix. The prefix is RELATIVE to refs/, so
- * 'heads' lists refs/heads/*, 'openpencil/autosaves' lists
- * refs/openpencil/autosaves/*. Returns just the branch names (last segment),
+ * 'heads' lists refs/heads/*, 'buildev/autosaves' lists
+ * refs/buildev/autosaves/*. Returns just the branch names (last segment),
  * not the full ref paths.
  */
 export async function listBranches(opts: {
@@ -545,7 +545,7 @@ export async function getCurrentBranch(opts: { handle: IsoRepoHandle }): Promise
 /**
  * Force a ref to point at the given commit hash. Creates the ref if it does
  * not exist. Used by the engine's milestone commit flow to jump the
- * `refs/openpencil/autosaves/<branch>` ref to a freshly written milestone,
+ * `refs/buildev/autosaves/<branch>` ref to a freshly written milestone,
  * abandoning the intermediate autosave chain.
  */
 export async function setRef(opts: {

@@ -1,6 +1,6 @@
 import type { SessionNotification } from '@agentclientprotocol/sdk';
 
-/** Convert an ACP session/update notification to an OpenPencil SSE event string. */
+/** Convert an ACP session/update notification to a Buildev SSE event string. */
 export function acpUpdateToSSE(notification: SessionNotification): string | null {
   const update = notification.update;
   if (!update) return null;

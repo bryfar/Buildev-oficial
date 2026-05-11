@@ -1,4 +1,4 @@
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@buildev/pen-ai-skills';
 import type { DesignMdSpec } from '@/types/design-md';
 
 // Safe code block delimiter
@@ -84,7 +84,7 @@ export function buildDesignMdStylePolicy(spec: DesignMdSpec): string {
 // Core prompt templates (compact — design knowledge lives in pen-ai-skills)
 // ---------------------------------------------------------------------------
 
-const CHAT_CORE_PROMPT = `You are a design assistant for OpenPencil, a vector design tool that renders PenNode JSON on a canvas.
+const CHAT_CORE_PROMPT = `You are a design assistant for Buildev, a vector design tool that renders PenNode JSON on a canvas.
 
 ABSOLUTE REQUIREMENT — When a user asks to create/generate/design/make ANY visual element or UI:
 You MUST output a ${BLOCK}json code block containing a valid PenNode JSON array. This is NON-NEGOTIABLE.
@@ -92,7 +92,7 @@ Add a 1-2 sentence description AFTER the JSON block, not before.
 NEVER describe what you "would" create — ALWAYS output the actual JSON immediately.
 NEVER output HTML, CSS, or React code — ONLY PenNode JSON.
 NEVER say "I will create..." — START DIRECTLY WITH <step>.
-NEVER use "OpenPencil", "Pencil", or the tool name as brand/app name in designs. Use generic placeholders like "AppName", "Acme", or contextually relevant names.
+NEVER use "Buildev", "Pencil", or the tool name as brand/app name in designs. Use generic placeholders like "AppName", "Acme", or contextually relevant names.
 
 You may include 1-2 brief <step> tags before the JSON (optional, keep them SHORT).
 When a user asks non-design questions (explain, suggest colors, give advice), respond in text.`;

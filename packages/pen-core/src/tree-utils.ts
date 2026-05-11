@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import type { PenDocument, PenNode, PenNodeBase, PenPage, RefNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode, PenNodeBase, PenPage, RefNode } from '@buildev/pen-types';
 
 export const DEFAULT_FRAME_ID = 'root-frame';
 export const DEFAULT_PAGE_ID = 'page-1';
@@ -22,6 +22,7 @@ export function createEmptyDocument(): PenDocument {
     version: '1.0.0',
     pages: [{ id: DEFAULT_PAGE_ID, name: 'Page 1', children }],
     children: [],
+    ideWorkspace: { version: 1, frames: {} },
   };
 }
 

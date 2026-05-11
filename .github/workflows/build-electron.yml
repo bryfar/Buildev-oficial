@@ -79,15 +79,15 @@ jobs:
       - name: Compile MCP server
         run: bun run mcp:compile
 
-      - name: Checkout openpencil-skill
+      - name: Checkout buildev-skill
         uses: actions/checkout@v4
         with:
-          repository: zseven-w/openpencil-skill
-          path: external/openpencil-skill
+          repository: zseven-w/buildev-skill
+          path: external/buildev-skill
 
       - name: Compile CLI
         env:
-          SKILL_ROOT: ${{ github.workspace }}/external/openpencil-skill
+          SKILL_ROOT: ${{ github.workspace }}/external/buildev-skill
         run: bun run cli:compile
 
       - name: Build Electron app
@@ -164,44 +164,44 @@ jobs:
       - name: Download macOS zips and compute sha256
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          curl -fSL "https://github.com/zseven-w/openpencil/releases/download/v${VERSION}/OpenPencil-${VERSION}-arm64-mac.zip" -o arm64.zip
-          curl -fSL "https://github.com/zseven-w/openpencil/releases/download/v${VERSION}/OpenPencil-${VERSION}-x64-mac.zip" -o x64.zip
+          curl -fSL "https://github.com/zseven-w/buildev/releases/download/v${VERSION}/Buildev-${VERSION}-arm64-mac.zip" -o arm64.zip
+          curl -fSL "https://github.com/zseven-w/buildev/releases/download/v${VERSION}/Buildev-${VERSION}-x64-mac.zip" -o x64.zip
           echo "SHA_ARM64=$(sha256sum arm64.zip | cut -d' ' -f1)" >> "$GITHUB_ENV"
           echo "SHA_X64=$(sha256sum x64.zip | cut -d' ' -f1)" >> "$GITHUB_ENV"
 
       - name: Checkout tap repo
         uses: actions/checkout@v4
         with:
-          repository: zseven-w/homebrew-openpencil
+          repository: zseven-w/homebrew-buildev
           token: ${{ secrets.TAP_GITHUB_TOKEN }}
 
       - name: Update cask formula
         run: |
           VERSION=${{ steps.version.outputs.version }}
           mkdir -p Casks
-          cat > Casks/openpencil.rb << EOF
-          cask "openpencil" do
+          cat > Casks/buildev.rb << EOF
+          cask "buildev" do
             version "${VERSION}"
 
             on_arm do
               sha256 "${SHA_ARM64}"
-              url "https://github.com/zseven-w/openpencil/releases/download/v#{version}/OpenPencil-#{version}-arm64-mac.zip"
+              url "https://github.com/zseven-w/buildev/releases/download/v#{version}/Buildev-#{version}-arm64-mac.zip"
             end
             on_intel do
               sha256 "${SHA_X64}"
-              url "https://github.com/zseven-w/openpencil/releases/download/v#{version}/OpenPencil-#{version}-x64-mac.zip"
+              url "https://github.com/zseven-w/buildev/releases/download/v#{version}/Buildev-#{version}-x64-mac.zip"
             end
 
-            name "OpenPencil"
+            name "Buildev"
             desc "Open-source vector design tool"
-            homepage "https://github.com/zseven-w/openpencil"
+            homepage "https://github.com/zseven-w/buildev"
 
-            app "OpenPencil.app"
+            app "Buildev.app"
 
             zap trash: [
-              "~/Library/Application Support/OpenPencil",
-              "~/Library/Preferences/dev.openpencil.app.plist",
-              "~/Library/Caches/dev.openpencil.app",
+              "~/Library/Application Support/Buildev",
+              "~/Library/Preferences/dev.buildev.app.plist",
+              "~/Library/Caches/dev.buildev.app",
             ]
           end
           EOF
@@ -210,9 +210,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Casks/openpencil.rb
+          git add Casks/buildev.rb
           git diff --cached --quiet && exit 0
-          git commit -m "Update OpenPencil to ${{ steps.version.outputs.version }}"
+          git commit -m "Update Buildev to ${{ steps.version.outputs.version }}"
           git push
 
   update-scoop:
@@ -229,44 +229,44 @@ jobs:
       - name: Download Windows portable and compute sha256
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          curl -fSL "https://github.com/zseven-w/openpencil/releases/download/v${VERSION}/OpenPencil-${VERSION}-x64-win.exe" -o win64.exe
+          curl -fSL "https://github.com/zseven-w/buildev/releases/download/v${VERSION}/Buildev-${VERSION}-x64-win.exe" -o win64.exe
           echo "SHA_WIN64=$(sha256sum win64.exe | cut -d' ' -f1)" >> "$GITHUB_ENV"
 
       - name: Checkout scoop bucket
         uses: actions/checkout@v4
         with:
-          repository: zseven-w/scoop-openpencil
+          repository: zseven-w/scoop-buildev
           token: ${{ secrets.TAP_GITHUB_TOKEN }}
 
       - name: Update manifest
         run: |
           VERSION=${{ steps.version.outputs.version }}
           mkdir -p bucket
-          cat > bucket/openpencil.json << EOF
+          cat > bucket/buildev.json << EOF
           {
             "version": "${VERSION}",
             "description": "Open-source AI-native vector design tool",
-            "homepage": "https://github.com/zseven-w/openpencil",
+            "homepage": "https://github.com/zseven-w/buildev",
             "license": "MIT",
             "architecture": {
               "64bit": {
-                "url": "https://github.com/zseven-w/openpencil/releases/download/v${VERSION}/OpenPencil-${VERSION}-x64-win.exe",
+                "url": "https://github.com/zseven-w/buildev/releases/download/v${VERSION}/Buildev-${VERSION}-x64-win.exe",
                 "hash": "${SHA_WIN64}"
               }
             },
-            "pre_install": "Rename-Item \"\$dir\\OpenPencil-\$version-x64-win.exe\" 'OpenPencil.exe'",
-            "bin": "OpenPencil.exe",
-            "shortcuts": [["OpenPencil.exe", "OpenPencil"]],
+            "pre_install": "Rename-Item \"\$dir\\Buildev-\$version-x64-win.exe\" 'Buildev.exe'",
+            "bin": "Buildev.exe",
+            "shortcuts": [["Buildev.exe", "Buildev"]],
             "checkver": {
-              "github": "https://github.com/zseven-w/openpencil"
+              "github": "https://github.com/zseven-w/buildev"
             },
             "autoupdate": {
               "architecture": {
                 "64bit": {
-                  "url": "https://github.com/zseven-w/openpencil/releases/download/v\$version/OpenPencil-\$version-x64-win.exe"
+                  "url": "https://github.com/zseven-w/buildev/releases/download/v\$version/Buildev-\$version-x64-win.exe"
                 }
               },
-              "pre_install": "Rename-Item \"\$dir\\OpenPencil-\$version-x64-win.exe\" 'OpenPencil.exe'"
+              "pre_install": "Rename-Item \"\$dir\\Buildev-\$version-x64-win.exe\" 'Buildev.exe'"
             }
           }
           EOF
@@ -275,7 +275,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add bucket/openpencil.json
+          git add bucket/buildev.json
           git diff --cached --quiet && exit 0
-          git commit -m "Update OpenPencil to ${{ steps.version.outputs.version }}"
+          git commit -m "Update Buildev to ${{ steps.version.outputs.version }}"
           git push

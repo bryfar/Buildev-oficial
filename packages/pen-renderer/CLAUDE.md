@@ -1,6 +1,6 @@
 # pen-renderer
 
-Standalone CanvasKit/Skia renderer for OpenPencil (.op) design files. No React, no Zustand -- pure TypeScript + CanvasKit WASM.
+Standalone CanvasKit/Skia renderer for Buildev (.op) design files. No React, no Zustand -- pure TypeScript + CanvasKit WASM.
 
 ## Structure
 
