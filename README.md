@@ -447,9 +447,9 @@ flowchart LR
     Parser[JSON Parser<br/>→ PenNode AST]
     Canvas[Canvas<br/>Editable Design]
 
-    Upload-->"base64 image"-->AI
-    AI-->"structured JSON"-->Parser
-    Parser-->"PenNode[]"-->Canvas
+    Upload-- "base64 image" -->AI
+    AI-- "structured JSON" -->Parser
+    Parser-- "PenNode[]" -->Canvas
 ```
 
 - **File:** `apps/web/src/services/ai/vision-scanner.ts`
@@ -486,7 +486,7 @@ flowchart LR
     Vue --> Backward --> Doc
     HTML --> Backward --> Doc
     Doc --> Renderer
-    Backward-.->"Updates Canvas"-->Renderer
+    Backward -."updates canvas"-> Renderer
 ```
 
 - **Reverse parsers:** React, Vue 3, HTML, generic
@@ -531,7 +531,7 @@ flowchart TB
 
     Registry --> Hooks
     Registry --> BuiltIn
-    Registry-->"Developer API"-->Custom
+    Registry-- "Developer API" -->Custom
     Hooks-->Lifecycle
 ```
 
@@ -663,10 +663,10 @@ flowchart LR
     Canvas[Infinite Canvas<br/>Real-time Rendering]
     Edit[Select & Modify<br/>Natural Language]
 
-    Prompt-->"Streaming SSE"-->AI
-    AI-->"Chunk-by-chunk"-->Canvas
-    Canvas-->"Select element"-->Edit
-    Edit-->"Make it darker"-->AI
+    Prompt-- "Streaming SSE" -->AI
+    AI-- "Chunk-by-chunk" -->Canvas
+    Canvas-- "Select element" -->Edit
+    Edit-- "Make it darker" -->AI
 ```
 
 ### 🤖 Concurrent Agent Teams
@@ -768,10 +768,10 @@ flowchart LR
         API[Nitro API]
     end
 
-    CLIs-->"MCP Protocol"-->Tools
+    CLIs-- "MCP Protocol" -->Tools
     Tools-->Docs
     Tools-->Design
-    Tools-->"HTTP"-->API
+    Tools-- "HTTP" -->API
     API-->Live
 ```
 
@@ -792,8 +792,8 @@ flowchart LR
     AI[AI Generation<br/>Incorporates Style]
     Canvas[Canvas<br/>Styled Design]
 
-    Style-->"tags: glassmorphism, retro..."-->Matcher
-    Matcher-->"matched styles"-->AI
+    Style-- "tags: glassmorphism, retro..." -->Matcher
+    Matcher-- "matched styles" -->AI
     AI-->Canvas
     MCP[MCP Tools<br/>get_style_guide_tags]-->Style
 ```
@@ -814,7 +814,7 @@ flowchart LR
     Variables[CSS Custom Properties<br/>var(--name)]
 
     Design --> OpFile
-    OpFile-->"Diffable"-->Git
+    OpFile-- "Diffable" -->Git
     OpFile --> Code
     OpFile --> Variables
 ```
@@ -959,9 +959,9 @@ flowchart LR
     Mapper[Node Mapper<br/>Figma → PenNode]
     Canvas[Canvas<br/>Editable Design]
 
-    Figma-->"binary"-->Parser
-    Parser-->"Figma nodes"-->Mapper
-    Mapper-->"PenNode[]"-->Canvas
+    Figma-- "binary" -->Parser
+    Parser-- "Figma nodes" -->Mapper
+    Mapper-- "PenNode[]" -->Canvas
 ```
 
 ### 🖥️ Electron Desktop
@@ -1013,8 +1013,8 @@ flowchart TB
         StackAssistant[Stack Migration<br/>Assistant]
     end
 
-    TopBar-->"Toggle"-->DesignMode
-    TopBar-->"Toggle"-->IDEMode
+    TopBar-- "Toggle" -->DesignMode
+    TopBar-- "Toggle" -->IDEMode
 ```
 
 - **Design Mode** — Full visual canvas with drawing tools, layer panel, properties, AI chat
