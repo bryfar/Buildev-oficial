@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>세계 최초의 오픈소스 AI 네이티브 벡터 디자인 툴.</strong><br />
-  <sub>동시 에이전트 팀 &bull; 디자인-애즈-코드 &bull; 내장 MCP 서버 &bull; 멀티 모델 인텔리전스</sub>
+  <strong>오픈소스 AI 네이티브 디자인-투-코드 플랫폼.</strong><br />
+  <sub>비주얼 캔버스 + IDE 모드 · 디자인-as-코드 · 멀티프레임워크 내보내기 · 동시 AI 에이전트</sub>
 </p>
 
 <p align="center">

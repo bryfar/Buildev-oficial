@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>全球首個開源 AI 原生向量設計工具。</strong><br />
-  <sub>並行智能體團隊 &bull; 設計即程式碼 &bull; 內建 MCP 伺服器 &bull; 多模型智慧</sub>
+  <strong>開源AI原生設計到程式碼平台。</strong><br />
+  <sub>可視化畫布 + IDE模式 · 設計即代碼 · 多框架匯出 · 併發AI代理</sub>
 </p>
 
 <p align="center">

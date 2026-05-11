@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>Công cụ thiết kế vector mã nguồn mở thuần AI đầu tiên trên thế giới.</strong><br />
-  <sub>Đội Tác nhân Đồng thời &bull; Design-as-Code &bull; Máy chủ MCP Tích hợp &bull; Trí tuệ Đa mô hình</sub>
+  <strong>Nền tảng thiết kế-đến-mã nguồn mở AI-native.</strong><br />
+  <sub>Canvas trực quan + Chế độ IDE · Thiết kế-như-Mã · Xuất đa framework · Tác tử AI đồng thời</sub>
 </p>
 
 <p align="center">

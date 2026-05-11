@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>Das weltweit erste KI-native Open-Source-Vektordesign-Werkzeug.</strong><br />
-  <sub>Parallele Agententeams &bull; Design-as-Code &bull; Eingebauter MCP-Server &bull; Multi-Modell-Intelligenz</sub>
+  <strong>Die Open-Source KI-native Design-to-Code-Plattform.</strong><br />
+  <sub>Visuelle Leinwand + IDE-Modus · Design-as-Code · Multi-Framework-Export · Parallele KI-Agenten</sub>
 </p>
 
 <p align="center">

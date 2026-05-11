@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>Le premier outil de design vectoriel open-source natif IA au monde.</strong><br />
-  <sub>Equipes d'agents concurrents &bull; Design-as-Code &bull; Serveur MCP intégré &bull; Intelligence multi-modèles</sub>
+  <strong>La plateforme open-source IA-native de conception-à-code.</strong><br />
+  <sub>Canvas visuel + Mode IDE · Design-as-Code · Export multi-framework · Agents IA concurrents</sub>
 </p>
 
 <p align="center">

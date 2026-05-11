@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>世界初のオープンソース AI ネイティブベクターデザインツール。</strong><br />
-  <sub>並行エージェントチーム &bull; Design-as-Code &bull; 内蔵 MCP サーバー &bull; マルチモデルインテリジェンス</sub>
+  <strong>オープンソースAIネイティブ設計・コードプラットフォーム。</strong><br />
+  <sub>ビジュアルキャンバス + IDEモード · デザインasコード · マルチフレームワーク出力 · 並行AIエージェント</sub>
 </p>
 
 <p align="center">

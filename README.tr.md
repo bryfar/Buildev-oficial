@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>Dünyanın ilk açık kaynaklı AI-yerel vektör tasarım aracı.</strong><br />
-  <sub>Eşzamanlı Ajan Ekipleri &bull; Kod Olarak Tasarım &bull; Yerleşik MCP Sunucusu &bull; Çoklu Model Zekası</sub>
+  <strong>Açık kaynaklı AI-native tasarımdan-koda platformu.</strong><br />
+  <sub>Görsel Tuval + IDE Modu · Tasarım-olarak-Kod · Çoklu çerçeve dışa aktarma · Eşzamanlı AI Ajanları</sub>
 </p>
 
 <p align="center">

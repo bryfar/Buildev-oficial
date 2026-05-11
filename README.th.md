@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>เครื่องมือออกแบบเวกเตอร์โอเพนซอร์สที่ขับเคลื่อนด้วย AI ตัวแรกของโลก</strong><br />
-  <sub>ทีม Agent ทำงานพร้อมกัน &bull; Design-as-Code &bull; MCP Server ในตัว &bull; ปัญญาหลายโมเดล</sub>
+  <strong>แพลตฟอร์มโอเพนซอร์ส AI-native ออกแบบ-สู่-โค้ด.</strong><br />
+  <sub>แคนวาสภาพ + โหมด IDE · ดีไซน์-แอส-โค้ด · ส่งออกหลายเฟรมเวิร์ก · เอเจนต์ AI พร้อมกัน</sub>
 </p>
 
 <p align="center">

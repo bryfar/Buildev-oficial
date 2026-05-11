@@ -5,8 +5,8 @@
 <h1 align="center">Buildev</h1>
 
 <p align="center">
-  <strong>Alat desain vektor open-source berbasis AI pertama di dunia.</strong><br />
-  <sub>Tim Agen Konkuren &bull; Design-as-Code &bull; Server MCP Bawaan &bull; Kecerdasan Multi-model</sub>
+  <strong>Platform desain-ke-kode open-source native-AI.</strong><br />
+  <sub>Kanvas Visual + Mode IDE · Desain-sebagai-Kode · Ekspor multi-framework · Agen AI Konkuren</sub>
 </p>
 
 <p align="center">
