@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
@@ -228,7 +228,7 @@ cat design.dsl | op design - # Pipe depuis stdin
 
 Supporte trois méthodes d'entrée : chaîne en ligne, `@filepath` (lecture depuis un fichier), ou `-` (lecture depuis stdin). Fonctionne avec l'app de bureau ou le serveur de développement web. Voir le [README du CLI](./apps/cli/README.md) pour la référence complète des commandes.
 
-**Compétence LLM** — installez le plugin [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) pour apprendre aux agents IA (Claude Code, Cursor, Codex, Gemini CLI, etc.) à concevoir avec `op`.
+**Compétence LLM** — installez le plugin [Buildev Skill](https://github.com/bryfar/Buildev-skill) pour apprendre aux agents IA (Claude Code, Cursor, Codex, Gemini CLI, etc.) à concevoir avec `op`.
 
 ## Fonctionnalités
 
@@ -401,8 +401,8 @@ Les contributions sont les bienvenues ! Consultez [CLAUDE.md](./CLAUDE.md) pour 
 
 ## Contributeurs
 
-<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev" alt="Contributors" />
 </a>
 
 ## Sponsors
@@ -425,17 +425,17 @@ Merci à **[MrQyun](https://github.com/mrqyun)** — vous voulez voir votre nom 
 
 ## Star History
 
-<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
+<a href="https://star-history.com/#bryfar/Buildev&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" width="100%" />
  </picture>
 </a>
 
 ## Évaluations
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-Buildev-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## Licence
 

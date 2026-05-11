@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
@@ -226,7 +226,7 @@ cat design.dsl | op design - # 从 stdin 管道输入
 
 支持三种输入方式：内联字符串、`@filepath`（从文件读取）、`-`（从 stdin 读取）。可搭配桌面应用或 Web 开发服务器使用。完整命令参考请查阅 [CLI README](./apps/cli/README.md)。
 
-**LLM 技能** — 安装 [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) 插件，教 AI 智能体（Claude Code、Cursor、Codex、Gemini CLI 等）使用 `op` 进行设计。
+**LLM 技能** — 安装 [Buildev Skill](https://github.com/bryfar/Buildev-skill) 插件，教 AI 智能体（Claude Code、Cursor、Codex、Gemini CLI 等）使用 `op` 进行设计。
 
 ## 功能特性
 
@@ -399,8 +399,8 @@ bun run cli:compile        # 编译 CLI 到 dist
 
 ## 贡献者
 
-<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev" alt="Contributors" />
 </a>
 
 ## 赞助者
@@ -427,17 +427,17 @@ Buildev 免费开源,开发完全由觉得它好用的人们资助 —— 感谢
 
 ## Star History
 
-<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
+<a href="https://star-history.com/#bryfar/Buildev&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" width="100%" />
  </picture>
 </a>
 
 ## 安全评估
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-Buildev-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## 许可证
 

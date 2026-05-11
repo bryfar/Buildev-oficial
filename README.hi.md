@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
@@ -226,7 +226,7 @@ cat design.dsl | op design - # stdin से पाइप करें
 
 तीन इनपुट विधियाँ समर्थित हैं: इनलाइन स्ट्रिंग, `@filepath` (फ़ाइल से पढ़ें), या `-` (stdin से पढ़ें)। डेस्कटॉप ऐप या वेब डेव सर्वर के साथ काम करता है। पूर्ण कमांड संदर्भ के लिए [CLI README](./apps/cli/README.md) देखें।
 
-**LLM स्किल** — [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) प्लगइन इंस्टॉल करें ताकि AI एजेंट (Claude Code, Cursor, Codex, Gemini CLI आदि) `op` से डिज़ाइन करना सीख सकें।
+**LLM स्किल** — [Buildev Skill](https://github.com/bryfar/Buildev-skill) प्लगइन इंस्टॉल करें ताकि AI एजेंट (Claude Code, Cursor, Codex, Gemini CLI आदि) `op` से डिज़ाइन करना सीख सकें।
 
 ## विशेषताएँ
 
@@ -399,8 +399,8 @@ bun run cli:compile        # CLI को dist में कंपाइल कर
 
 ## योगदानकर्ता
 
-<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev" alt="Contributors" />
 </a>
 
 ## प्रायोजक
@@ -423,17 +423,17 @@ Buildev मुफ़्त और ओपन-सोर्स है। इसक�
 
 ## Star History
 
-<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
+<a href="https://star-history.com/#bryfar/Buildev&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" width="100%" />
  </picture>
 </a>
 
 ## मूल्यांकन
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-Buildev-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## लाइसेंस
 

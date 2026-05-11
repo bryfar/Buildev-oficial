@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
@@ -226,7 +226,7 @@ cat design.dsl | op design - # stdin에서 파이프 입력
 
 세 가지 입력 방식을 지원합니다: 인라인 문자열, `@filepath` (파일에서 읽기), `-` (stdin에서 읽기). 데스크톱 앱 또는 웹 개발 서버와 연동됩니다. 전체 명령어 레퍼런스는 [CLI README](./apps/cli/README.md)를 참고하세요.
 
-**LLM 스킬** — [Buildev Skill](https://github.com/bryfar/Buildev-oficial-skill) 플러그인을 설치하면 AI 에이전트(Claude Code, Cursor, Codex, Gemini CLI 등)에게 `op`를 사용한 디자인을 교육할 수 있습니다.
+**LLM 스킬** — [Buildev Skill](https://github.com/bryfar/Buildev-skill) 플러그인을 설치하면 AI 에이전트(Claude Code, Cursor, Codex, Gemini CLI 등)에게 `op`를 사용한 디자인을 교육할 수 있습니다.
 
 ## 기능
 
@@ -399,8 +399,8 @@ bun run cli:compile        # CLI를 dist로 컴파일
 
 ## 기여자
 
-<a href="https://github.com/bryfar/Buildev-oficial/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bryfar/Buildev-oficial" alt="Contributors" />
+<a href="https://github.com/bryfar/Buildev/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bryfar/Buildev" alt="Contributors" />
 </a>
 
 ## 스폰서
@@ -423,17 +423,17 @@ Buildev은 무료이며 오픈소스입니다. 개발은 이 도구를 유용하
 
 ## Star History
 
-<a href="https://star-history.com/#bryfar/Buildev-oficial&Date">
+<a href="https://star-history.com/#bryfar/Buildev&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev-oficial&type=Date" width="100%" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bryfar/Buildev&type=Date" width="100%" />
  </picture>
 </a>
 
 ## 보안 평가
 
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-buildev-oficial-badge.png)](https://mseep.ai/app/zseven-w-buildev)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/bryfar-Buildev-badge.png)](https://mseep.ai/app/zseven-w-buildev)
 
 ## 라이선스
 

@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/bryfar/Buildev-oficial/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev-oficial?style=flat&color=cfb537" alt="Stars" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev-oficial?color=64748b" alt="License" /></a>
-  <a href="https://github.com/bryfar/Buildev-oficial/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev-oficial/ci.yml?branch=main&label=CI" alt="CI" /></a>
+  <a href="https://github.com/bryfar/Buildev/stargazers"><img src="https://img.shields.io/github/stars/bryfar/Buildev?style=flat&color=cfb537" alt="Stars" /></a>
+  <a href="https://github.com/bryfar/Buildev/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bryfar/Buildev?color=64748b" alt="License" /></a>
+  <a href="https://github.com/bryfar/Buildev/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/bryfar/Buildev/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://discord.gg/h9Fmyy6pVh"><img src="https://img.shields.io/discord/1476517942949580952?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
 </p>
 
@@ -311,7 +311,7 @@ scoop bucket add buildev https://github.com/zseven-w/scoop-buildev
 scoop install buildev
 ```
 
-**Linux / Windows direct download:** [GitHub Releases](https://github.com/bryfar/Buildev-oficial/releases) — `.exe` (Windows), `.AppImage` / `.deb` (Linux)
+**Linux / Windows direct download:** [GitHub Releases](https://github.com/bryfar/Buildev/releases) — `.exe` (Windows), `.AppImage` / `.deb` (Linux)
 
 **CLI (`op`):**
 
