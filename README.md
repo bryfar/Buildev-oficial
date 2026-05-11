@@ -1,10 +1,12 @@
 <p align="center">
-  <img src="./Bran%20Assets/Logotip%C3%B3.svg" alt="Buildev" width="380" />
+  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
 </p>
 
+<h1 align="center">Buildev</h1>
+
 <p align="center">
-  <strong>Open-source AI-native design tool.</strong><br />
-  <sub>Design visually. Export clean code. Zero vendor lock-in.</sub>
+  <strong>The open-source AI-native visual web builder.</strong><br />
+  <sub>Design-as-Code &bull; Multi-framework Export &bull; Concurrent AI Agents &bull; MCP Server</sub>
 </p>
 
 <p align="center">
