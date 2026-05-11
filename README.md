@@ -1,13 +1,10 @@
 <p align="center">
-  <img src="./apps/desktop/build/icon.png" alt="Buildev" width="120" />
-  <img src="./Bran%20Assets/Logotip%C3%B3.svg" alt="Buildev" width="280" />
+  <img src="./Bran%20Assets/Logotip%C3%B3.svg" alt="Buildev" width="380" />
 </p>
 
-<h1 align="center">Buildev</h1>
-
 <p align="center">
-  <strong>The world's first open-source AI-native vector design tool.</strong><br />
-  <sub>Concurrent Agent Teams &bull; Design-as-Code &bull; Built-in MCP Server &bull; Multi-model Intelligence</sub>
+  <strong>Open-source AI-native design tool.</strong><br />
+  <sub>Design visually. Export clean code. Zero vendor lock-in.</sub>
 </p>
 
 <p align="center">
