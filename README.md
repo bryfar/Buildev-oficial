@@ -988,6 +988,197 @@ flowchart TB
     Tech --> Desktop
 ```
 
+### 🎯 Editor Modes
+
+Switch between **Design Mode** and **IDE Mode** for different workflows.
+
+```mermaid
+flowchart TB
+    subgraph Editor["Editor"]
+        TopBar[Top Bar<br/>Mode Selector]
+    end
+
+    subgraph DesignMode["🎨 Design Mode"]
+        Canvas[Canvas Editor<br/>CanvasKit/Skia]
+        Layers[Layer Panel]
+        Properties[Properties Panel]
+        AI[AI Chat Panel]
+        Toolbar[Drawing Tools]
+    end
+
+    subgraph IDEMode["💻 IDE Mode"]
+        Explorer[Explorer Panel<br/>Virtual File Tree]
+        CodeEditor[Code Editor<br/>Monaco]
+        BottomPanel[Bottom Panel<br/>Problems / Output / Terminal]
+        StackAssistant[Stack Migration<br/>Assistant]
+    end
+
+    TopBar -->|Toggle| DesignMode
+    TopBar -->|Toggle| IDEMode
+```
+
+- **Design Mode** — Full visual canvas with drawing tools, layer panel, properties, AI chat
+- **IDE Mode** — Split-panel code editor with virtual file tree, Monaco editor, diagnostics, stack migration assistant (React/Vue/Astro)
+- **Preview** — HTML preview in new tab from the top bar
+- **Code Sync** — Bidirectional sync between code and canvas when editing generated files
+
+### 🗂️ Project Dashboard
+
+A full dashboard system for managing projects, workspaces, and drafts.
+
+```mermaid
+flowchart TB
+    subgraph Dashboard["Dashboard (/)"]
+        Nav[Sidebar Navigation]
+        Grid[Project Grid]
+    end
+
+    subgraph Routes["Dashboard Routes"]
+        Home[Home<br/>Recent & Local Projects]
+        Workspaces["/workspaces<br/>Workspace List"]
+        Workspace["/workspaces/:id<br/>Workspace Detail"]
+        Drafts["/drafts<br/>Unassigned Projects"]
+        Recents["/recents<br/>All Recent Files"]
+        Library["/library<br/>Component Library"]
+    end
+
+    subgraph NavItems["Navigation"]
+        Main[Main Section<br/>Projects, Workspaces, Drafts, Recents]
+        Lib[Library Section<br/>Browse Components]
+    end
+
+    Dashboard --> Routes
+    Nav --> NavItems
+```
+
+- **Home (`/`)** — Recent projects, local project grid, cloud projects
+- **Workspaces (`/workspaces`)** — List all workspaces, create/rename/delete
+- **Workspace Detail (`/workspaces/:id`)** — View workspace projects, create new, move drafts
+- **Drafts (`/drafts`)** — Unassigned projects not yet in any workspace
+- **Recents (`/recents`)** — All recently opened files
+- **Library (`/library`)** — Component library browser
+
+### 🏗️ New Project Wizard
+
+Create projects with a 3-step wizard supporting multiple creation methods.
+
+```mermaid
+flowchart LR
+    subgraph Step1["Step 1: Architect"]
+        AI[AI Assistant<br/>Prompt-based]
+        Figma[Figma Import<br/>Upload .fig]
+        Reverse[Reverse UI<br/>Image to Design]
+        Import[Import<br/>Git / JSON]
+        Blank[Start Blank]
+    end
+
+    subgraph Step2["Step 2: Configure"]
+        Name[Project Name]
+        Type[Project Type<br/>landing / multisite / cms]
+        Stack[Frontend Stack<br/>React / Vue / Astro]
+        Backend[Backend<br/>Static / Node / Serverless]
+        CMS[CMS Provider<br/>Optional]
+    end
+
+    subgraph Step3["Step 3: Review"]
+        Summary[Review Summary]
+        Create[Create Project]
+    end
+
+    Step1 --> Step2 --> Step3
+```
+
+- **Step 1 — Architect:** Choose how to create: AI Assistant, Figma import, Reverse UI (from image), Import from Git/JSON, or Start blank
+- **Step 2 — Configure:** Set project name, type (landing/multisite/cms), frontend stack (React/Vue/Astro), backend (static/Node/serverless/edge), CMS provider
+- **Step 3 — Review:** Summary of all choices before creating
+
+### 🏷️ Project Types
+
+Each project has a type that determines its template and dashboard mode.
+
+| Type | Description | Default Pages | Stack |
+|------|-------------|---------------|-------|
+| **landing** | Single-page landing site | Home | Any |
+| **multisite** | Multi-page website | Home, About, Contact | Any |
+| **cms** | Content-managed site | Home, Blog, Article | Astro (forced) |
+
+```mermaid
+flowchart TB
+    subgraph Types["Project Types"]
+        Landing[Landing<br/>Single Page]
+        Multisite[Multisite<br/>Multi-page]
+        CMS[CMS<br/>Content Managed]
+    end
+
+    subgraph Config["Auto-Configuration"]
+        Pages[Page Structure]
+        Stack[Stack Selection]
+        Backend[Backend Setup]
+    end
+
+    Types --> Config
+    Config --> Template[Template & Dashboard Ready]
+```
+
+- **Landing:** Single-page, any stack, lightweight setup
+- **Multisite:** Multi-page with Home/About/Contact, flexible stack
+- **CMS:** Forces Astro stack, includes Content/Manage/Admin sidebar navigation, provider options
+
+### 📰 CMS Sidebar
+
+CMS projects include a dedicated sidebar for content management.
+
+```mermaid
+flowchart LR
+    subgraph CMS["CMS Sidebar"]
+        Content[Content<br/>Pages, Posts, Media]
+        Manage[Manage<br/>Settings, Users]
+        Admin[Admin<br/>Analytics, Deploy]
+    end
+
+    subgraph Providers["CMS Providers"]
+        Directus[Directus]
+        Strapi[Strapi]
+        Payload[Payload CMS]
+    end
+
+    Providers --> CMS
+    CMS --> Editor[Editor Canvas]
+```
+
+- **Content panel:** Pages, Posts, Media management
+- **Manage panel:** Settings, Users, Roles
+- **Admin panel:** Analytics, Deployment, Webhooks
+- **Provider options:** Directus, Strapi, Payload CMS
+
+### 🏢 Workspaces
+
+Organize projects into workspaces for better management.
+
+```mermaid
+flowchart TB
+    subgraph Workspace["Workspace Features"]
+        Create[Create Workspace]
+        Rename[Rename Workspace]
+        Delete[Delete Workspace]
+        Assign[Assign / Unassign Projects]
+    end
+
+    subgraph Views["Views"]
+        List[Workspaces List]
+        Detail[Workspace Detail<br/>Project Grid]
+    end
+
+    Workspace --> List
+    Workspace --> Detail
+    Detail --> Editor[Open in Editor]
+```
+
+- **Create/rename/delete** workspaces
+- **Assign projects** to workspaces from drafts
+- **Move projects** between workspaces
+- **LocalStorage persistence** for workspace registry
+
 ### 🧩 Embeddable SDK
 
 `pen-engine` (headless) + `pen-react` (React UI SDK) — embed the design engine in your own app.
